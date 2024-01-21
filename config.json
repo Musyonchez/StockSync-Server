@@ -1,6 +1,0 @@
-{
-    "Store1": "postgresql://Taylorswift:etacileD2@addermatt.postgres.database.azure.com:5432/nairobi?sslmode=require",
-    "company2": "postgresql://username:password@company2dbhost:5432/company2db",
-    "company3": "postgresql://username:password@company3dbhost:5432/company3db"
-  }
-  
