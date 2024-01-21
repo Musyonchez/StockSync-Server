@@ -140,6 +140,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-1.1.x"
       }
     ],
     "previewFeatures": [],
@@ -156,6 +160,7 @@ const config = {
     "storeDb"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "storeDb": {
       "url": {
@@ -164,8 +169,9 @@ const config = {
       }
     }
   },
-  "inlineSchema": "Ly8gc3RvcmVTY2hlbWEucHJpc21hDQpnZW5lcmF0b3Igc3RvcmVDbGllbnQgew0KICBwcm92aWRlciA9ICJwcmlzbWEtY2xpZW50LWpzIg0KICBvdXRwdXQgICA9ICIuL2dlbmVyYXRlZC9zdG9yZUNsaWVudCINCn0NCg0KZGF0YXNvdXJjZSBzdG9yZURiIHsNCiAgcHJvdmlkZXIgPSAicG9zdGdyZXNxbCINCiAgdXJsICAgICAgPSBlbnYoIlNUT0NLU1lOQ19TVE9SRTQiKQ0KfQ0KDQptb2RlbCBwcm9kdWN0cyB7DQogIGlkICAgICAgICAgIFN0cmluZyAgICBAaWQgQGRlZmF1bHQodXVpZCgpKQ0KICBuYW1lICAgICAgICBTdHJpbmcNCiAgZGVzY3JpcHRpb24gU3RyaW5nPw0KICBtaW5pbXVtUXVhbnRpdHkgICBGbG9hdD8NCiAgY3VycmVudFF1YW50aXR5ICAgRmxvYXQ/DQogIHJlb3JkZXJRdWFudGl0eSAgIEZsb2F0Pw0KICBjb3N0Q3VycmVudCAgIEZsb2F0Pw0KICBjb3N0UHJldmlvdXMgICBGbG9hdD8NCiAgYWN0aXZlICAgICAgICAgICAgQm9vbGVhbiAgIEBkZWZhdWx0KHRydWUpDQp9DQo=",
-  "inlineSchemaHash": "5b3e303cdf541da50d49881c656981d7b9e64439b1def343a704c4d37d668b32"
+  "inlineSchema": "Ly8gc3RvcmVTY2hlbWEucHJpc21hDQpnZW5lcmF0b3Igc3RvcmVDbGllbnQgew0KICBwcm92aWRlciA9ICJwcmlzbWEtY2xpZW50LWpzIg0KICBvdXRwdXQgICA9ICIuL2dlbmVyYXRlZC9zdG9yZUNsaWVudCINCiAgYmluYXJ5VGFyZ2V0cyA9IFsibmF0aXZlIiwgImRlYmlhbi1vcGVuc3NsLTEuMS54Il0NCn0NCg0KZGF0YXNvdXJjZSBzdG9yZURiIHsNCiAgcHJvdmlkZXIgPSAicG9zdGdyZXNxbCINCiAgdXJsICAgICAgPSBlbnYoIlNUT0NLU1lOQ19TVE9SRTQiKQ0KfQ0KDQptb2RlbCBwcm9kdWN0cyB7DQogIGlkICAgICAgICAgIFN0cmluZyAgICBAaWQgQGRlZmF1bHQodXVpZCgpKQ0KICBuYW1lICAgICAgICBTdHJpbmcNCiAgZGVzY3JpcHRpb24gU3RyaW5nPw0KICBtaW5pbXVtUXVhbnRpdHkgICBGbG9hdD8NCiAgY3VycmVudFF1YW50aXR5ICAgRmxvYXQ/DQogIHJlb3JkZXJRdWFudGl0eSAgIEZsb2F0Pw0KICBjb3N0Q3VycmVudCAgIEZsb2F0Pw0KICBjb3N0UHJldmlvdXMgICBGbG9hdD8NCiAgYWN0aXZlICAgICAgICAgICAgQm9vbGVhbiAgIEBkZWZhdWx0KHRydWUpDQp9DQo=",
+  "inlineSchemaHash": "f558f8d1b71642294e55e3b8b313046ac418ebe2da5498e4a9fbb0b94a682368",
+  "noEngine": false
 }
 config.dirname = '/'
 
