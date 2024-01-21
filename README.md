@@ -25,7 +25,7 @@ To run the StockSync Server locally:
 1. Clone this repository: `git clone https://github.com/your-username/StockSync-Server.git`
 2. Install dependencies: `npm install`
 3. Start the server: `npm start`
-4. The server will be running on [http://localhost:4000](http://localhost:4000).
+4. The server will be running on [http://localhost:5000](http://localhost:5000).
 
 Feel free to explore and contribute to the project!
 
