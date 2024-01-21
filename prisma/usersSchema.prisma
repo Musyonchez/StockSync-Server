@@ -1,0 +1,31 @@
+// usersSchema.prisma
+generator usersClient {
+  provider = "prisma-client-js"
+  output   = "./generated/usersClient"
+}
+
+datasource usersDb {
+  provider = "postgresql"
+  url      = env("STOCKSYNC_USERS")
+}
+
+model users {
+  id        String  @id @default(uuid())
+  firstName String? @usersDb.VarChar(255)
+  lastName  String? @usersDb.VarChar(255)
+  age       Int?
+  email     String? @usersDb.VarChar(255) @unique
+  password  String? @usersDb.VarChar(255)
+  store1    Boolean @default(false)
+  store2    Boolean @default(false)
+  store3    Boolean @default(false)
+  store4    Boolean @default(false)
+  company String? @usersDb.VarChar(255) @default(value: "immutable_value")
+  role UserRole @default(USER)
+}
+
+enum UserRole {
+  SUPERADMIN
+  ADMIN
+  USER
+}

@@ -1,0 +1,22 @@
+// storeSchema.prisma
+generator storeClient {
+  provider = "prisma-client-js"
+  output   = "./generated/storeClient"
+}
+
+datasource storeDb {
+  provider = "postgresql"
+  url      = env("STOCKSYNC_STORE4")
+}
+
+model products {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  minimumQuantity   Float?
+  currentQuantity   Float?
+  reorderQuantity   Float?
+  costCurrent   Float?
+  costPrevious   Float?
+  active            Boolean   @default(true)
+}
