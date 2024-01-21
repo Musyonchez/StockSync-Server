@@ -1,6 +1,7 @@
 // server.ts
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import cors from 'cors'; // Import the cors middleware
 import userResolvers from './resolvers/usersResolvers';
 import typeDefsUsers from './graphql/users';
 import productsResolvers from './resolvers/productsResolvers';
@@ -9,6 +10,10 @@ import typeDefsProducts from './graphql/products';
 // import { getDynamicDatabaseUrl } from './components/database/GetynamicDatabaseUrl'; // Import the component
 
 const app = express();
+
+// Use the cors middleware
+app.use(cors());
+
 
 const server = new ApolloServer({
   typeDefs: [typeDefsUsers, typeDefsProducts],
