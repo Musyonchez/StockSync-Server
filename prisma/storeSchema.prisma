@@ -2,7 +2,7 @@
 generator storeClient {
   provider = "prisma-client-js"
   output   = "./generated/storeClient"
-  binaryTargets = ["native", "debian-openssl-1.1.x"]
+  binaryTargets = ["native", "debian-openssl-1.1.x", "rhel-openssl-1.0.x"]
 }
 
 datasource storeDb {
