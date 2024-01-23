@@ -9,7 +9,7 @@ const productResolvers = {
     ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl; // Set the dynamic URL
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl; // Set the dynamic URL
 
       const prisma = new PrismaClient();
       return await prisma.products.findMany(); // Fetch products from the specified store
@@ -21,7 +21,7 @@ const productResolvers = {
     ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
 
       const prisma = new PrismaClient();
 
