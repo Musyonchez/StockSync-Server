@@ -9,10 +9,10 @@ const productResolvers = {
     ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl; // Set the dynamic URL
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
 
       const prisma = new PrismaClient();
-      return await prisma.products.findMany(); // Fetch products from the specified store
+      return await prisma.products.findMany();
     },
 
     activeProducts: async (
@@ -32,7 +32,6 @@ const productResolvers = {
       });
     },
 
-    
     inactiveProducts: async (
       _: any,
       { company, type }: { company: string; type: string }
@@ -82,7 +81,7 @@ const productResolvers = {
         type: string;
       }
     ) => {
-      const { company, type, ...productData } = args; // Destructure and separate 'company' and 'type'
+      const { company, type, ...productData } = args;
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
@@ -90,7 +89,7 @@ const productResolvers = {
 
       const prisma = new PrismaClient();
 
-      return await prisma.products.create({ data: productData }); // Use only productData without 'company' and 'type'
+      return await prisma.products.create({ data: productData });
     },
 
     editProduct: async (
@@ -108,26 +107,25 @@ const productResolvers = {
         type: string;
       }
     ) => {
-      const { company, type } = args; // Destructure and separate 'company' and 'type'
+      const { company, type } = args;
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-    
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl; // Set the dynamic URL
-    
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+
       const prisma = new PrismaClient();
-    
+
       try {
         const existingProduct = await prisma.products.findUnique({
           where: {
             id: args.id,
           },
         });
-    
+
         if (!existingProduct) {
           throw new Error(`Product with id ${args.id} not found`);
         }
-    
+
         const updatedProduct = await prisma.products.update({
           where: { id: args.id },
           data: {
@@ -143,48 +141,44 @@ const productResolvers = {
             costPrevious: args.costPrevious ?? existingProduct.costPrevious,
           },
         });
-    
+
         return updatedProduct;
       } catch (error) {
         throw new Error(`Error updating product: ${(error as Error).message}`);
       }
     },
-    
-    
 
-deactivateProduct: async (_: any, { id, company, type }: { id: string; company: string; type: string }) => {
+    deactivateProduct: async (
+      _: any,
+      { id, company, type }: { id: string; company: string; type: string }
+    ) => {
+      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-  const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
 
-  process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl; // Set the dynamic URL
+      const prisma = new PrismaClient();
 
+      try {
+        const currentProduct = await prisma.products.findUnique({
+          where: { id },
+        });
 
-  const prisma = new PrismaClient();
+        if (!currentProduct) {
+          throw new Error(`Product with ID ${id} not found`);
+        }
 
-  try {
-    // Fetch the current state of the product
-    const currentProduct = await prisma.products.findUnique({
-      where: { id },
-    });
+        const updatedProduct = await prisma.products.update({
+          where: { id },
+          data: {
+            active: !currentProduct.active,
+          },
+        });
 
-    if (!currentProduct) {
-      throw new Error(`Product with ID ${id} not found`);
-    }
-
-    // Toggle the 'active' field
-    const updatedProduct = await prisma.products.update({
-      where: { id },
-      data: {
-        active: !currentProduct.active, // Toggle the value
-      },
-    });
-
-    return updatedProduct;
-  } catch (error) {
-    throw new Error(`Error updating product: ${(error as Error).message}`);
-  }
-},
-
+        return updatedProduct;
+      } catch (error) {
+        throw new Error(`Error updating product: ${(error as Error).message}`);
+      }
+    },
 
     deleteProduct: async (_: any, { id }: { id: string }) => {
       const prisma = new PrismaClient();

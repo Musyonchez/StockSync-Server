@@ -1,27 +1,27 @@
-// usersResolvers.ts
-
-import { PrismaClient, UserRole } from "../../prisma/generated/usersClient"; // Adjust the path as needed
+import { PrismaClient, UserRole } from "../../prisma/generated/usersClient";
 import { getDynamicDatabaseUrl } from "../components/database/GetynamicDatabaseUrl";
-
-// const prisma = new PrismaClient();
 
 const usersResolvers = {
   Query: {
-    users: async (_: any,
-      { company, type }: { company: string; type: string }) => {
-        const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+    users: async (
+      _: any,
+      { company, type }: { company: string; type: string }
+    ) => {
+      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-        process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
       const prisma = new PrismaClient();
 
       return await prisma.users.findMany();
     },
 
-    user: async (_: any,
-      { id, company, type }: { id: string; company: string; type: string }) => {
-        const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+    user: async (
+      _: any,
+      { id, company, type }: { id: string; company: string; type: string }
+    ) => {
+      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-        process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
       const prisma = new PrismaClient();
 
       return await prisma.users.findUnique({
@@ -39,8 +39,7 @@ const usersResolvers = {
         company,
       }: { email: string; password: string; company: string }
     ) => {
-      // Dynamically set the DATABASE_URL before initializing Prisma
-      const type = "users"; // Replace with the actual user ID or logic to determine the user
+      const type = "users";
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
       process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
@@ -69,7 +68,6 @@ const usersResolvers = {
         throw new Error("User not found");
       }
 
-      // Add your authentication logic here, e.g., check the password
       const isPasswordValid = user.password === password;
 
       if (isPasswordValid) {
@@ -98,7 +96,7 @@ const usersResolvers = {
         type: string;
       }
     ) => {
-      const { company, type, ...productData } = args; // Destructure and separate 'company' and 'type'
+      const { company, type, ...productData } = args;
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
@@ -124,15 +122,16 @@ const usersResolvers = {
         store4?: boolean;
         role?: UserRole;
         company: string;
-        type: string;      }
+        type: string;
+      }
     ) => {
-      const { company, type } = args; // Destructure and separate 'company' and 'type'
+      const { company, type } = args;
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
       process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
 
-      const prisma = new PrismaClient()
+      const prisma = new PrismaClient();
 
       try {
         const existingUser = await prisma.users.findUnique({
@@ -167,30 +166,29 @@ const usersResolvers = {
       }
     },
 
-    deleteUser: async (_: any, { id, company, type }: { id: string; company: string; type: string }) => {
-
+    deleteUser: async (
+      _: any,
+      { id, company, type }: { id: string; company: string; type: string }
+    ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
-    
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl; // Set the dynamic URL
-    
-    
+
+      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+
       const prisma = new PrismaClient();
-    
+
       try {
-        // Fetch the current state of the product
         const currentUser = await prisma.users.findUnique({
           where: { id },
         });
-    
+
         if (!currentUser) {
           throw new Error(`User with ID ${id} not found`);
         }
-    
-        // Toggle the 'active' field
+
         const deletedUser = await prisma.users.delete({
           where: { id },
         });
-    
+
         return deletedUser;
       } catch (error) {
         throw new Error(`Error deleting user: ${(error as Error).message}`);
