@@ -180,7 +180,14 @@ const productResolvers = {
       }
     },
 
-    deleteProduct: async (_: any, { id }: { id: string }) => {
+    deleteProduct: async (
+      _: any,
+      { id, company, type }: { id: string; company: string; type: string }
+    ) => {
+      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+
+      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+
       const prisma = new PrismaClient();
 
       try {

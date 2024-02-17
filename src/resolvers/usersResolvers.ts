@@ -39,15 +39,16 @@ const usersResolvers = {
         company,
       }: { email: string; password: string; company: string }
     ) => {
-      const type = "users";
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // const type = "users";
+      // const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      // process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
 
       const prisma = new PrismaClient();
 
-      const user = await prisma.users.findUnique({
-        where: { email },
+      // Use type assertion to tell TypeScript that you know the type of user
+      const user = (await prisma.users.findFirst({
+        where: { email: email },
         select: {
           id: true,
           firstName: true,
@@ -62,7 +63,20 @@ const usersResolvers = {
           company: true,
           role: true,
         },
-      });
+      })) as {
+        id: string;
+        firstName?: string;
+        lastName?: string;
+        age?: number;
+        email?: string;
+        password?: string;
+        store1?: boolean;
+        store2?: boolean;
+        store3?: boolean;
+        store4?: boolean;
+        company?: string;
+        role?: UserRole;
+      } | null;
 
       if (!user) {
         throw new Error("User not found");
@@ -96,7 +110,7 @@ const usersResolvers = {
         type: string;
       }
     ) => {
-      const { company, type, ...productData } = args;
+      const { company, type, ...userData } = args;
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
@@ -104,7 +118,10 @@ const usersResolvers = {
 
       const prisma = new PrismaClient();
 
-      return await prisma.users.create({ data: productData });
+      // Include the company field in the user data
+      const userWithCompany = { ...userData, company };
+
+      return await prisma.users.create({ data: userWithCompany });
     },
 
     editUser: async (

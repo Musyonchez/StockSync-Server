@@ -5,13 +5,13 @@ generator storeClient {
   binaryTargets = ["native", "debian-openssl-1.1.x", "rhel-openssl-1.0.x"]
 }
 
-datasource storeDb {
-  provider = "postgresql"
-  url      = env("STOCKSYNC_STORE4")
+datasource productDb {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
 }
 
-model products {
-  id          String    @id @default(uuid())
+model Products {
+  id           String    @id @default(auto()) @map("_id") @productDb.ObjectId
   name        String
   description String?
   minimumQuantity   Float?

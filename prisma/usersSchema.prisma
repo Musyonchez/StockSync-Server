@@ -6,22 +6,22 @@ generator usersClient {
 }
 
 datasource usersDb {
-  provider = "postgresql"
-  url      = env("STOCKSYNC_USERS")
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
 }
 
-model users {
-  id        String  @id @default(uuid())
-  firstName String? @usersDb.VarChar(255)
-  lastName  String? @usersDb.VarChar(255)
+model Users {
+  id        String    @id @default(auto()) @map("_id") @usersDb.ObjectId
+  firstName String? 
+  lastName  String? 
   age       Int?
-  email     String? @usersDb.VarChar(255) @unique
-  password  String? @usersDb.VarChar(255)
+  email     String? 
+  password  String? 
   store1    Boolean @default(false)
   store2    Boolean @default(false)
   store3    Boolean @default(false)
   store4    Boolean @default(false)
-  company String? @usersDb.VarChar(255) @default(value: "immutable_value")
+  company String?
   role UserRole @default(USER)
 }
 
