@@ -20,7 +20,6 @@ const typeDefs = gql`
     lastName: String
     age: Int
     email: String
-    password: String
     store1: Boolean
     store2: Boolean
     store3: Boolean

@@ -20,16 +20,23 @@ const usersResolvers = {
       { id, company, type }: { id: string; company: string; type: string }
     ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
-
+    
       process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
       const prisma = new PrismaClient();
-
-      return await prisma.users.findUnique({
+    
+      const user = await prisma.users.findUnique({
         where: {
           id,
         },
       });
+    
+      if (!user) {
+        throw new Error("User not found");
+      }
+    
+      return { ...user };
     },
+    
 
     authenticateUser: async (
       _: any,
