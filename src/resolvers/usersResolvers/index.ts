@@ -1,5 +1,5 @@
-import { PrismaClient, UserRole } from "../../prisma/generated/usersClient";
-import { getDynamicDatabaseUrl } from "../components/database/GetynamicDatabaseUrl";
+import { PrismaClient, UserRole } from "../../../prisma/generated/usersClient";
+import { getDynamicDatabaseUrl } from "../../components/database/GetynamicDatabaseUrl";
 
 const usersResolvers = {
   Query: {
