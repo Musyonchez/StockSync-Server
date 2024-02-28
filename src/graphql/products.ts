@@ -5,6 +5,7 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
+    group: String
     minimumQuantity: Float
     currentQuantity: Float
     reorderQuantity: Float
@@ -17,6 +18,7 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
+    group: String
     minimumQuantity: Float
     currentQuantity: Float
     reorderQuantity: Float
@@ -36,6 +38,7 @@ const typeDefs = gql`
     addProduct(
       name: String
       description: String
+      group: String
       minimumQuantity: Float
       currentQuantity: Float
       reorderQuantity: Float
@@ -49,6 +52,7 @@ const typeDefs = gql`
       id: String!
       name: String
       description: String
+      group: String
       minimumQuantity: Float
       currentQuantity: Float
       reorderQuantity: Float

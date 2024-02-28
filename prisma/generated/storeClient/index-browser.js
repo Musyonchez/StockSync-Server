@@ -104,6 +104,7 @@ exports.Prisma.ProductsScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  group: 'group',
   minimumQuantity: 'minimumQuantity',
   currentQuantity: 'currentQuantity',
   reorderQuantity: 'reorderQuantity',

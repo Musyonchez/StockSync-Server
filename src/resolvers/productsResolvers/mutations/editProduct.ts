@@ -9,6 +9,7 @@ export const editProductResolver = {
               id: string;
               name?: string;
               description?: string;
+              group?: string
               minimumQuantity?: number;
               currentQuantity?: number;
               reorderQuantity?: number;
@@ -42,6 +43,7 @@ export const editProductResolver = {
                 data: {
                   name: args.name ?? existingProduct.name,
                   description: args.description ?? existingProduct.description,
+                  group: args.name ?? existingProduct.group,
                   minimumQuantity:
                     args.minimumQuantity ?? existingProduct.minimumQuantity,
                   currentQuantity:

@@ -14,6 +14,7 @@ model Products {
   id           String    @id @default(auto()) @map("_id") @productDb.ObjectId
   name        String
   description String?
+    group        String?
   minimumQuantity   Float?
   currentQuantity   Float?
   reorderQuantity   Float?

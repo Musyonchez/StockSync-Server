@@ -852,6 +852,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    group: string | null
     minimumQuantity: number | null
     currentQuantity: number | null
     reorderQuantity: number | null
@@ -864,6 +865,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    group: string | null
     minimumQuantity: number | null
     currentQuantity: number | null
     reorderQuantity: number | null
@@ -876,6 +878,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
+    group: number
     minimumQuantity: number
     currentQuantity: number
     reorderQuantity: number
@@ -906,6 +909,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    group?: true
     minimumQuantity?: true
     currentQuantity?: true
     reorderQuantity?: true
@@ -918,6 +922,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    group?: true
     minimumQuantity?: true
     currentQuantity?: true
     reorderQuantity?: true
@@ -930,6 +935,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    group?: true
     minimumQuantity?: true
     currentQuantity?: true
     reorderQuantity?: true
@@ -1029,6 +1035,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
+    group: string | null
     minimumQuantity: number | null
     currentQuantity: number | null
     reorderQuantity: number | null
@@ -1060,6 +1067,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    group?: boolean
     minimumQuantity?: boolean
     currentQuantity?: boolean
     reorderQuantity?: boolean
@@ -1072,6 +1080,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    group?: boolean
     minimumQuantity?: boolean
     currentQuantity?: boolean
     reorderQuantity?: boolean
@@ -1088,6 +1097,7 @@ export namespace Prisma {
       id: string
       name: string
       description: string | null
+      group: string | null
       minimumQuantity: number | null
       currentQuantity: number | null
       reorderQuantity: number | null
@@ -1518,6 +1528,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Products", 'String'>
     readonly name: FieldRef<"Products", 'String'>
     readonly description: FieldRef<"Products", 'String'>
+    readonly group: FieldRef<"Products", 'String'>
     readonly minimumQuantity: FieldRef<"Products", 'Float'>
     readonly currentQuantity: FieldRef<"Products", 'Float'>
     readonly reorderQuantity: FieldRef<"Products", 'Float'>
@@ -1848,6 +1859,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
+    group: 'group',
     minimumQuantity: 'minimumQuantity',
     currentQuantity: 'currentQuantity',
     reorderQuantity: 'reorderQuantity',
@@ -1939,6 +1951,7 @@ export namespace Prisma {
     id?: StringFilter<"Products"> | string
     name?: StringFilter<"Products"> | string
     description?: StringNullableFilter<"Products"> | string | null
+    group?: StringNullableFilter<"Products"> | string | null
     minimumQuantity?: FloatNullableFilter<"Products"> | number | null
     currentQuantity?: FloatNullableFilter<"Products"> | number | null
     reorderQuantity?: FloatNullableFilter<"Products"> | number | null
@@ -1951,6 +1964,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    group?: SortOrder
     minimumQuantity?: SortOrder
     currentQuantity?: SortOrder
     reorderQuantity?: SortOrder
@@ -1966,6 +1980,7 @@ export namespace Prisma {
     NOT?: ProductsWhereInput | ProductsWhereInput[]
     name?: StringFilter<"Products"> | string
     description?: StringNullableFilter<"Products"> | string | null
+    group?: StringNullableFilter<"Products"> | string | null
     minimumQuantity?: FloatNullableFilter<"Products"> | number | null
     currentQuantity?: FloatNullableFilter<"Products"> | number | null
     reorderQuantity?: FloatNullableFilter<"Products"> | number | null
@@ -1978,6 +1993,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    group?: SortOrder
     minimumQuantity?: SortOrder
     currentQuantity?: SortOrder
     reorderQuantity?: SortOrder
@@ -1998,6 +2014,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Products"> | string
     name?: StringWithAggregatesFilter<"Products"> | string
     description?: StringNullableWithAggregatesFilter<"Products"> | string | null
+    group?: StringNullableWithAggregatesFilter<"Products"> | string | null
     minimumQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
     currentQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
     reorderQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
@@ -2010,6 +2027,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    group?: string | null
     minimumQuantity?: number | null
     currentQuantity?: number | null
     reorderQuantity?: number | null
@@ -2022,6 +2040,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    group?: string | null
     minimumQuantity?: number | null
     currentQuantity?: number | null
     reorderQuantity?: number | null
@@ -2033,6 +2052,7 @@ export namespace Prisma {
   export type ProductsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: NullableStringFieldUpdateOperationsInput | string | null
     minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2044,6 +2064,7 @@ export namespace Prisma {
   export type ProductsUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: NullableStringFieldUpdateOperationsInput | string | null
     minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2056,6 +2077,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    group?: string | null
     minimumQuantity?: number | null
     currentQuantity?: number | null
     reorderQuantity?: number | null
@@ -2067,6 +2089,7 @@ export namespace Prisma {
   export type ProductsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: NullableStringFieldUpdateOperationsInput | string | null
     minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2078,6 +2101,7 @@ export namespace Prisma {
   export type ProductsUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: NullableStringFieldUpdateOperationsInput | string | null
     minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
     reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2138,6 +2162,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    group?: SortOrder
     minimumQuantity?: SortOrder
     currentQuantity?: SortOrder
     reorderQuantity?: SortOrder
@@ -2158,6 +2183,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    group?: SortOrder
     minimumQuantity?: SortOrder
     currentQuantity?: SortOrder
     reorderQuantity?: SortOrder
@@ -2170,6 +2196,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    group?: SortOrder
     minimumQuantity?: SortOrder
     currentQuantity?: SortOrder
     reorderQuantity?: SortOrder

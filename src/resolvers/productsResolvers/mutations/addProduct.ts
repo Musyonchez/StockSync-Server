@@ -8,6 +8,7 @@ export const addProductResolver = {
         args: {
           name: string;
           description: string;
+          group: string;
           minimumQuantity: number;
           currentQuantity: number;
           reorderQuantity: number;
