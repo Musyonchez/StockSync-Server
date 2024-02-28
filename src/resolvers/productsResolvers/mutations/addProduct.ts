@@ -9,16 +9,12 @@ export const addProductResolver = {
           name: string;
           description: string;
           group: string;
-          minimumQuantity: number;
-          currentQuantity: number;
-          reorderQuantity: number;
-          costCurrent: number;
-          costPrevious: number;
           company: string;
           type: string;
         }
       ) => {
         const { company, type, ...productData } = args;
+        console.log("test addProduct", company)
   
         const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
   

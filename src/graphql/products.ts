@@ -39,11 +39,6 @@ const typeDefs = gql`
       name: String
       description: String
       group: String
-      minimumQuantity: Float
-      currentQuantity: Float
-      reorderQuantity: Float
-      costCurrent: Float
-      costPrevious: Float
       company: String!
       type: String!
     ): Product
