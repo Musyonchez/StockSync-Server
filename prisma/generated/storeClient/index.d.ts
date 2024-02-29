@@ -833,31 +833,33 @@ export namespace Prisma {
   }
 
   export type ProductsAvgAggregateOutputType = {
-    minimumQuantity: number | null
-    currentQuantity: number | null
-    reorderQuantity: number | null
-    costCurrent: number | null
-    costPrevious: number | null
+    current: number | null
+    reoderLevel: number | null
+    unitCost: number | null
+    sellingPrice: number | null
+    taxInformation: number | null
   }
 
   export type ProductsSumAggregateOutputType = {
-    minimumQuantity: number | null
-    currentQuantity: number | null
-    reorderQuantity: number | null
-    costCurrent: number | null
-    costPrevious: number | null
+    current: number | null
+    reoderLevel: number | null
+    unitCost: number | null
+    sellingPrice: number | null
+    taxInformation: number | null
   }
 
   export type ProductsMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
-    group: string | null
-    minimumQuantity: number | null
-    currentQuantity: number | null
-    reorderQuantity: number | null
-    costCurrent: number | null
-    costPrevious: number | null
+    category: string | null
+    current: number | null
+    reoderLevel: number | null
+    unitCost: number | null
+    sellingPrice: number | null
+    taxInformation: number | null
+    imageURL: string | null
+    supplier: string | null
     active: boolean | null
   }
 
@@ -865,12 +867,14 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
-    group: string | null
-    minimumQuantity: number | null
-    currentQuantity: number | null
-    reorderQuantity: number | null
-    costCurrent: number | null
-    costPrevious: number | null
+    category: string | null
+    current: number | null
+    reoderLevel: number | null
+    unitCost: number | null
+    sellingPrice: number | null
+    taxInformation: number | null
+    imageURL: string | null
+    supplier: string | null
     active: boolean | null
   }
 
@@ -878,43 +882,47 @@ export namespace Prisma {
     id: number
     name: number
     description: number
-    group: number
-    minimumQuantity: number
-    currentQuantity: number
-    reorderQuantity: number
-    costCurrent: number
-    costPrevious: number
+    category: number
+    current: number
+    reoderLevel: number
+    unitCost: number
+    sellingPrice: number
+    taxInformation: number
+    imageURL: number
+    supplier: number
     active: number
     _all: number
   }
 
 
   export type ProductsAvgAggregateInputType = {
-    minimumQuantity?: true
-    currentQuantity?: true
-    reorderQuantity?: true
-    costCurrent?: true
-    costPrevious?: true
+    current?: true
+    reoderLevel?: true
+    unitCost?: true
+    sellingPrice?: true
+    taxInformation?: true
   }
 
   export type ProductsSumAggregateInputType = {
-    minimumQuantity?: true
-    currentQuantity?: true
-    reorderQuantity?: true
-    costCurrent?: true
-    costPrevious?: true
+    current?: true
+    reoderLevel?: true
+    unitCost?: true
+    sellingPrice?: true
+    taxInformation?: true
   }
 
   export type ProductsMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    group?: true
-    minimumQuantity?: true
-    currentQuantity?: true
-    reorderQuantity?: true
-    costCurrent?: true
-    costPrevious?: true
+    category?: true
+    current?: true
+    reoderLevel?: true
+    unitCost?: true
+    sellingPrice?: true
+    taxInformation?: true
+    imageURL?: true
+    supplier?: true
     active?: true
   }
 
@@ -922,12 +930,14 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    group?: true
-    minimumQuantity?: true
-    currentQuantity?: true
-    reorderQuantity?: true
-    costCurrent?: true
-    costPrevious?: true
+    category?: true
+    current?: true
+    reoderLevel?: true
+    unitCost?: true
+    sellingPrice?: true
+    taxInformation?: true
+    imageURL?: true
+    supplier?: true
     active?: true
   }
 
@@ -935,12 +945,14 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    group?: true
-    minimumQuantity?: true
-    currentQuantity?: true
-    reorderQuantity?: true
-    costCurrent?: true
-    costPrevious?: true
+    category?: true
+    current?: true
+    reoderLevel?: true
+    unitCost?: true
+    sellingPrice?: true
+    taxInformation?: true
+    imageURL?: true
+    supplier?: true
     active?: true
     _all?: true
   }
@@ -1035,12 +1047,14 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
-    group: string | null
-    minimumQuantity: number | null
-    currentQuantity: number | null
-    reorderQuantity: number | null
-    costCurrent: number | null
-    costPrevious: number | null
+    category: string | null
+    current: number | null
+    reoderLevel: number | null
+    unitCost: number | null
+    sellingPrice: number | null
+    taxInformation: number | null
+    imageURL: string | null
+    supplier: string | null
     active: boolean
     _count: ProductsCountAggregateOutputType | null
     _avg: ProductsAvgAggregateOutputType | null
@@ -1067,12 +1081,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    group?: boolean
-    minimumQuantity?: boolean
-    currentQuantity?: boolean
-    reorderQuantity?: boolean
-    costCurrent?: boolean
-    costPrevious?: boolean
+    category?: boolean
+    current?: boolean
+    reoderLevel?: boolean
+    unitCost?: boolean
+    sellingPrice?: boolean
+    taxInformation?: boolean
+    imageURL?: boolean
+    supplier?: boolean
     active?: boolean
   }, ExtArgs["result"]["products"]>
 
@@ -1080,12 +1096,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    group?: boolean
-    minimumQuantity?: boolean
-    currentQuantity?: boolean
-    reorderQuantity?: boolean
-    costCurrent?: boolean
-    costPrevious?: boolean
+    category?: boolean
+    current?: boolean
+    reoderLevel?: boolean
+    unitCost?: boolean
+    sellingPrice?: boolean
+    taxInformation?: boolean
+    imageURL?: boolean
+    supplier?: boolean
     active?: boolean
   }
 
@@ -1097,12 +1115,14 @@ export namespace Prisma {
       id: string
       name: string
       description: string | null
-      group: string | null
-      minimumQuantity: number | null
-      currentQuantity: number | null
-      reorderQuantity: number | null
-      costCurrent: number | null
-      costPrevious: number | null
+      category: string | null
+      current: number | null
+      reoderLevel: number | null
+      unitCost: number | null
+      sellingPrice: number | null
+      taxInformation: number | null
+      imageURL: string | null
+      supplier: string | null
       active: boolean
     }, ExtArgs["result"]["products"]>
     composites: {}
@@ -1528,12 +1548,14 @@ export namespace Prisma {
     readonly id: FieldRef<"Products", 'String'>
     readonly name: FieldRef<"Products", 'String'>
     readonly description: FieldRef<"Products", 'String'>
-    readonly group: FieldRef<"Products", 'String'>
-    readonly minimumQuantity: FieldRef<"Products", 'Float'>
-    readonly currentQuantity: FieldRef<"Products", 'Float'>
-    readonly reorderQuantity: FieldRef<"Products", 'Float'>
-    readonly costCurrent: FieldRef<"Products", 'Float'>
-    readonly costPrevious: FieldRef<"Products", 'Float'>
+    readonly category: FieldRef<"Products", 'String'>
+    readonly current: FieldRef<"Products", 'Float'>
+    readonly reoderLevel: FieldRef<"Products", 'Float'>
+    readonly unitCost: FieldRef<"Products", 'Float'>
+    readonly sellingPrice: FieldRef<"Products", 'Float'>
+    readonly taxInformation: FieldRef<"Products", 'Float'>
+    readonly imageURL: FieldRef<"Products", 'String'>
+    readonly supplier: FieldRef<"Products", 'String'>
     readonly active: FieldRef<"Products", 'Boolean'>
   }
     
@@ -1859,12 +1881,14 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    group: 'group',
-    minimumQuantity: 'minimumQuantity',
-    currentQuantity: 'currentQuantity',
-    reorderQuantity: 'reorderQuantity',
-    costCurrent: 'costCurrent',
-    costPrevious: 'costPrevious',
+    category: 'category',
+    current: 'current',
+    reoderLevel: 'reoderLevel',
+    unitCost: 'unitCost',
+    sellingPrice: 'sellingPrice',
+    taxInformation: 'taxInformation',
+    imageURL: 'imageURL',
+    supplier: 'supplier',
     active: 'active'
   };
 
@@ -1951,12 +1975,14 @@ export namespace Prisma {
     id?: StringFilter<"Products"> | string
     name?: StringFilter<"Products"> | string
     description?: StringNullableFilter<"Products"> | string | null
-    group?: StringNullableFilter<"Products"> | string | null
-    minimumQuantity?: FloatNullableFilter<"Products"> | number | null
-    currentQuantity?: FloatNullableFilter<"Products"> | number | null
-    reorderQuantity?: FloatNullableFilter<"Products"> | number | null
-    costCurrent?: FloatNullableFilter<"Products"> | number | null
-    costPrevious?: FloatNullableFilter<"Products"> | number | null
+    category?: StringNullableFilter<"Products"> | string | null
+    current?: FloatNullableFilter<"Products"> | number | null
+    reoderLevel?: FloatNullableFilter<"Products"> | number | null
+    unitCost?: FloatNullableFilter<"Products"> | number | null
+    sellingPrice?: FloatNullableFilter<"Products"> | number | null
+    taxInformation?: FloatNullableFilter<"Products"> | number | null
+    imageURL?: StringNullableFilter<"Products"> | string | null
+    supplier?: StringNullableFilter<"Products"> | string | null
     active?: BoolFilter<"Products"> | boolean
   }
 
@@ -1964,12 +1990,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    group?: SortOrder
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    category?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
+    imageURL?: SortOrder
+    supplier?: SortOrder
     active?: SortOrder
   }
 
@@ -1980,12 +2008,14 @@ export namespace Prisma {
     NOT?: ProductsWhereInput | ProductsWhereInput[]
     name?: StringFilter<"Products"> | string
     description?: StringNullableFilter<"Products"> | string | null
-    group?: StringNullableFilter<"Products"> | string | null
-    minimumQuantity?: FloatNullableFilter<"Products"> | number | null
-    currentQuantity?: FloatNullableFilter<"Products"> | number | null
-    reorderQuantity?: FloatNullableFilter<"Products"> | number | null
-    costCurrent?: FloatNullableFilter<"Products"> | number | null
-    costPrevious?: FloatNullableFilter<"Products"> | number | null
+    category?: StringNullableFilter<"Products"> | string | null
+    current?: FloatNullableFilter<"Products"> | number | null
+    reoderLevel?: FloatNullableFilter<"Products"> | number | null
+    unitCost?: FloatNullableFilter<"Products"> | number | null
+    sellingPrice?: FloatNullableFilter<"Products"> | number | null
+    taxInformation?: FloatNullableFilter<"Products"> | number | null
+    imageURL?: StringNullableFilter<"Products"> | string | null
+    supplier?: StringNullableFilter<"Products"> | string | null
     active?: BoolFilter<"Products"> | boolean
   }, "id">
 
@@ -1993,12 +2023,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    group?: SortOrder
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    category?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
+    imageURL?: SortOrder
+    supplier?: SortOrder
     active?: SortOrder
     _count?: ProductsCountOrderByAggregateInput
     _avg?: ProductsAvgOrderByAggregateInput
@@ -2014,12 +2046,14 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Products"> | string
     name?: StringWithAggregatesFilter<"Products"> | string
     description?: StringNullableWithAggregatesFilter<"Products"> | string | null
-    group?: StringNullableWithAggregatesFilter<"Products"> | string | null
-    minimumQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
-    currentQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
-    reorderQuantity?: FloatNullableWithAggregatesFilter<"Products"> | number | null
-    costCurrent?: FloatNullableWithAggregatesFilter<"Products"> | number | null
-    costPrevious?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    category?: StringNullableWithAggregatesFilter<"Products"> | string | null
+    current?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    reoderLevel?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    unitCost?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    sellingPrice?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    taxInformation?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    imageURL?: StringNullableWithAggregatesFilter<"Products"> | string | null
+    supplier?: StringNullableWithAggregatesFilter<"Products"> | string | null
     active?: BoolWithAggregatesFilter<"Products"> | boolean
   }
 
@@ -2027,12 +2061,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    group?: string | null
-    minimumQuantity?: number | null
-    currentQuantity?: number | null
-    reorderQuantity?: number | null
-    costCurrent?: number | null
-    costPrevious?: number | null
+    category?: string | null
+    current?: number | null
+    reoderLevel?: number | null
+    unitCost?: number | null
+    sellingPrice?: number | null
+    taxInformation?: number | null
+    imageURL?: string | null
+    supplier?: string | null
     active?: boolean
   }
 
@@ -2040,36 +2076,42 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    group?: string | null
-    minimumQuantity?: number | null
-    currentQuantity?: number | null
-    reorderQuantity?: number | null
-    costCurrent?: number | null
-    costPrevious?: number | null
+    category?: string | null
+    current?: number | null
+    reoderLevel?: number | null
+    unitCost?: number | null
+    sellingPrice?: number | null
+    taxInformation?: number | null
+    imageURL?: string | null
+    supplier?: string | null
     active?: boolean
   }
 
   export type ProductsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: NullableStringFieldUpdateOperationsInput | string | null
-    minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    costCurrent?: NullableFloatFieldUpdateOperationsInput | number | null
-    costPrevious?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    current?: NullableFloatFieldUpdateOperationsInput | number | null
+    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: NullableStringFieldUpdateOperationsInput | string | null
-    minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    costCurrent?: NullableFloatFieldUpdateOperationsInput | number | null
-    costPrevious?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    current?: NullableFloatFieldUpdateOperationsInput | number | null
+    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2077,36 +2119,42 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    group?: string | null
-    minimumQuantity?: number | null
-    currentQuantity?: number | null
-    reorderQuantity?: number | null
-    costCurrent?: number | null
-    costPrevious?: number | null
+    category?: string | null
+    current?: number | null
+    reoderLevel?: number | null
+    unitCost?: number | null
+    sellingPrice?: number | null
+    taxInformation?: number | null
+    imageURL?: string | null
+    supplier?: string | null
     active?: boolean
   }
 
   export type ProductsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: NullableStringFieldUpdateOperationsInput | string | null
-    minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    costCurrent?: NullableFloatFieldUpdateOperationsInput | number | null
-    costPrevious?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    current?: NullableFloatFieldUpdateOperationsInput | number | null
+    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: NullableStringFieldUpdateOperationsInput | string | null
-    minimumQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    currentQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    reorderQuantity?: NullableFloatFieldUpdateOperationsInput | number | null
-    costCurrent?: NullableFloatFieldUpdateOperationsInput | number | null
-    costPrevious?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    current?: NullableFloatFieldUpdateOperationsInput | number | null
+    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
+    taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2162,33 +2210,37 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    group?: SortOrder
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    category?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
+    imageURL?: SortOrder
+    supplier?: SortOrder
     active?: SortOrder
   }
 
   export type ProductsAvgOrderByAggregateInput = {
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
   }
 
   export type ProductsMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    group?: SortOrder
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    category?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
+    imageURL?: SortOrder
+    supplier?: SortOrder
     active?: SortOrder
   }
 
@@ -2196,21 +2248,23 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    group?: SortOrder
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    category?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
+    imageURL?: SortOrder
+    supplier?: SortOrder
     active?: SortOrder
   }
 
   export type ProductsSumOrderByAggregateInput = {
-    minimumQuantity?: SortOrder
-    currentQuantity?: SortOrder
-    reorderQuantity?: SortOrder
-    costCurrent?: SortOrder
-    costPrevious?: SortOrder
+    current?: SortOrder
+    reoderLevel?: SortOrder
+    unitCost?: SortOrder
+    sellingPrice?: SortOrder
+    taxInformation?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {

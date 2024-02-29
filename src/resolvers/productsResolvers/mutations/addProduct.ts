@@ -8,7 +8,7 @@ export const addProductResolver = {
         args: {
           name: string;
           description: string;
-          group: string;
+          category: string;
           company: string;
           type: string;
         }

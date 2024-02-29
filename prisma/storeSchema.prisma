@@ -11,14 +11,16 @@ datasource productDb {
 }
 
 model Products {
-  id           String    @id @default(auto()) @map("_id") @productDb.ObjectId
-  name        String
-  description String?
-    group        String?
-  minimumQuantity   Float?
-  currentQuantity   Float?
-  reorderQuantity   Float?
-  costCurrent   Float?
-  costPrevious   Float?
-  active            Boolean   @default(true)
+  id              String    @id @default(auto()) @map("_id") @productDb.ObjectId
+  name            String
+  description     String?
+  category        String?
+  current         Float?    @default(0)
+  reoderLevel     Float?    @default(0)
+  unitCost        Float?    @default(0)
+  sellingPrice    Float?    @default(0)
+  taxInformation  Float?    @default(0)
+  imageURL        String?
+  supplier        String?   @default("null")
+  active          Boolean   @default(true)
 }

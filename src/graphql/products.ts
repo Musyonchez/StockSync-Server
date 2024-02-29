@@ -5,12 +5,14 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
-    group: String
-    minimumQuantity: Float
-    currentQuantity: Float
-    reorderQuantity: Float
-    costCurrent: Float
-    costPrevious: Float
+    category: String
+    current: Float
+    reoderLevel: Float
+    unitCost: Float
+    sellingPrice: Float
+    taxInformation: Float
+    imageURL: String
+    supplier: String
     active: Boolean
   }
 
@@ -18,12 +20,14 @@ const typeDefs = gql`
     id: String
     name: String
     description: String
-    group: String
-    minimumQuantity: Float
-    currentQuantity: Float
-    reorderQuantity: Float
-    costCurrent: Float
-    costPrevious: Float
+    category: String
+    current: Float
+    reoderLevel: Float
+    unitCost: Float
+    sellingPrice: Float
+    taxInformation: Float
+    imageURL: String
+    supplier: String
     active: Boolean
   }
 
@@ -38,7 +42,7 @@ const typeDefs = gql`
     addProduct(
       name: String
       description: String
-      group: String
+      category: String
       company: String!
       type: String!
     ): Product
@@ -47,12 +51,14 @@ const typeDefs = gql`
       id: String!
       name: String
       description: String
-      group: String
-      minimumQuantity: Float
-      currentQuantity: Float
-      reorderQuantity: Float
-      costCurrent: Float
-      costPrevious: Float
+      category: String
+      current: Float
+      reoderLevel: Float
+      unitCost: Float
+      sellingPrice: Float
+      taxInformation: Float
+      imageURL: String
+      supplier: String
       company: String!
       type: String!
     ): Product
