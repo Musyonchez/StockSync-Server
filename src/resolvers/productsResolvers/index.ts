@@ -7,9 +7,12 @@ import { editProductResolver } from "./mutations/editProductResolver";
 import { inactiveProductsResolver } from "./queries/inactiveProductsResolver";
 import { productResolver } from "./queries/productResolver";
 import { productsResolver } from "./queries/productsResolver";
+import { searchResolver } from "./queries/searchResolver";
+
 
 const productResolvers = {
   Query: {
+    ...searchResolver.Query,
     ...productsResolver.Query,
     ...activeProductsResolver.Query,
     ...inactiveProductsResolver.Query,

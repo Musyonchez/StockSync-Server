@@ -14,7 +14,6 @@ export const addProductResolver = {
         }
       ) => {
         const { company, type, ...productData } = args;
-        console.log("test addProduct", company)
   
         const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
   

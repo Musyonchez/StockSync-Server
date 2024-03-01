@@ -31,11 +31,17 @@ const typeDefs = gql`
     active: Boolean
   }
 
+  input FilterInput {
+    field: String!
+    value: String!
+  }
+
   type Query {
     products(company: String!, type: String!): [Products]
     activeProducts(company: String!, type: String!): [Product]
     inactiveProducts(company: String!, type: String!): [Product]
     product(id: String!, company: String!, type: String!): Product
+    search(company: String!, type: String!, filterArray: [FilterInput]!): [Products]
   }
 
   type Mutation {
