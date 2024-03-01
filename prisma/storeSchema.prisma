@@ -20,7 +20,7 @@ model Products {
   unitCost        Float?    @default(0)
   sellingPrice    Float?    @default(0)
   taxInformation  Float?    @default(0)
-  imageURL        String?
+  imageURL        String?   @default("null")
   supplier        String?   @default("null")
   active          Boolean   @default(true)
 }

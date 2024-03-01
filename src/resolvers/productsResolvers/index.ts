@@ -1,9 +1,9 @@
 
-import { activeProductsResolver } from "./queries/activeProducts"
-import { addProductResolver } from "./mutations/addProduct";
-import { deactivateProductResolver } from "./mutations/deactivateProduct";
-import { deleteProductResolver } from "./mutations/deleteProduct";
-import { editProductResolver } from "./mutations/editProduct";
+import { activeProductsResolver } from "./queries/activeProductsResolver"
+import { addProductResolver } from "./mutations/addProductResolver";
+import { deactivateProductResolver } from "./mutations/deactivateProductResolver";
+import { deleteProductResolver } from "./mutations/deleteProductResolver";
+import { editProductResolver } from "./mutations/editProductResolver";
 import { inactiveProductsResolver } from "./queries/inactiveProductsResolver";
 import { productResolver } from "./queries/productResolver";
 import { productsResolver } from "./queries/productsResolver";
