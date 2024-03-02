@@ -82,7 +82,7 @@ const typeDefs = gql`
       company: String!
       type: String!
       filterArray: [SellFilterInput]!
-    ): Product
+      ): Boolean
 
   }
 `;
