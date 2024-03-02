@@ -7,12 +7,15 @@ import { editProductResolver } from "./mutations/editProductResolver";
 import { inactiveProductsResolver } from "./queries/inactiveProductsResolver";
 import { productResolver } from "./queries/productResolver";
 import { productsResolver } from "./queries/productsResolver";
-import { searchResolver } from "./queries/searchResolver";
+import { searchProductsResolver } from "./queries/searchResolver";
+import { sellProductResolver } from "./mutations/sellProductsResolver";
+
+
 
 
 const productResolvers = {
   Query: {
-    ...searchResolver.Query,
+    ...searchProductsResolver.Query,
     ...productsResolver.Query,
     ...activeProductsResolver.Query,
     ...inactiveProductsResolver.Query,
@@ -27,6 +30,8 @@ const productResolvers = {
     ...editProductResolver.Mutation,
     ...deactivateProductResolver.Mutation,
     ...deleteProductResolver.Mutation,
+    ...sellProductResolver.Mutation,
+
   },
 };
 

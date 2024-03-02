@@ -1,7 +1,7 @@
 import { PrismaClient } from "../../../../prisma/generated/storeClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
 
-export const searchResolver = {
+export const searchProductsResolver = {
   Query: {
     search: async (
       _: any,
@@ -17,7 +17,7 @@ export const searchResolver = {
 
       const prisma = new PrismaClient();
 
-      const orConditions = filterArray.map((filter) => {
+      const andConditions = filterArray.map((filter) => {
         return {
           [filter.field]: {
             contains: filter.value,
@@ -27,7 +27,7 @@ export const searchResolver = {
 
       const results = await prisma.products.findMany({
         where: {
-          AND: orConditions,
+          AND: andConditions,
         },
       });
 
@@ -36,4 +36,3 @@ export const searchResolver = {
   },
 };
 
-export default searchResolver;
