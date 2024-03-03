@@ -1,0 +1,33 @@
+// transactionsSchema.prisma
+
+generator transactionsClient {
+  provider = "prisma-client-js"
+  output   = "./generated/transactionsClient"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "rhel-openssl-1.0.x"]
+}
+
+datasource transactionsDb {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
+}
+
+model Transactions {
+  id            String             @id @default(auto()) @map("_id") @transactionsDb.ObjectId
+  details       TransactionDetail[] // Change this to an array of TransactionDetail
+  createdAt     DateTime           @default(now()) // Adds a field to store the creation time
+  totalAmount   Float              // Example of a field that is automatically calculated
+}
+
+
+type TransactionDetail {
+  id              String
+  name            String
+  category        String?
+  current         Float?
+  unitCost        Float?
+  sellingPrice    Float?
+  taxInformation  Float?
+  supplier        String?
+  quantity        Int? // Add the quantity field
+}
+

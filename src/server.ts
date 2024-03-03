@@ -5,14 +5,16 @@ import userResolvers from "./resolvers/usersResolvers";
 import typeDefsUsers from "./graphql/users";
 import productsResolvers from "./resolvers/productsResolvers";
 import typeDefsProducts from "./graphql/products";
+import transactionsResolvers from "./resolvers/transactionsResolvers";
+import typeDefsTransactions from "./graphql/transactions";
 
 const app = express();
 
 app.use(cors());
 
 const server = new ApolloServer({
-  typeDefs: [typeDefsUsers, typeDefsProducts],
-  resolvers: [userResolvers, productsResolvers],
+  typeDefs: [typeDefsUsers, typeDefsProducts, typeDefsTransactions],
+  resolvers: [userResolvers, productsResolvers, transactionsResolvers],
   context: ({ req, res }) => ({ req, res }),
 });
 

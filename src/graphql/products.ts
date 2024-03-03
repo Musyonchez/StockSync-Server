@@ -37,8 +37,9 @@ const typeDefs = gql`
   }
 
   input SellFilterInput {
-    field: String!
-    value: Float!
+    productId: String!
+    toSubtract: Float!
+    quantity: Float!
   }
 
   type Query {
@@ -81,6 +82,7 @@ const typeDefs = gql`
     sellProduct(
       company: String!
       type: String!
+      total: Float!
       filterArray: [SellFilterInput]!
       ): Boolean
 
