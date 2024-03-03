@@ -1,5 +1,7 @@
 
-// import { addTransactionResolver } from "./mutations/addTransactionResolver";
+import { transactionResolver } from "./queries/transactionResolver";
+import { transactionsResolver } from "./queries/transactionsResolver";
+
 
 
 
@@ -7,11 +9,9 @@
 
 const typeDefsTransactions = {
   Query: {
-    // ...searchProductsResolver.Query,
-    // ...productsResolver.Query,
-    // ...activeProductsResolver.Query,
-    // ...inactiveProductsResolver.Query,
-    // ...productResolver.Query,
+    ...transactionResolver.Query,
+    ...transactionsResolver.Query,
+
 
 
 
