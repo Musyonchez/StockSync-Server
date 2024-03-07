@@ -26,7 +26,6 @@ export const authenticateUserResolver = {
                 id: true,
                 firstName: true,
                 lastName: true,
-                age: true,
                 email: true,
                 password: true,
                 store1: true,
@@ -40,7 +39,6 @@ export const authenticateUserResolver = {
               id: string;
               firstName?: string;
               lastName?: string;
-              age?: number;
               email?: string;
               password?: string;
               store1?: boolean;

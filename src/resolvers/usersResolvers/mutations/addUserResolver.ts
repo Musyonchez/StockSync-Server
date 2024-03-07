@@ -8,7 +8,6 @@ export const addUserResolver = {
             args: {
               firstName: string;
               lastName: string;
-              age: number;
               email: string;
               password: string;
               store1: boolean;

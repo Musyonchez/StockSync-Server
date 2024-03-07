@@ -9,7 +9,6 @@ export const editUserResolver = {
               id: string;
               firstName?: string;
               lastName?: string;
-              age?: number;
               email?: string;
               password?: string;
               store1?: boolean;
@@ -45,7 +44,6 @@ export const editUserResolver = {
                 data: {
                   firstName: args.firstName ?? existingUser.firstName,
                   lastName: args.lastName ?? existingUser.lastName,
-                  age: args.age ?? existingUser.age,
                   email: args.email ?? existingUser.email,
                   password: args.password ?? existingUser.password,
                   store1: args.store1 ?? existingUser.store1,

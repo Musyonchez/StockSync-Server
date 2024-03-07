@@ -5,7 +5,6 @@ const typeDefs = gql`
     id: String
     firstName: String
     lastName: String
-    age: Int
     email: String
     store1: Boolean
     store2: Boolean
@@ -18,7 +17,6 @@ const typeDefs = gql`
     id: String
     firstName: String
     lastName: String
-    age: Int
     email: String
     store1: Boolean
     store2: Boolean
@@ -26,10 +24,10 @@ const typeDefs = gql`
     store4: Boolean
     company: String
     role: UserRole
+    firstsignin: Boolean
   }
 
   enum UserRole {
-    SUPERADMIN
     ADMIN
     USER
   }
@@ -44,7 +42,6 @@ const typeDefs = gql`
     addUser(
       firstName: String
       lastName: String
-      age: Int
       email: String
       password: String
       store1: Boolean
@@ -60,7 +57,6 @@ const typeDefs = gql`
       id: String!
       firstName: String
       lastName: String
-      age: Int
       email: String
       password: String
       store1: Boolean
