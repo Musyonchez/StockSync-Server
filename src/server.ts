@@ -32,9 +32,11 @@ const port = process.env.PORT || 5000;
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
     if (req.file) {
+      console.log("file console server rest api", req.file)
+      console.log("company console server rest api", req.body.company)
 
     // Handle file upload here
-    await uploadImage(req.file.buffer, req.file.originalname);
+    await uploadImage(req.file.buffer, req.file.originalname, req.body.company);
     }
        // Send a response to the client
     res.json({ message: "File uploaded successfully!" });

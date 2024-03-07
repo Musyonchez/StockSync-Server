@@ -3,12 +3,11 @@ import { EventEmitter } from "events";
 
 const accessKeyId = "AKIAQCHEZ2CBEDKAAIPB";
 const secretAccessKey = "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";
-const bucketName = "soltase";
 
 const emitter = new EventEmitter();
 emitter.setMaxListeners(20); // Increase the limit for this instance
 
-async function uploadImage(fileBuffer: Buffer, fileName: string) {
+async function uploadImage(fileBuffer: Buffer, fileName: string, fileCompany: string) {
   try {
     // Check if AWS credentials are provided
     if (!accessKeyId || !secretAccessKey) {
@@ -28,13 +27,13 @@ async function uploadImage(fileBuffer: Buffer, fileName: string) {
 
     
 
-    if (!bucketName) {
+    if (!fileCompany) {
       throw new Error("Bucket name is not provided.");
     }
 
     const uploadCommand = new PutObjectCommand({
-      Bucket: bucketName,
-      Key: "fileName",
+      Bucket: fileCompany,
+      Key: fileName,
       Body: fileBuffer, // Use the file buffer directly
     });
 
