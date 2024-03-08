@@ -32,6 +32,11 @@ const typeDefs = gql`
     USER
   }
 
+  input EditFilterInput {
+    field: String!
+    value: String!
+  }
+
   type Query {
     users(company: String!, type: String!): [Users]
     user(id: String!, company: String!, type: String!): User
@@ -55,17 +60,9 @@ const typeDefs = gql`
 
     editUser(
       id: String!
-      firstName: String
-      lastName: String
-      email: String
-      password: String
-      store1: Boolean
-      store2: Boolean
-      store3: Boolean
-      store4: Boolean
-      role: UserRole
       company: String
       type: String
+      filterArray: [EditFilterInput]!
     ): User
 
     deleteUser(id: String!, company: String!, type: String!): User
