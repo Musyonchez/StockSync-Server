@@ -82,6 +82,8 @@ const typeDefs = gql`
     deactivateProduct(id: String!, company: String!, type: String!): Product
 
     sellProduct(
+      id: String!
+      name: String!
       company: String!
       type: String!
       total: Float!

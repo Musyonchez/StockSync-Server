@@ -16,13 +16,14 @@ const typeDefs = gql`
   type Transaction {
     id: String!
     details: [TransactionDetail]
+    creatorName: String!
     createdAt: String!
     totalAmount: Float!
   }
 
   type Query {
-    getTransactions(company: String!, type: String!): [Transaction]
-    getTransaction(id: String!, company: String!, type: String!): Transaction
+    getTransaction(company: String!, type: String!): [Transaction]
+    getTransactions(id: String!, company: String!, type: String!): Transaction
   }
 
 

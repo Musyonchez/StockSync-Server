@@ -935,18 +935,24 @@ export namespace Prisma {
   export type TransactionsMinAggregateOutputType = {
     id: string | null
     createdAt: Date | null
+    creatorId: string | null
+    creatorName: string | null
     totalAmount: number | null
   }
 
   export type TransactionsMaxAggregateOutputType = {
     id: string | null
     createdAt: Date | null
+    creatorId: string | null
+    creatorName: string | null
     totalAmount: number | null
   }
 
   export type TransactionsCountAggregateOutputType = {
     id: number
     createdAt: number
+    creatorId: number
+    creatorName: number
     totalAmount: number
     _all: number
   }
@@ -963,18 +969,24 @@ export namespace Prisma {
   export type TransactionsMinAggregateInputType = {
     id?: true
     createdAt?: true
+    creatorId?: true
+    creatorName?: true
     totalAmount?: true
   }
 
   export type TransactionsMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    creatorId?: true
+    creatorName?: true
     totalAmount?: true
   }
 
   export type TransactionsCountAggregateInputType = {
     id?: true
     createdAt?: true
+    creatorId?: true
+    creatorName?: true
     totalAmount?: true
     _all?: true
   }
@@ -1068,6 +1080,8 @@ export namespace Prisma {
   export type TransactionsGroupByOutputType = {
     id: string
     createdAt: Date
+    creatorId: string
+    creatorName: string
     totalAmount: number
     _count: TransactionsCountAggregateOutputType | null
     _avg: TransactionsAvgAggregateOutputType | null
@@ -1094,12 +1108,16 @@ export namespace Prisma {
     id?: boolean
     details?: boolean | TransactionDetailDefaultArgs<ExtArgs>
     createdAt?: boolean
+    creatorId?: boolean
+    creatorName?: boolean
     totalAmount?: boolean
   }, ExtArgs["result"]["transactions"]>
 
   export type TransactionsSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    creatorId?: boolean
+    creatorName?: boolean
     totalAmount?: boolean
   }
 
@@ -1112,6 +1130,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       createdAt: Date
+      creatorId: string
+      creatorName: string
       totalAmount: number
     }, ExtArgs["result"]["transactions"]>
     composites: {
@@ -1538,6 +1558,8 @@ export namespace Prisma {
   interface TransactionsFieldRefs {
     readonly id: FieldRef<"Transactions", 'String'>
     readonly createdAt: FieldRef<"Transactions", 'DateTime'>
+    readonly creatorId: FieldRef<"Transactions", 'String'>
+    readonly creatorName: FieldRef<"Transactions", 'String'>
     readonly totalAmount: FieldRef<"Transactions", 'Float'>
   }
     
@@ -1902,6 +1924,8 @@ export namespace Prisma {
   export const TransactionsScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    creatorId: 'creatorId',
+    creatorName: 'creatorName',
     totalAmount: 'totalAmount'
   };
 
@@ -1995,6 +2019,8 @@ export namespace Prisma {
     id?: StringFilter<"Transactions"> | string
     details?: TransactionDetailCompositeListFilter | TransactionDetailObjectEqualityInput[]
     createdAt?: DateTimeFilter<"Transactions"> | Date | string
+    creatorId?: StringFilter<"Transactions"> | string
+    creatorName?: StringFilter<"Transactions"> | string
     totalAmount?: FloatFilter<"Transactions"> | number
   }
 
@@ -2002,6 +2028,8 @@ export namespace Prisma {
     id?: SortOrder
     details?: TransactionDetailOrderByCompositeAggregateInput
     createdAt?: SortOrder
+    creatorId?: SortOrder
+    creatorName?: SortOrder
     totalAmount?: SortOrder
   }
 
@@ -2012,12 +2040,16 @@ export namespace Prisma {
     NOT?: TransactionsWhereInput | TransactionsWhereInput[]
     details?: TransactionDetailCompositeListFilter | TransactionDetailObjectEqualityInput[]
     createdAt?: DateTimeFilter<"Transactions"> | Date | string
+    creatorId?: StringFilter<"Transactions"> | string
+    creatorName?: StringFilter<"Transactions"> | string
     totalAmount?: FloatFilter<"Transactions"> | number
   }, "id">
 
   export type TransactionsOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    creatorId?: SortOrder
+    creatorName?: SortOrder
     totalAmount?: SortOrder
     _count?: TransactionsCountOrderByAggregateInput
     _avg?: TransactionsAvgOrderByAggregateInput
@@ -2032,6 +2064,8 @@ export namespace Prisma {
     NOT?: TransactionsScalarWhereWithAggregatesInput | TransactionsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Transactions"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Transactions"> | Date | string
+    creatorId?: StringWithAggregatesFilter<"Transactions"> | string
+    creatorName?: StringWithAggregatesFilter<"Transactions"> | string
     totalAmount?: FloatWithAggregatesFilter<"Transactions"> | number
   }
 
@@ -2039,6 +2073,8 @@ export namespace Prisma {
     id?: string
     details?: XOR<TransactionDetailListCreateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: Date | string
+    creatorId: string
+    creatorName: string
     totalAmount: number
   }
 
@@ -2046,18 +2082,24 @@ export namespace Prisma {
     id?: string
     details?: XOR<TransactionDetailListCreateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: Date | string
+    creatorId: string
+    creatorName: string
     totalAmount: number
   }
 
   export type TransactionsUpdateInput = {
     details?: XOR<TransactionDetailListUpdateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    creatorName?: StringFieldUpdateOperationsInput | string
     totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type TransactionsUncheckedUpdateInput = {
     details?: XOR<TransactionDetailListUpdateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    creatorName?: StringFieldUpdateOperationsInput | string
     totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -2065,18 +2107,24 @@ export namespace Prisma {
     id?: string
     details?: XOR<TransactionDetailListCreateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: Date | string
+    creatorId: string
+    creatorName: string
     totalAmount: number
   }
 
   export type TransactionsUpdateManyMutationInput = {
     details?: XOR<TransactionDetailListUpdateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    creatorName?: StringFieldUpdateOperationsInput | string
     totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type TransactionsUncheckedUpdateManyInput = {
     details?: XOR<TransactionDetailListUpdateEnvelopeInput, TransactionDetailCreateInput> | TransactionDetailCreateInput[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    creatorName?: StringFieldUpdateOperationsInput | string
     totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
@@ -2145,6 +2193,8 @@ export namespace Prisma {
   export type TransactionsCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    creatorId?: SortOrder
+    creatorName?: SortOrder
     totalAmount?: SortOrder
   }
 
@@ -2155,12 +2205,16 @@ export namespace Prisma {
   export type TransactionsMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    creatorId?: SortOrder
+    creatorName?: SortOrder
     totalAmount?: SortOrder
   }
 
   export type TransactionsMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    creatorId?: SortOrder
+    creatorName?: SortOrder
     totalAmount?: SortOrder
   }
 
@@ -2241,6 +2295,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -2458,10 +2516,6 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
     isSet?: boolean
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
   }
 
   export type NullableStringFieldUpdateOperationsInput = {

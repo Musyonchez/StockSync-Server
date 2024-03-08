@@ -12,7 +12,7 @@ export const authenticateUserResolver = {
               company,
             }: { email: string; password: string; company: string }
           ) => {
-            console.log("edit resolver starting", email)
+            console.log("authenticateUser resolver starting", email);
 
             const type = "users";
             const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
@@ -36,6 +36,7 @@ export const authenticateUserResolver = {
                 store4: true,
                 company: true,
                 role: true,
+                firstsignin: true,
               },
             })) as {
               id: string;
@@ -49,6 +50,7 @@ export const authenticateUserResolver = {
               store4?: boolean;
               company?: string;
               role?: UserRole;
+              firstsignin?: boolean;
             } | null;
       
             if (!user) {

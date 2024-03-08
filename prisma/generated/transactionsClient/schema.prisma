@@ -13,9 +13,11 @@ datasource transactionsDb {
 
 model Transactions {
   id            String             @id @default(auto()) @map("_id") @transactionsDb.ObjectId
-  details       TransactionDetail[] // Change this to an array of TransactionDetail
-  createdAt     DateTime           @default(now()) // Adds a field to store the creation time
-  totalAmount   Float              // Example of a field that is automatically calculated
+  details       TransactionDetail[] 
+  createdAt     DateTime           @default(now()) 
+  creatorId       String
+  creatorName     String
+  totalAmount   Float             
 }
 
 

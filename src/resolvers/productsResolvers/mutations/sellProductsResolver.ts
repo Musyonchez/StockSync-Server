@@ -1,5 +1,6 @@
 import { PrismaClient as StorePrismaClient } from "../../../../prisma/generated/storeClient";
 import { PrismaClient as TransactionsPrismaClient } from "../../../../prisma/generated/transactionsClient";
+import { PrismaClient as UsersPrismaClient } from "../../../../prisma/generated/usersClient";
 
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
 
@@ -8,15 +9,23 @@ export const sellProductResolver = {
     sellProduct: async (
       _: any,
       {
+        id,
+        name,
         company,
         type,
         total,
         filterArray,
       }: {
+        id: string;
+        name: string;
         company: string;
         type: string;
         total: number;
-        filterArray: { productId: string; toSubtract: number; quantity: number;}[];
+        filterArray: {
+          productId: string;
+          toSubtract: number;
+          quantity: number;
+        }[];
       }
     ): Promise<boolean> => {
       if (!filterArray || filterArray.length === 0) {
@@ -29,6 +38,8 @@ export const sellProductResolver = {
 
       const storePrisma = new StorePrismaClient();
       const transactionsPrisma = new TransactionsPrismaClient();
+      const userPrisma = new UsersPrismaClient();
+
 
       let allSucceeded = true;
       const addedTransactionDetails: any[] = [];
@@ -39,7 +50,6 @@ export const sellProductResolver = {
             const productId = item.productId;
             const numberToSubtract = item.toSubtract;
             const productQuantity = item.quantity;
-
 
             const existingProduct = await tx.products.findUnique({
               where: { id: productId },
@@ -52,6 +62,7 @@ export const sellProductResolver = {
                 sellingPrice: true,
                 taxInformation: true,
                 supplier: true,
+                firstTransaction: true,
               },
             });
 
@@ -73,6 +84,7 @@ export const sellProductResolver = {
                 current: {
                   decrement: numberToSubtract,
                 },
+                firstTransaction: true,
               },
             });
 
@@ -89,24 +101,42 @@ export const sellProductResolver = {
               quantity: productQuantity,
             });
           }
+          
         });
         console.log("addedTransactionDetails", addedTransactionDetails);
-       
+
         if (allSucceeded) {
-          console.log("Transaction succeeded, proceeding to create transaction record.");
-        
+          console.log(
+            "Transaction succeeded, proceeding to create transaction record."
+          );
+
           const newTransaction = await transactionsPrisma.transactions.create({
             data: {
+              creatorId: id,
+              creatorName: name,
               totalAmount: total,
               details: addedTransactionDetails,
             },
           });
-        
-          console.log("New transaction created with ID:", newTransaction.id);
+
+          const updatedUser = await userPrisma.users.update({
+            where: { id: id }, // Replace userId with the actual variable or value
+            data: {
+              firstTransaction: true,
+            },
+          });
+
+
+          console.log(
+            "New transaction created with ID:",
+            newTransaction.id,
+            updatedUser
+          );
         } else {
-          console.log("Transaction did not succeed. Skipping transaction details creation.");
+          console.log(
+            "Transaction did not succeed. Skipping transaction details creation."
+          );
         }
-        
 
         // ... (remaining code)
       } catch (error) {

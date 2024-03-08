@@ -103,6 +103,8 @@ Prisma.NullTypes = {
 exports.Prisma.TransactionsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  creatorId: 'creatorId',
+  creatorName: 'creatorName',
   totalAmount: 'totalAmount'
 };
 
