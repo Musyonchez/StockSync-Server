@@ -16,8 +16,9 @@ const typeDefs = gql`
   type Transaction {
     id: String!
     details: [TransactionDetail]
-    creatorName: String!
     createdAt: String!
+    creatorId: String!
+    creatorName: String!
     totalAmount: Float!
   }
 

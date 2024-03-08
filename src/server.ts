@@ -5,7 +5,7 @@ import userResolvers from "./resolvers/usersResolvers";
 import typeDefsUsers from "./graphql/users";
 import productsResolvers from "./resolvers/productsResolvers";
 import typeDefsProducts from "./graphql/products";
-import transactionsResolvers from "./resolvers/transactionsResolvers";
+import transactionsResolvers from "./resolvers/records/transactionsResolvers";
 import typeDefsTransactions from "./graphql/transactions";
 
 import uploadImage from "./components/uploadImage";

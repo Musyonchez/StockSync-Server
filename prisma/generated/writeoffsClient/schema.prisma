@@ -1,0 +1,33 @@
+// writeoffsSchema.prisma
+
+generator writeoffsClient {
+  provider = "prisma-client-js"
+  output   = "./generated/writeoffsClient"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "rhel-openssl-1.0.x"]
+}
+
+datasource writeoffsDb {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
+}
+
+model Writeoffs {
+  id            String             @id @default(auto()) @map("_id") @writeoffsDb.ObjectId
+  details       WriteoffDetail[] 
+  createdAt     DateTime           @default(now()) 
+  creatorId       String
+  creatorName     String
+  Reason     String
+}
+
+
+type WriteoffDetail {
+  id              String
+  name            String
+  category        String?
+  current         Float?
+  unitCost        Float?
+  sellingPrice    Float?
+  quantity        Int?
+}
+

@@ -1,0 +1,33 @@
+// restockingsSchema.prisma
+
+generator restockingsClient {
+  provider = "prisma-client-js"
+  output   = "./generated/restockingsClient"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "rhel-openssl-1.0.x"]
+}
+
+datasource restockingsDb {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
+}
+
+model Restockings {
+  id            String             @id @default(auto()) @map("_id") @restockingsDb.ObjectId
+  details       RestockingDetail[] 
+  createdAt     DateTime           @default(now()) 
+  creatorId       String
+  creatorName     String
+}
+
+
+type RestockingDetail {
+  id              String
+  name            String
+  category        String?
+  current         Float?
+  unitCost        Float?
+  sellingPrice    Float?
+  supplier        String?
+  quantity        Int? // Add the quantity field
+}
+
