@@ -7,6 +7,7 @@ export const userResolver = {
             _: any,
             { id, company, type }: { id: string; company: string; type: string }
           ) => {
+            console.log("fetch user starting", id)
             const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
           
             process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;

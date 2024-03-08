@@ -11,6 +11,7 @@ const typeDefs = gql`
     store3: Boolean
     store4: Boolean
     role: UserRole
+    active: Boolean
   }
 
   type User {
@@ -26,6 +27,7 @@ const typeDefs = gql`
     role: UserRole
     firstsignin: Boolean
     firstTransaction: Boolean
+    active: Boolean
   }
 
   enum UserRole {
@@ -67,6 +69,9 @@ const typeDefs = gql`
     ): User
 
     deleteUser(id: String!, company: String!, type: String!): User
+
+    deactivateUser(id: String!, company: String!, type: String!): User
+
   }
 `;
 
