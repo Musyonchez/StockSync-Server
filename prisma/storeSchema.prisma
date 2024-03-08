@@ -23,4 +23,5 @@ model Products {
   imageURL        String?   @default("null")
   supplier        String?   @default("null")
   active          Boolean   @default(true)
+  firstTransaction Boolean @default(true)
 }

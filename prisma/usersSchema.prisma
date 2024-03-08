@@ -23,10 +23,11 @@ model Users {
   company String?
   role UserRole @default(USER)
   firstsignin Boolean @default(false)
+  firstTransaction Boolean @default(true)
+
 }
 
 enum UserRole {
-  SUPERADMIN
   ADMIN
   USER
 }

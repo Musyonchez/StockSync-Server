@@ -24,7 +24,6 @@ export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
  */
 export namespace $Enums {
   export const UserRole: {
-  SUPERADMIN: 'SUPERADMIN',
   ADMIN: 'ADMIN',
   USER: 'USER'
 };
@@ -861,6 +860,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole | null
     firstsignin: boolean | null
+    firstTransaction: boolean | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -876,6 +876,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole | null
     firstsignin: boolean | null
+    firstTransaction: boolean | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -891,6 +892,7 @@ export namespace Prisma {
     company: number
     role: number
     firstsignin: number
+    firstTransaction: number
     _all: number
   }
 
@@ -908,6 +910,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
+    firstTransaction?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -923,6 +926,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
+    firstTransaction?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -938,6 +942,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
+    firstTransaction?: true
     _all?: true
   }
 
@@ -1026,6 +1031,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole
     firstsignin: boolean
+    firstTransaction: boolean
     _count: UsersCountAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
@@ -1058,6 +1064,7 @@ export namespace Prisma {
     company?: boolean
     role?: boolean
     firstsignin?: boolean
+    firstTransaction?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectScalar = {
@@ -1073,6 +1080,7 @@ export namespace Prisma {
     company?: boolean
     role?: boolean
     firstsignin?: boolean
+    firstTransaction?: boolean
   }
 
 
@@ -1092,6 +1100,7 @@ export namespace Prisma {
       company: string | null
       role: $Enums.UserRole
       firstsignin: boolean
+      firstTransaction: boolean
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -1525,6 +1534,7 @@ export namespace Prisma {
     readonly company: FieldRef<"Users", 'String'>
     readonly role: FieldRef<"Users", 'UserRole'>
     readonly firstsignin: FieldRef<"Users", 'Boolean'>
+    readonly firstTransaction: FieldRef<"Users", 'Boolean'>
   }
     
 
@@ -1857,7 +1867,8 @@ export namespace Prisma {
     store4: 'store4',
     company: 'company',
     role: 'role',
-    firstsignin: 'firstsignin'
+    firstsignin: 'firstsignin',
+    firstTransaction: 'firstTransaction'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -1952,6 +1963,7 @@ export namespace Prisma {
     company?: StringNullableFilter<"Users"> | string | null
     role?: EnumUserRoleFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolFilter<"Users"> | boolean
+    firstTransaction?: BoolFilter<"Users"> | boolean
   }
 
   export type UsersOrderByWithRelationInput = {
@@ -1967,6 +1979,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
+    firstTransaction?: SortOrder
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -1985,6 +1998,7 @@ export namespace Prisma {
     company?: StringNullableFilter<"Users"> | string | null
     role?: EnumUserRoleFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolFilter<"Users"> | boolean
+    firstTransaction?: BoolFilter<"Users"> | boolean
   }, "id" | "email">
 
   export type UsersOrderByWithAggregationInput = {
@@ -2000,6 +2014,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
+    firstTransaction?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _max?: UsersMaxOrderByAggregateInput
     _min?: UsersMinOrderByAggregateInput
@@ -2021,6 +2036,7 @@ export namespace Prisma {
     company?: StringNullableWithAggregatesFilter<"Users"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolWithAggregatesFilter<"Users"> | boolean
+    firstTransaction?: BoolWithAggregatesFilter<"Users"> | boolean
   }
 
   export type UsersCreateInput = {
@@ -2036,6 +2052,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
+    firstTransaction?: boolean
   }
 
   export type UsersUncheckedCreateInput = {
@@ -2051,6 +2068,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
+    firstTransaction?: boolean
   }
 
   export type UsersUpdateInput = {
@@ -2065,6 +2083,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
+    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UsersUncheckedUpdateInput = {
@@ -2079,6 +2098,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
+    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UsersCreateManyInput = {
@@ -2094,6 +2114,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
+    firstTransaction?: boolean
   }
 
   export type UsersUpdateManyMutationInput = {
@@ -2108,6 +2129,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
+    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UsersUncheckedUpdateManyInput = {
@@ -2122,6 +2144,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
+    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2180,6 +2203,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
+    firstTransaction?: SortOrder
   }
 
   export type UsersMaxOrderByAggregateInput = {
@@ -2195,6 +2219,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
+    firstTransaction?: SortOrder
   }
 
   export type UsersMinOrderByAggregateInput = {
@@ -2210,6 +2235,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
+    firstTransaction?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {

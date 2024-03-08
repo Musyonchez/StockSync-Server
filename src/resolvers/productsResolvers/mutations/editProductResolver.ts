@@ -5,23 +5,19 @@ export const editProductResolver = {
   Mutation: {
     editProduct: async (
       _: any,
-      args: {
+      {
+        id,
+        company,
+        type,
+        filterArray,
+      }: {
         id: string;
-        name?: string;
-        description?: string;
-        category?: string;
-        current: number;
-        reoderLevel: number;
-        unitCost: number;
-        sellingPrice: number;
-        taxInformation: number;
-        imageURL: string;
-        supplier: string;
         company: string;
         type: string;
+        filterArray: { field: string; value: string }[];
       }
     ) => {
-      const { company, type } = args;
+      console.log("edit resolver starting", filterArray)
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
@@ -32,28 +28,35 @@ export const editProductResolver = {
       try {
         const existingProduct = await prisma.products.findUnique({
           where: {
-            id: args.id,
+            id: id,
           },
         });
 
         if (!existingProduct) {
-          throw new Error(`Product with id ${args.id} not found`);
+          throw new Error(`Product with id ${id} not found`);
         }
 
+        const data: Record<string, string | boolean | number> = {};
+        filterArray.forEach(({ field, value }) => {
+          // Try to parse the value as a number
+          const numericValue = parseFloat(value);
+
+          if (!isNaN(numericValue)) {
+            // If successful, assign the numeric value
+            data[field] = numericValue;
+          } else if (value === 'true' || value === 'false') {
+            // Convert string value to boolean
+            data[field] = value === 'true';
+          } else {
+            // Otherwise, leave as string
+            data[field] = value;
+          }
+        });
+        
+
         const updatedProduct = await prisma.products.update({
-          where: { id: args.id },
-          data: {
-            name: args.name ?? existingProduct.name,
-            description: args.description ?? existingProduct.description,
-            category: args.category ?? existingProduct.category,
-            current: args.current ?? existingProduct.current,
-            reoderLevel: args.reoderLevel ?? existingProduct.reoderLevel,
-            unitCost: args.unitCost ?? existingProduct.unitCost,
-            sellingPrice: args.sellingPrice ?? existingProduct.sellingPrice,
-            taxInformation: args.taxInformation ?? existingProduct.taxInformation,
-            imageURL: args.imageURL ?? existingProduct.imageURL,
-            supplier: args.supplier ?? existingProduct.supplier,
-          },
+          where: { id: id },
+          data,
         });
 
         return updatedProduct;

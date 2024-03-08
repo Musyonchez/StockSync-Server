@@ -112,7 +112,8 @@ exports.Prisma.ProductsScalarFieldEnum = {
   taxInformation: 'taxInformation',
   imageURL: 'imageURL',
   supplier: 'supplier',
-  active: 'active'
+  active: 'active',
+  firstTransaction: 'firstTransaction'
 };
 
 exports.Prisma.SortOrder = {

@@ -112,7 +112,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   store4: 'store4',
   company: 'company',
   role: 'role',
-  firstsignin: 'firstsignin'
+  firstsignin: 'firstsignin',
+  firstTransaction: 'firstTransaction'
 };
 
 exports.Prisma.SortOrder = {
@@ -125,7 +126,6 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 exports.UserRole = exports.$Enums.UserRole = {
-  SUPERADMIN: 'SUPERADMIN',
   ADMIN: 'ADMIN',
   USER: 'USER'
 };

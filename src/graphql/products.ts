@@ -29,6 +29,7 @@ const typeDefs = gql`
     imageURL: String
     supplier: String
     active: Boolean
+    firstTransaction: Boolean
   }
 
   input SearchFilterInput {
@@ -42,12 +43,21 @@ const typeDefs = gql`
     quantity: Float!
   }
 
+  input EditFilterInput {
+    field: String!
+    value: String!
+  }
+
   type Query {
     products(company: String!, type: String!): [Products]
     activeProducts(company: String!, type: String!): [Product]
     inactiveProducts(company: String!, type: String!): [Product]
     product(id: String!, company: String!, type: String!): Product
-    search(company: String!, type: String!, filterArray: [SearchFilterInput]!): [Products]
+    search(
+      company: String!
+      type: String!
+      filterArray: [SearchFilterInput]!
+    ): [Products]
   }
 
   type Mutation {
@@ -62,18 +72,9 @@ const typeDefs = gql`
 
     editProduct(
       id: String!
-      name: String
-      description: String
-      category: String
-      current: Float
-      reoderLevel: Float
-      unitCost: Float
-      sellingPrice: Float
-      taxInformation: Float
-      imageURL: String
-      supplier: String
-      company: String!
-      type: String!
+      company: String
+      type: String
+      filterArray: [EditFilterInput]!
     ): Product
 
     deleteProduct(id: String!, company: String!, type: String!): Product
@@ -85,8 +86,7 @@ const typeDefs = gql`
       type: String!
       total: Float!
       filterArray: [SellFilterInput]!
-      ): Boolean
-
+    ): Boolean
   }
 `;
 
