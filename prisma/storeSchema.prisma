@@ -16,7 +16,7 @@ model Products {
   description     String?
   category        String?
   current         Float?    @default(0)
-  reoderLevel     Float?    @default(0)
+  reorderLevel     Float?    @default(0)
   unitCost        Float?    @default(0)
   sellingPrice    Float?    @default(0)
   taxInformation  Float?    @default(0)

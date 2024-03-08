@@ -7,7 +7,7 @@ const typeDefs = gql`
     description: String
     category: String
     current: Float
-    reoderLevel: Float
+    reorderLevel: Float
     unitCost: Float
     sellingPrice: Float
     taxInformation: Float
@@ -22,7 +22,7 @@ const typeDefs = gql`
     description: String
     category: String
     current: Float
-    reoderLevel: Float
+    reorderLevel: Float
     unitCost: Float
     sellingPrice: Float
     taxInformation: Float

@@ -59,6 +59,8 @@ export const editProductResolver = {
           data,
         });
 
+
+
         return updatedProduct;
       } catch (error) {
         throw new Error(`Error updating product: ${(error as Error).message}`);

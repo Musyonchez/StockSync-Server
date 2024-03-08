@@ -12,6 +12,8 @@ export const authenticateUserResolver = {
               company,
             }: { email: string; password: string; company: string }
           ) => {
+            console.log("edit resolver starting", email)
+
             const type = "users";
             const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
       

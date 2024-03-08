@@ -834,7 +834,7 @@ export namespace Prisma {
 
   export type ProductsAvgAggregateOutputType = {
     current: number | null
-    reoderLevel: number | null
+    reorderLevel: number | null
     unitCost: number | null
     sellingPrice: number | null
     taxInformation: number | null
@@ -842,7 +842,7 @@ export namespace Prisma {
 
   export type ProductsSumAggregateOutputType = {
     current: number | null
-    reoderLevel: number | null
+    reorderLevel: number | null
     unitCost: number | null
     sellingPrice: number | null
     taxInformation: number | null
@@ -854,7 +854,7 @@ export namespace Prisma {
     description: string | null
     category: string | null
     current: number | null
-    reoderLevel: number | null
+    reorderLevel: number | null
     unitCost: number | null
     sellingPrice: number | null
     taxInformation: number | null
@@ -870,7 +870,7 @@ export namespace Prisma {
     description: string | null
     category: string | null
     current: number | null
-    reoderLevel: number | null
+    reorderLevel: number | null
     unitCost: number | null
     sellingPrice: number | null
     taxInformation: number | null
@@ -886,7 +886,7 @@ export namespace Prisma {
     description: number
     category: number
     current: number
-    reoderLevel: number
+    reorderLevel: number
     unitCost: number
     sellingPrice: number
     taxInformation: number
@@ -900,7 +900,7 @@ export namespace Prisma {
 
   export type ProductsAvgAggregateInputType = {
     current?: true
-    reoderLevel?: true
+    reorderLevel?: true
     unitCost?: true
     sellingPrice?: true
     taxInformation?: true
@@ -908,7 +908,7 @@ export namespace Prisma {
 
   export type ProductsSumAggregateInputType = {
     current?: true
-    reoderLevel?: true
+    reorderLevel?: true
     unitCost?: true
     sellingPrice?: true
     taxInformation?: true
@@ -920,7 +920,7 @@ export namespace Prisma {
     description?: true
     category?: true
     current?: true
-    reoderLevel?: true
+    reorderLevel?: true
     unitCost?: true
     sellingPrice?: true
     taxInformation?: true
@@ -936,7 +936,7 @@ export namespace Prisma {
     description?: true
     category?: true
     current?: true
-    reoderLevel?: true
+    reorderLevel?: true
     unitCost?: true
     sellingPrice?: true
     taxInformation?: true
@@ -952,7 +952,7 @@ export namespace Prisma {
     description?: true
     category?: true
     current?: true
-    reoderLevel?: true
+    reorderLevel?: true
     unitCost?: true
     sellingPrice?: true
     taxInformation?: true
@@ -1055,7 +1055,7 @@ export namespace Prisma {
     description: string | null
     category: string | null
     current: number | null
-    reoderLevel: number | null
+    reorderLevel: number | null
     unitCost: number | null
     sellingPrice: number | null
     taxInformation: number | null
@@ -1090,7 +1090,7 @@ export namespace Prisma {
     description?: boolean
     category?: boolean
     current?: boolean
-    reoderLevel?: boolean
+    reorderLevel?: boolean
     unitCost?: boolean
     sellingPrice?: boolean
     taxInformation?: boolean
@@ -1106,7 +1106,7 @@ export namespace Prisma {
     description?: boolean
     category?: boolean
     current?: boolean
-    reoderLevel?: boolean
+    reorderLevel?: boolean
     unitCost?: boolean
     sellingPrice?: boolean
     taxInformation?: boolean
@@ -1126,7 +1126,7 @@ export namespace Prisma {
       description: string | null
       category: string | null
       current: number | null
-      reoderLevel: number | null
+      reorderLevel: number | null
       unitCost: number | null
       sellingPrice: number | null
       taxInformation: number | null
@@ -1560,7 +1560,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Products", 'String'>
     readonly category: FieldRef<"Products", 'String'>
     readonly current: FieldRef<"Products", 'Float'>
-    readonly reoderLevel: FieldRef<"Products", 'Float'>
+    readonly reorderLevel: FieldRef<"Products", 'Float'>
     readonly unitCost: FieldRef<"Products", 'Float'>
     readonly sellingPrice: FieldRef<"Products", 'Float'>
     readonly taxInformation: FieldRef<"Products", 'Float'>
@@ -1894,7 +1894,7 @@ export namespace Prisma {
     description: 'description',
     category: 'category',
     current: 'current',
-    reoderLevel: 'reoderLevel',
+    reorderLevel: 'reorderLevel',
     unitCost: 'unitCost',
     sellingPrice: 'sellingPrice',
     taxInformation: 'taxInformation',
@@ -1989,7 +1989,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Products"> | string | null
     category?: StringNullableFilter<"Products"> | string | null
     current?: FloatNullableFilter<"Products"> | number | null
-    reoderLevel?: FloatNullableFilter<"Products"> | number | null
+    reorderLevel?: FloatNullableFilter<"Products"> | number | null
     unitCost?: FloatNullableFilter<"Products"> | number | null
     sellingPrice?: FloatNullableFilter<"Products"> | number | null
     taxInformation?: FloatNullableFilter<"Products"> | number | null
@@ -2005,7 +2005,7 @@ export namespace Prisma {
     description?: SortOrder
     category?: SortOrder
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2024,7 +2024,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Products"> | string | null
     category?: StringNullableFilter<"Products"> | string | null
     current?: FloatNullableFilter<"Products"> | number | null
-    reoderLevel?: FloatNullableFilter<"Products"> | number | null
+    reorderLevel?: FloatNullableFilter<"Products"> | number | null
     unitCost?: FloatNullableFilter<"Products"> | number | null
     sellingPrice?: FloatNullableFilter<"Products"> | number | null
     taxInformation?: FloatNullableFilter<"Products"> | number | null
@@ -2040,7 +2040,7 @@ export namespace Prisma {
     description?: SortOrder
     category?: SortOrder
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2064,7 +2064,7 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Products"> | string | null
     category?: StringNullableWithAggregatesFilter<"Products"> | string | null
     current?: FloatNullableWithAggregatesFilter<"Products"> | number | null
-    reoderLevel?: FloatNullableWithAggregatesFilter<"Products"> | number | null
+    reorderLevel?: FloatNullableWithAggregatesFilter<"Products"> | number | null
     unitCost?: FloatNullableWithAggregatesFilter<"Products"> | number | null
     sellingPrice?: FloatNullableWithAggregatesFilter<"Products"> | number | null
     taxInformation?: FloatNullableWithAggregatesFilter<"Products"> | number | null
@@ -2080,7 +2080,7 @@ export namespace Prisma {
     description?: string | null
     category?: string | null
     current?: number | null
-    reoderLevel?: number | null
+    reorderLevel?: number | null
     unitCost?: number | null
     sellingPrice?: number | null
     taxInformation?: number | null
@@ -2096,7 +2096,7 @@ export namespace Prisma {
     description?: string | null
     category?: string | null
     current?: number | null
-    reoderLevel?: number | null
+    reorderLevel?: number | null
     unitCost?: number | null
     sellingPrice?: number | null
     taxInformation?: number | null
@@ -2111,7 +2111,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     current?: NullableFloatFieldUpdateOperationsInput | number | null
-    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    reorderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
     unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2126,7 +2126,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     current?: NullableFloatFieldUpdateOperationsInput | number | null
-    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    reorderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
     unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2142,7 +2142,7 @@ export namespace Prisma {
     description?: string | null
     category?: string | null
     current?: number | null
-    reoderLevel?: number | null
+    reorderLevel?: number | null
     unitCost?: number | null
     sellingPrice?: number | null
     taxInformation?: number | null
@@ -2157,7 +2157,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     current?: NullableFloatFieldUpdateOperationsInput | number | null
-    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    reorderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
     unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2172,7 +2172,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     current?: NullableFloatFieldUpdateOperationsInput | number | null
-    reoderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
+    reorderLevel?: NullableFloatFieldUpdateOperationsInput | number | null
     unitCost?: NullableFloatFieldUpdateOperationsInput | number | null
     sellingPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     taxInformation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -2236,7 +2236,7 @@ export namespace Prisma {
     description?: SortOrder
     category?: SortOrder
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2248,7 +2248,7 @@ export namespace Prisma {
 
   export type ProductsAvgOrderByAggregateInput = {
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2260,7 +2260,7 @@ export namespace Prisma {
     description?: SortOrder
     category?: SortOrder
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2276,7 +2276,7 @@ export namespace Prisma {
     description?: SortOrder
     category?: SortOrder
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder
@@ -2288,7 +2288,7 @@ export namespace Prisma {
 
   export type ProductsSumOrderByAggregateInput = {
     current?: SortOrder
-    reoderLevel?: SortOrder
+    reorderLevel?: SortOrder
     unitCost?: SortOrder
     sellingPrice?: SortOrder
     taxInformation?: SortOrder

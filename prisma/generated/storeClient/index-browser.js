@@ -106,7 +106,7 @@ exports.Prisma.ProductsScalarFieldEnum = {
   description: 'description',
   category: 'category',
   current: 'current',
-  reoderLevel: 'reoderLevel',
+  reorderLevel: 'reorderLevel',
   unitCost: 'unitCost',
   sellingPrice: 'sellingPrice',
   taxInformation: 'taxInformation',
