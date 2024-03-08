@@ -5,7 +5,7 @@ export const transactionResolver = {
   Query: {
     getTransaction: async (
       _: any,
-      { company, type }: { company: string; type: string }
+      { id, company, type }: { id: string; company: string; type: string }
     ) => {
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
@@ -13,16 +13,11 @@ export const transactionResolver = {
 
       const prisma = new PrismaClient();
 
-      try {
-        const transactions = await prisma.transactions.findMany();
-
-        return transactions;
-      } catch (error) {
-        console.error("Error fetching transactions:", error);
-        throw new Error("Unable to fetch transactions.");
-      } finally {
-        await prisma.$disconnect();
-      }
+      return await prisma.transactions.findUnique({
+        where: {
+          id: id,
+        },
+      });
     },
   },
 };

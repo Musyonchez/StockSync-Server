@@ -1,6 +1,6 @@
 
-import { transactionsResolver } from "./queries/transactionsResolver";
 import { transactionResolver } from "./queries/transactionResolver";
+import { transactionsResolver } from "./queries/transactionsResolver";
 
 
 

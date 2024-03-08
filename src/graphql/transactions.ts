@@ -22,8 +22,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    getTransaction(company: String!, type: String!): [Transaction]
-    getTransactions(id: String!, company: String!, type: String!): Transaction
+    getTransactions(company: String!, type: String!): [Transaction]
+    getTransaction(id: String!, company: String!, type: String!): Transaction
   }
 
 
