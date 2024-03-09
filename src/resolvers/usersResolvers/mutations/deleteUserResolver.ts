@@ -22,7 +22,7 @@ export const deleteUserResolver = {
           throw new Error(`User with ID ${id} not found`);
         }
 
-        if (!currentUser.firstTransaction) {
+        if (!currentUser.firstRecordAction) {
           const deletedUser = await prisma.users.delete({
             where: { id },
           });

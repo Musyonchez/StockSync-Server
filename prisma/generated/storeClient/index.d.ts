@@ -861,7 +861,7 @@ export namespace Prisma {
     imageURL: string | null
     supplier: string | null
     active: boolean | null
-    firstTransaction: boolean | null
+    firstRecordAction: boolean | null
   }
 
   export type ProductsMaxAggregateOutputType = {
@@ -877,7 +877,7 @@ export namespace Prisma {
     imageURL: string | null
     supplier: string | null
     active: boolean | null
-    firstTransaction: boolean | null
+    firstRecordAction: boolean | null
   }
 
   export type ProductsCountAggregateOutputType = {
@@ -893,7 +893,7 @@ export namespace Prisma {
     imageURL: number
     supplier: number
     active: number
-    firstTransaction: number
+    firstRecordAction: number
     _all: number
   }
 
@@ -927,7 +927,7 @@ export namespace Prisma {
     imageURL?: true
     supplier?: true
     active?: true
-    firstTransaction?: true
+    firstRecordAction?: true
   }
 
   export type ProductsMaxAggregateInputType = {
@@ -943,7 +943,7 @@ export namespace Prisma {
     imageURL?: true
     supplier?: true
     active?: true
-    firstTransaction?: true
+    firstRecordAction?: true
   }
 
   export type ProductsCountAggregateInputType = {
@@ -959,7 +959,7 @@ export namespace Prisma {
     imageURL?: true
     supplier?: true
     active?: true
-    firstTransaction?: true
+    firstRecordAction?: true
     _all?: true
   }
 
@@ -1062,7 +1062,7 @@ export namespace Prisma {
     imageURL: string | null
     supplier: string | null
     active: boolean
-    firstTransaction: boolean
+    firstRecordAction: boolean
     _count: ProductsCountAggregateOutputType | null
     _avg: ProductsAvgAggregateOutputType | null
     _sum: ProductsSumAggregateOutputType | null
@@ -1097,7 +1097,7 @@ export namespace Prisma {
     imageURL?: boolean
     supplier?: boolean
     active?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
   }, ExtArgs["result"]["products"]>
 
   export type ProductsSelectScalar = {
@@ -1113,7 +1113,7 @@ export namespace Prisma {
     imageURL?: boolean
     supplier?: boolean
     active?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
   }
 
 
@@ -1133,7 +1133,7 @@ export namespace Prisma {
       imageURL: string | null
       supplier: string | null
       active: boolean
-      firstTransaction: boolean
+      firstRecordAction: boolean
     }, ExtArgs["result"]["products"]>
     composites: {}
   }
@@ -1567,7 +1567,7 @@ export namespace Prisma {
     readonly imageURL: FieldRef<"Products", 'String'>
     readonly supplier: FieldRef<"Products", 'String'>
     readonly active: FieldRef<"Products", 'Boolean'>
-    readonly firstTransaction: FieldRef<"Products", 'Boolean'>
+    readonly firstRecordAction: FieldRef<"Products", 'Boolean'>
   }
     
 
@@ -1901,7 +1901,7 @@ export namespace Prisma {
     imageURL: 'imageURL',
     supplier: 'supplier',
     active: 'active',
-    firstTransaction: 'firstTransaction'
+    firstRecordAction: 'firstRecordAction'
   };
 
   export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typeof ProductsScalarFieldEnum]
@@ -1996,7 +1996,7 @@ export namespace Prisma {
     imageURL?: StringNullableFilter<"Products"> | string | null
     supplier?: StringNullableFilter<"Products"> | string | null
     active?: BoolFilter<"Products"> | boolean
-    firstTransaction?: BoolFilter<"Products"> | boolean
+    firstRecordAction?: BoolFilter<"Products"> | boolean
   }
 
   export type ProductsOrderByWithRelationInput = {
@@ -2012,7 +2012,7 @@ export namespace Prisma {
     imageURL?: SortOrder
     supplier?: SortOrder
     active?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
   }
 
   export type ProductsWhereUniqueInput = Prisma.AtLeast<{
@@ -2031,7 +2031,7 @@ export namespace Prisma {
     imageURL?: StringNullableFilter<"Products"> | string | null
     supplier?: StringNullableFilter<"Products"> | string | null
     active?: BoolFilter<"Products"> | boolean
-    firstTransaction?: BoolFilter<"Products"> | boolean
+    firstRecordAction?: BoolFilter<"Products"> | boolean
   }, "id">
 
   export type ProductsOrderByWithAggregationInput = {
@@ -2047,7 +2047,7 @@ export namespace Prisma {
     imageURL?: SortOrder
     supplier?: SortOrder
     active?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     _count?: ProductsCountOrderByAggregateInput
     _avg?: ProductsAvgOrderByAggregateInput
     _max?: ProductsMaxOrderByAggregateInput
@@ -2071,7 +2071,7 @@ export namespace Prisma {
     imageURL?: StringNullableWithAggregatesFilter<"Products"> | string | null
     supplier?: StringNullableWithAggregatesFilter<"Products"> | string | null
     active?: BoolWithAggregatesFilter<"Products"> | boolean
-    firstTransaction?: BoolWithAggregatesFilter<"Products"> | boolean
+    firstRecordAction?: BoolWithAggregatesFilter<"Products"> | boolean
   }
 
   export type ProductsCreateInput = {
@@ -2087,7 +2087,7 @@ export namespace Prisma {
     imageURL?: string | null
     supplier?: string | null
     active?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
   }
 
   export type ProductsUncheckedCreateInput = {
@@ -2103,7 +2103,7 @@ export namespace Prisma {
     imageURL?: string | null
     supplier?: string | null
     active?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
   }
 
   export type ProductsUpdateInput = {
@@ -2118,7 +2118,7 @@ export namespace Prisma {
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUncheckedUpdateInput = {
@@ -2133,7 +2133,7 @@ export namespace Prisma {
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsCreateManyInput = {
@@ -2149,7 +2149,7 @@ export namespace Prisma {
     imageURL?: string | null
     supplier?: string | null
     active?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
   }
 
   export type ProductsUpdateManyMutationInput = {
@@ -2164,7 +2164,7 @@ export namespace Prisma {
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUncheckedUpdateManyInput = {
@@ -2179,7 +2179,7 @@ export namespace Prisma {
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     supplier?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2243,7 +2243,7 @@ export namespace Prisma {
     imageURL?: SortOrder
     supplier?: SortOrder
     active?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
   }
 
   export type ProductsAvgOrderByAggregateInput = {
@@ -2267,7 +2267,7 @@ export namespace Prisma {
     imageURL?: SortOrder
     supplier?: SortOrder
     active?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
   }
 
   export type ProductsMinOrderByAggregateInput = {
@@ -2283,7 +2283,7 @@ export namespace Prisma {
     imageURL?: SortOrder
     supplier?: SortOrder
     active?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
   }
 
   export type ProductsSumOrderByAggregateInput = {

@@ -860,7 +860,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole | null
     firstsignin: boolean | null
-    firstTransaction: boolean | null
+    firstRecordAction: boolean | null
     active: boolean | null
   }
 
@@ -877,7 +877,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole | null
     firstsignin: boolean | null
-    firstTransaction: boolean | null
+    firstRecordAction: boolean | null
     active: boolean | null
   }
 
@@ -894,7 +894,7 @@ export namespace Prisma {
     company: number
     role: number
     firstsignin: number
-    firstTransaction: number
+    firstRecordAction: number
     active: number
     _all: number
   }
@@ -913,7 +913,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
-    firstTransaction?: true
+    firstRecordAction?: true
     active?: true
   }
 
@@ -930,7 +930,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
-    firstTransaction?: true
+    firstRecordAction?: true
     active?: true
   }
 
@@ -947,7 +947,7 @@ export namespace Prisma {
     company?: true
     role?: true
     firstsignin?: true
-    firstTransaction?: true
+    firstRecordAction?: true
     active?: true
     _all?: true
   }
@@ -1037,7 +1037,7 @@ export namespace Prisma {
     company: string | null
     role: $Enums.UserRole
     firstsignin: boolean
-    firstTransaction: boolean
+    firstRecordAction: boolean
     active: boolean
     _count: UsersCountAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
@@ -1071,7 +1071,7 @@ export namespace Prisma {
     company?: boolean
     role?: boolean
     firstsignin?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
     active?: boolean
   }, ExtArgs["result"]["users"]>
 
@@ -1088,7 +1088,7 @@ export namespace Prisma {
     company?: boolean
     role?: boolean
     firstsignin?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
     active?: boolean
   }
 
@@ -1109,7 +1109,7 @@ export namespace Prisma {
       company: string | null
       role: $Enums.UserRole
       firstsignin: boolean
-      firstTransaction: boolean
+      firstRecordAction: boolean
       active: boolean
     }, ExtArgs["result"]["users"]>
     composites: {}
@@ -1544,7 +1544,7 @@ export namespace Prisma {
     readonly company: FieldRef<"Users", 'String'>
     readonly role: FieldRef<"Users", 'UserRole'>
     readonly firstsignin: FieldRef<"Users", 'Boolean'>
-    readonly firstTransaction: FieldRef<"Users", 'Boolean'>
+    readonly firstRecordAction: FieldRef<"Users", 'Boolean'>
     readonly active: FieldRef<"Users", 'Boolean'>
   }
     
@@ -1879,7 +1879,7 @@ export namespace Prisma {
     company: 'company',
     role: 'role',
     firstsignin: 'firstsignin',
-    firstTransaction: 'firstTransaction',
+    firstRecordAction: 'firstRecordAction',
     active: 'active'
   };
 
@@ -1975,7 +1975,7 @@ export namespace Prisma {
     company?: StringNullableFilter<"Users"> | string | null
     role?: EnumUserRoleFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolFilter<"Users"> | boolean
-    firstTransaction?: BoolFilter<"Users"> | boolean
+    firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
   }
 
@@ -1992,7 +1992,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     active?: SortOrder
   }
 
@@ -2012,7 +2012,7 @@ export namespace Prisma {
     company?: StringNullableFilter<"Users"> | string | null
     role?: EnumUserRoleFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolFilter<"Users"> | boolean
-    firstTransaction?: BoolFilter<"Users"> | boolean
+    firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
   }, "id" | "email">
 
@@ -2029,7 +2029,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     active?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _max?: UsersMaxOrderByAggregateInput
@@ -2052,7 +2052,7 @@ export namespace Prisma {
     company?: StringNullableWithAggregatesFilter<"Users"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"Users"> | $Enums.UserRole
     firstsignin?: BoolWithAggregatesFilter<"Users"> | boolean
-    firstTransaction?: BoolWithAggregatesFilter<"Users"> | boolean
+    firstRecordAction?: BoolWithAggregatesFilter<"Users"> | boolean
     active?: BoolWithAggregatesFilter<"Users"> | boolean
   }
 
@@ -2069,7 +2069,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
     active?: boolean
   }
 
@@ -2086,7 +2086,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
     active?: boolean
   }
 
@@ -2102,7 +2102,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2118,7 +2118,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2135,7 +2135,7 @@ export namespace Prisma {
     company?: string | null
     role?: $Enums.UserRole
     firstsignin?: boolean
-    firstTransaction?: boolean
+    firstRecordAction?: boolean
     active?: boolean
   }
 
@@ -2151,7 +2151,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2167,7 +2167,7 @@ export namespace Prisma {
     company?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
-    firstTransaction?: BoolFieldUpdateOperationsInput | boolean
+    firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -2227,7 +2227,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     active?: SortOrder
   }
 
@@ -2244,7 +2244,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     active?: SortOrder
   }
 
@@ -2261,7 +2261,7 @@ export namespace Prisma {
     company?: SortOrder
     role?: SortOrder
     firstsignin?: SortOrder
-    firstTransaction?: SortOrder
+    firstRecordAction?: SortOrder
     active?: SortOrder
   }
 

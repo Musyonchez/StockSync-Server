@@ -22,7 +22,7 @@ export const deleteProductResolver = {
           throw new Error(`Product with ID ${id} not found`);
         }
 
-        if (!existingProduct.firstTransaction) {
+        if (!existingProduct.firstRecordAction) {
           const deletedProduct = await prisma.products.delete({
             where: { id },
           });

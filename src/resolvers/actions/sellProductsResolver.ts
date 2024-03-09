@@ -1,8 +1,8 @@
-import { PrismaClient as StorePrismaClient } from "../../../../prisma/generated/storeClient";
-import { PrismaClient as TransactionsPrismaClient } from "../../../../prisma/generated/transactionsClient";
-import { PrismaClient as UsersPrismaClient } from "../../../../prisma/generated/usersClient";
+import { PrismaClient as StorePrismaClient } from "../../../prisma/generated/storeClient";
+import { PrismaClient as TransactionsPrismaClient } from "../../../prisma/generated/transactionsClient";
+import { PrismaClient as UsersPrismaClient } from "../../../prisma/generated/usersClient";
 
-import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
+import { getDynamicDatabaseUrl } from "../../components/database/GetynamicDatabaseUrl";
 
 export const sellProductResolver = {
   Mutation: {
@@ -55,14 +55,7 @@ export const sellProductResolver = {
               where: { id: productId },
               select: {
                 id: true,
-                name: true,
-                category: true,
                 current: true,
-                unitCost: true,
-                sellingPrice: true,
-                taxInformation: true,
-                supplier: true,
-                firstTransaction: true,
               },
             });
 
@@ -78,29 +71,56 @@ export const sellProductResolver = {
             }
 
             // Update the product's 'current' field
-            await tx.products.update({
+            const updatedProducts = await tx.products.update({
               where: { id: productId },
               data: {
                 current: {
                   decrement: numberToSubtract,
                 },
-                firstTransaction: true,
+                firstRecordAction: true,
+              },
+              select: {
+                id: true,
+                name: true,
+                category: true,
+                current: true,
+                unitCost: true,
+                sellingPrice: true,
+                taxInformation: true,
+                supplier: true,
+                firstRecordAction: true,
               },
             });
 
             // Add the product details to the array
             addedTransactionDetails.push({
-              id: existingProduct.id,
-              name: existingProduct.name,
-              category: existingProduct.category,
-              current: existingProduct.current,
-              unitCost: existingProduct.unitCost,
-              sellingPrice: existingProduct.sellingPrice,
-              taxInformation: existingProduct.taxInformation,
-              supplier: existingProduct.supplier,
+              id: updatedProducts.id,
+              name: updatedProducts.name,
+              category: updatedProducts.category,
+              current: updatedProducts.current,
+              unitCost: updatedProducts.unitCost,
+              sellingPrice: updatedProducts.sellingPrice,
+              taxInformation: updatedProducts.taxInformation,
+              supplier: updatedProducts.supplier,
               quantity: productQuantity,
             });
           }
+
+           await transactionsPrisma.transactions.create({
+            data: {
+              creatorId: id,
+              creatorName: name,
+              totalAmount: total,
+              details: addedTransactionDetails,
+            },
+          });
+
+           await userPrisma.users.update({
+            where: { id: id }, // Replace userId with the actual variable or value
+            data: {
+              firstRecordAction: true,
+            },
+          });
           
         });
         console.log("addedTransactionDetails", addedTransactionDetails);
@@ -110,35 +130,13 @@ export const sellProductResolver = {
             "Transaction succeeded, proceeding to create transaction record."
           );
 
-          const newTransaction = await transactionsPrisma.transactions.create({
-            data: {
-              creatorId: id,
-              creatorName: name,
-              totalAmount: total,
-              details: addedTransactionDetails,
-            },
-          });
-
-          const updatedUser = await userPrisma.users.update({
-            where: { id: id }, // Replace userId with the actual variable or value
-            data: {
-              firstTransaction: true,
-            },
-          });
-
-
-          console.log(
-            "New transaction created with ID:",
-            newTransaction.id,
-            updatedUser
-          );
+        
         } else {
           console.log(
             "Transaction did not succeed. Skipping transaction details creation."
           );
         }
 
-        // ... (remaining code)
       } catch (error) {
         console.error("Error inside transaction:", error);
         allSucceeded = false;

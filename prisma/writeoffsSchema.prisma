@@ -17,7 +17,8 @@ model Writeoffs {
   createdAt     DateTime           @default(now()) 
   creatorId       String
   creatorName     String
-  Reason     String
+  totalAmount   Float             
+  reason     String
 }
 
 

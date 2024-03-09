@@ -20,6 +20,7 @@ const typeDefs = gql`
     creatorId: String!
     creatorName: String!
     totalAmount: Float!
+    reason: String!
   }
 
   type Query {

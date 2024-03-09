@@ -105,7 +105,8 @@ exports.Prisma.WriteoffsScalarFieldEnum = {
   createdAt: 'createdAt',
   creatorId: 'creatorId',
   creatorName: 'creatorName',
-  Reason: 'Reason'
+  totalAmount: 'totalAmount',
+  reason: 'reason'
 };
 
 exports.Prisma.SortOrder = {

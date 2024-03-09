@@ -113,7 +113,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   company: 'company',
   role: 'role',
   firstsignin: 'firstsignin',
-  firstTransaction: 'firstTransaction',
+  firstRecordAction: 'firstRecordAction',
   active: 'active'
 };
 

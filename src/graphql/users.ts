@@ -26,7 +26,7 @@ const typeDefs = gql`
     company: String
     role: UserRole
     firstsignin: Boolean
-    firstTransaction: Boolean
+    firstRecordAction: Boolean
     active: Boolean
   }
 

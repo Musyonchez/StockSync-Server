@@ -23,7 +23,7 @@ model Users {
   company String?
   role UserRole @default(USER)
   firstsignin Boolean @default(false)
-  firstTransaction Boolean @default(true)
+  firstRecordAction Boolean @default(true)
   active          Boolean   @default(true)
 }
 

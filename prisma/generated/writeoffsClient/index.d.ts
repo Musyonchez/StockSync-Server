@@ -910,8 +910,18 @@ export namespace Prisma {
 
   export type AggregateWriteoffs = {
     _count: WriteoffsCountAggregateOutputType | null
+    _avg: WriteoffsAvgAggregateOutputType | null
+    _sum: WriteoffsSumAggregateOutputType | null
     _min: WriteoffsMinAggregateOutputType | null
     _max: WriteoffsMaxAggregateOutputType | null
+  }
+
+  export type WriteoffsAvgAggregateOutputType = {
+    totalAmount: number | null
+  }
+
+  export type WriteoffsSumAggregateOutputType = {
+    totalAmount: number | null
   }
 
   export type WriteoffsMinAggregateOutputType = {
@@ -919,7 +929,8 @@ export namespace Prisma {
     createdAt: Date | null
     creatorId: string | null
     creatorName: string | null
-    Reason: string | null
+    totalAmount: number | null
+    reason: string | null
   }
 
   export type WriteoffsMaxAggregateOutputType = {
@@ -927,7 +938,8 @@ export namespace Prisma {
     createdAt: Date | null
     creatorId: string | null
     creatorName: string | null
-    Reason: string | null
+    totalAmount: number | null
+    reason: string | null
   }
 
   export type WriteoffsCountAggregateOutputType = {
@@ -935,17 +947,27 @@ export namespace Prisma {
     createdAt: number
     creatorId: number
     creatorName: number
-    Reason: number
+    totalAmount: number
+    reason: number
     _all: number
   }
 
+
+  export type WriteoffsAvgAggregateInputType = {
+    totalAmount?: true
+  }
+
+  export type WriteoffsSumAggregateInputType = {
+    totalAmount?: true
+  }
 
   export type WriteoffsMinAggregateInputType = {
     id?: true
     createdAt?: true
     creatorId?: true
     creatorName?: true
-    Reason?: true
+    totalAmount?: true
+    reason?: true
   }
 
   export type WriteoffsMaxAggregateInputType = {
@@ -953,7 +975,8 @@ export namespace Prisma {
     createdAt?: true
     creatorId?: true
     creatorName?: true
-    Reason?: true
+    totalAmount?: true
+    reason?: true
   }
 
   export type WriteoffsCountAggregateInputType = {
@@ -961,7 +984,8 @@ export namespace Prisma {
     createdAt?: true
     creatorId?: true
     creatorName?: true
-    Reason?: true
+    totalAmount?: true
+    reason?: true
     _all?: true
   }
 
@@ -1003,6 +1027,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: WriteoffsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WriteoffsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: WriteoffsMinAggregateInputType
@@ -1033,6 +1069,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: WriteoffsCountAggregateInputType | true
+    _avg?: WriteoffsAvgAggregateInputType
+    _sum?: WriteoffsSumAggregateInputType
     _min?: WriteoffsMinAggregateInputType
     _max?: WriteoffsMaxAggregateInputType
   }
@@ -1042,8 +1080,11 @@ export namespace Prisma {
     createdAt: Date
     creatorId: string
     creatorName: string
-    Reason: string
+    totalAmount: number
+    reason: string
     _count: WriteoffsCountAggregateOutputType | null
+    _avg: WriteoffsAvgAggregateOutputType | null
+    _sum: WriteoffsSumAggregateOutputType | null
     _min: WriteoffsMinAggregateOutputType | null
     _max: WriteoffsMaxAggregateOutputType | null
   }
@@ -1068,7 +1109,8 @@ export namespace Prisma {
     createdAt?: boolean
     creatorId?: boolean
     creatorName?: boolean
-    Reason?: boolean
+    totalAmount?: boolean
+    reason?: boolean
   }, ExtArgs["result"]["writeoffs"]>
 
   export type WriteoffsSelectScalar = {
@@ -1076,7 +1118,8 @@ export namespace Prisma {
     createdAt?: boolean
     creatorId?: boolean
     creatorName?: boolean
-    Reason?: boolean
+    totalAmount?: boolean
+    reason?: boolean
   }
 
   export type WriteoffsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1090,7 +1133,8 @@ export namespace Prisma {
       createdAt: Date
       creatorId: string
       creatorName: string
-      Reason: string
+      totalAmount: number
+      reason: string
     }, ExtArgs["result"]["writeoffs"]>
     composites: {
       details: Prisma.$WriteoffDetailPayload[]
@@ -1518,7 +1562,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Writeoffs", 'DateTime'>
     readonly creatorId: FieldRef<"Writeoffs", 'String'>
     readonly creatorName: FieldRef<"Writeoffs", 'String'>
-    readonly Reason: FieldRef<"Writeoffs", 'String'>
+    readonly totalAmount: FieldRef<"Writeoffs", 'Float'>
+    readonly reason: FieldRef<"Writeoffs", 'String'>
   }
     
 
@@ -1884,7 +1929,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     creatorId: 'creatorId',
     creatorName: 'creatorName',
-    Reason: 'Reason'
+    totalAmount: 'totalAmount',
+    reason: 'reason'
   };
 
   export type WriteoffsScalarFieldEnum = (typeof WriteoffsScalarFieldEnum)[keyof typeof WriteoffsScalarFieldEnum]
@@ -1940,20 +1986,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1964,6 +1996,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -1979,7 +2025,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Writeoffs"> | Date | string
     creatorId?: StringFilter<"Writeoffs"> | string
     creatorName?: StringFilter<"Writeoffs"> | string
-    Reason?: StringFilter<"Writeoffs"> | string
+    totalAmount?: FloatFilter<"Writeoffs"> | number
+    reason?: StringFilter<"Writeoffs"> | string
   }
 
   export type WriteoffsOrderByWithRelationInput = {
@@ -1988,7 +2035,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
-    Reason?: SortOrder
+    totalAmount?: SortOrder
+    reason?: SortOrder
   }
 
   export type WriteoffsWhereUniqueInput = Prisma.AtLeast<{
@@ -2000,7 +2048,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Writeoffs"> | Date | string
     creatorId?: StringFilter<"Writeoffs"> | string
     creatorName?: StringFilter<"Writeoffs"> | string
-    Reason?: StringFilter<"Writeoffs"> | string
+    totalAmount?: FloatFilter<"Writeoffs"> | number
+    reason?: StringFilter<"Writeoffs"> | string
   }, "id">
 
   export type WriteoffsOrderByWithAggregationInput = {
@@ -2008,10 +2057,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
-    Reason?: SortOrder
+    totalAmount?: SortOrder
+    reason?: SortOrder
     _count?: WriteoffsCountOrderByAggregateInput
+    _avg?: WriteoffsAvgOrderByAggregateInput
     _max?: WriteoffsMaxOrderByAggregateInput
     _min?: WriteoffsMinOrderByAggregateInput
+    _sum?: WriteoffsSumOrderByAggregateInput
   }
 
   export type WriteoffsScalarWhereWithAggregatesInput = {
@@ -2022,7 +2074,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Writeoffs"> | Date | string
     creatorId?: StringWithAggregatesFilter<"Writeoffs"> | string
     creatorName?: StringWithAggregatesFilter<"Writeoffs"> | string
-    Reason?: StringWithAggregatesFilter<"Writeoffs"> | string
+    totalAmount?: FloatWithAggregatesFilter<"Writeoffs"> | number
+    reason?: StringWithAggregatesFilter<"Writeoffs"> | string
   }
 
   export type WriteoffsCreateInput = {
@@ -2031,7 +2084,8 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
-    Reason: string
+    totalAmount: number
+    reason: string
   }
 
   export type WriteoffsUncheckedCreateInput = {
@@ -2040,7 +2094,8 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
-    Reason: string
+    totalAmount: number
+    reason: string
   }
 
   export type WriteoffsUpdateInput = {
@@ -2048,7 +2103,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
-    Reason?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
   }
 
   export type WriteoffsUncheckedUpdateInput = {
@@ -2056,7 +2112,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
-    Reason?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
   }
 
   export type WriteoffsCreateManyInput = {
@@ -2065,7 +2122,8 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
-    Reason: string
+    totalAmount: number
+    reason: string
   }
 
   export type WriteoffsUpdateManyMutationInput = {
@@ -2073,7 +2131,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
-    Reason?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
   }
 
   export type WriteoffsUncheckedUpdateManyInput = {
@@ -2081,7 +2140,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
-    Reason?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    reason?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2129,6 +2189,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type WriteoffDetailOrderByCompositeAggregateInput = {
     _count?: SortOrder
   }
@@ -2138,7 +2209,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
-    Reason?: SortOrder
+    totalAmount?: SortOrder
+    reason?: SortOrder
+  }
+
+  export type WriteoffsAvgOrderByAggregateInput = {
+    totalAmount?: SortOrder
   }
 
   export type WriteoffsMaxOrderByAggregateInput = {
@@ -2146,7 +2222,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
-    Reason?: SortOrder
+    totalAmount?: SortOrder
+    reason?: SortOrder
   }
 
   export type WriteoffsMinOrderByAggregateInput = {
@@ -2154,7 +2231,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
-    Reason?: SortOrder
+    totalAmount?: SortOrder
+    reason?: SortOrder
+  }
+
+  export type WriteoffsSumOrderByAggregateInput = {
+    totalAmount?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2189,6 +2271,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type WriteoffDetailListCreateEnvelopeInput = {
     set?: WriteoffDetailCreateInput | WriteoffDetailCreateInput[]
   }
@@ -2216,6 +2314,14 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2254,6 +2360,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2296,6 +2413,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type WriteoffDetailUpdateManyInput = {

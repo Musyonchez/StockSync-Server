@@ -29,7 +29,7 @@ const typeDefs = gql`
     imageURL: String
     supplier: String
     active: Boolean
-    firstTransaction: Boolean
+    firstRecordAction: Boolean
   }
 
   input SearchFilterInput {
@@ -38,6 +38,18 @@ const typeDefs = gql`
   }
 
   input SellFilterInput {
+    productId: String!
+    toSubtract: Float!
+    quantity: Float!
+  }
+
+  input RestockingFilterInput {
+    productId: String!
+    toAdd: Float!
+    quantity: Float!
+  }
+
+  input WriteoffFilterInput {
     productId: String!
     toSubtract: Float!
     quantity: Float!
@@ -88,6 +100,24 @@ const typeDefs = gql`
       type: String!
       total: Float!
       filterArray: [SellFilterInput]!
+    ): Boolean
+
+    restockingProduct(
+      id: String!
+      name: String!
+      company: String!
+      type: String!
+      filterArray: [RestockingFilterInput]!
+    ): Boolean
+
+    writeoffProduct(
+      id: String!
+      name: String!
+      company: String!
+      type: String!
+      total: Float!
+      reason: String!
+      filterArray: [WriteoffFilterInput]!
     ): Boolean
   }
 `;
