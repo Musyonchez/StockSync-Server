@@ -13,11 +13,29 @@ export const transactionResolver = {
 
       const prisma = new PrismaClient();
 
-      return await prisma.transactions.findUnique({
-        where: {
-          id: id,
-        },
-      });
+      try {
+        const transaction = await prisma.transactions.findUnique({
+          where: {
+            id: id,
+          },
+        });
+
+        if (!transaction) {
+          throw new Error("Restocking not found");
+        }
+        // Format the createdAt field before returning
+        const formattedTransaction = {
+          ...transaction,
+          createdAt: transaction.createdAt.toLocaleString(), // Format createdAt
+        };
+
+        return formattedTransaction;
+      } catch (error) {
+        console.error("Error fetching transaction:", error);
+        throw new Error("Unable to fetch transaction.");
+      } finally {
+        await prisma.$disconnect();
+      }
     },
   },
 };

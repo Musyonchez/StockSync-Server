@@ -16,7 +16,13 @@ export const transactionsResolver = {
       try {
         const transactions = await prisma.transactions.findMany();
 
-        return transactions;
+        // Format the createdAt field in each transaction before returning
+        const formattedTransactions = transactions.map((transaction) => ({
+          ...transaction,
+          createdAt: transaction.createdAt.toLocaleString(), // Format createdAt
+        }));
+
+        return formattedTransactions;
       } catch (error) {
         console.error("Error fetching transactions:", error);
         throw new Error("Unable to fetch transactions.");

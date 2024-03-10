@@ -15,8 +15,14 @@ export const restockingsResolver = {
 
       try {
         const restockings = await prisma.restockings.findMany();
+        
+        // Format the createdAt field before returning the Restocking object
+        const formattedRestockings = restockings.map((restocking) => ({
+          ...restocking,
+          createdAt: restocking.createdAt.toLocaleString(), // Format createdAt
+        }));
 
-        return restockings;
+        return formattedRestockings;
       } catch (error) {
         console.error("Error fetching restockings:", error);
         throw new Error("Unable to fetch restockings.");

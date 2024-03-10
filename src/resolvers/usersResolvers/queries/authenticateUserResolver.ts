@@ -60,7 +60,7 @@ export const authenticateUserResolver = {
             const isPasswordValid = user.password === password;
       
             if (isPasswordValid) {
-              return { ...user, company };
+              return { ...user };
             } else {
               throw new Error("Invalid credentials");
             }

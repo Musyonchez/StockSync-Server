@@ -13,11 +13,31 @@ export const restockingResolver = {
 
       const prisma = new PrismaClient();
 
-      return await prisma.restockings.findUnique({
-        where: {
-          id: id,
-        },
-      });
+      try {
+        const restocking = await prisma.restockings.findUnique({
+          where: {
+            id: id,
+          },
+        });
+
+        // Check if restocking is not null
+        if (!restocking) {
+          throw new Error("Restocking not found");
+        }
+
+        // Format the createdAt field before returning the Restocking object
+        const formattedRestocking = {
+          ...restocking,
+          createdAt: restocking.createdAt.toLocaleString(), // Format createdAt
+        };
+
+        return formattedRestocking;
+      } catch (error) {
+        console.error("Error fetching restocking:", error);
+        throw new Error("Unable to fetch restocking.");
+      } finally {
+        await prisma.$disconnect();
+      }
     },
   },
 };

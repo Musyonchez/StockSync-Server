@@ -13,11 +13,30 @@ export const writeoffResolver = {
 
       const prisma = new PrismaClient();
 
-      return await prisma.writeoffs.findUnique({
-        where: {
-          id: id,
-        },
-      });
+      try {
+        const writeoff = await prisma.writeoffs.findUnique({
+          where: {
+            id: id,
+          },
+        });
+
+        if (!writeoff) {
+          throw new Error("Writeoff not found");
+        }
+
+        // Format the createdAt field before returning
+        const formattedWriteoff = {
+          ...writeoff,
+          createdAt: writeoff.createdAt.toLocaleString(), // Format createdAt
+        };
+
+        return formattedWriteoff;
+      } catch (error) {
+        console.error("Error fetching writeoff:", error);
+        throw new Error("Unable to fetch writeoff.");
+      } finally {
+        await prisma.$disconnect();
+      }
     },
   },
 };

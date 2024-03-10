@@ -2,11 +2,11 @@ import { PrismaClient } from "../../../../prisma/generated/storeClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
 
 export const searchProductsResolver = {
-  Query: {
+ Query: {
     search: async (
       _: any,
       { company, type, filterArray }: { company: string; type: string; filterArray: { field: string; value: string }[] }
-      ) => {
+    ) => {
       if (!filterArray || filterArray.length === 0) {
         throw new Error('Filter array must not be empty.');
       }
@@ -18,9 +18,11 @@ export const searchProductsResolver = {
       const prisma = new PrismaClient();
 
       const andConditions = filterArray.map((filter) => {
+        // Convert both the field and the value to lowercase for case-insensitive search
         return {
           [filter.field]: {
-            contains: filter.value,
+            contains: filter.value.toLowerCase(),
+            mode: 'insensitive', // This option is not directly supported for 'contains' in MongoDB
           },
         };
       });
@@ -33,6 +35,5 @@ export const searchProductsResolver = {
 
       return results;
     },
-  },
+ },
 };
-
