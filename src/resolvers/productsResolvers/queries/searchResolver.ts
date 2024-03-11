@@ -24,6 +24,7 @@ export const searchProductsResolver = {
             contains: filter.value.toLowerCase(),
             mode: 'insensitive', // This option is not directly supported for 'contains' in MongoDB
           },
+          active: true,
         };
       });
 
@@ -32,6 +33,8 @@ export const searchProductsResolver = {
           AND: andConditions,
         },
       });
+
+
 
       return results;
     },

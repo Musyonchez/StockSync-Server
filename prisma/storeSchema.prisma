@@ -24,4 +24,5 @@ model Products {
   supplier        String?   @default("null")
   active          Boolean   @default(true)
   firstRecordAction Boolean @default(true)
+  barCode         Float     @default(00000)
 }

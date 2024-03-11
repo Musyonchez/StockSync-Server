@@ -22,9 +22,10 @@ model Users {
   store4    Boolean @default(false)
   company String?
   role UserRole @default(USER)
-  firstsignin Boolean @default(false)
-  firstRecordAction Boolean @default(true)
+  firstsignin Boolean @default(true)
+  firstRecordAction Boolean @default(false)
   active          Boolean   @default(true)
+  temporaryPassword   String   @default("EMPTY")
 }
 
 enum UserRole {

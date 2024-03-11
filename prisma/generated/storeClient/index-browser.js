@@ -113,7 +113,8 @@ exports.Prisma.ProductsScalarFieldEnum = {
   imageURL: 'imageURL',
   supplier: 'supplier',
   active: 'active',
-  firstRecordAction: 'firstRecordAction'
+  firstRecordAction: 'firstRecordAction',
+  barCode: 'barCode'
 };
 
 exports.Prisma.SortOrder = {
