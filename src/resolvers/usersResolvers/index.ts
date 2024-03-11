@@ -8,6 +8,7 @@ import { addUserResolver } from "./mutations/addUserResolver";
 import { deleteUserResolver } from "./mutations/deleteUserResolver";
 import { deactivateUserResolver } from "./mutations/deactivateUserResolver";
 import { editUserResolver } from "./mutations/editUserResolver";
+import { firstTimeResetUserResolver } from "./mutations/firstTimeResetUserResolver";
 
 
 
@@ -29,6 +30,7 @@ const productResolvers = {
     ...deleteUserResolver.Mutation,
     ...editUserResolver.Mutation,
     ...deactivateUserResolver.Mutation,
+    ...firstTimeResetUserResolver.Mutation,
 
 
   },

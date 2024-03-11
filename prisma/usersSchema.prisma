@@ -11,20 +11,20 @@ datasource usersDb {
 }
 
 model Users {
-  id        String    @id @default(auto()) @map("_id") @usersDb.ObjectId
-  firstName String? 
-  lastName  String? 
-  email     String? @unique
-  password  String?
-  store1    Boolean @default(false)
-  store2    Boolean @default(false)
-  store3    Boolean @default(false)
-  store4    Boolean @default(false)
-  company String?
-  role UserRole @default(USER)
-  firstsignin Boolean @default(true)
-  firstRecordAction Boolean @default(false)
-  active          Boolean   @default(true)
+  id                  String    @id @default(auto()) @map("_id") @usersDb.ObjectId
+  firstName           String? 
+  lastName            String? 
+  email               String? @unique
+  password            String?
+  store1              Boolean @default(false)
+  store2              Boolean @default(false)
+  store3              Boolean @default(false)
+  store4              Boolean @default(false)
+  company             String?
+  role                UserRole       @default(USER)
+  firstsignin         Boolean @default(true)
+  firstRecordAction   Boolean @default(false)
+  active              Boolean   @default(true)
   temporaryPassword   String   @default("EMPTY")
 }
 

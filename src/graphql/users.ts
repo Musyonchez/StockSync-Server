@@ -72,6 +72,9 @@ const typeDefs = gql`
 
     deactivateUser(id: String!, company: String!, type: String!): User
 
+    firstTimeResetUser(id: String!, password: String!, company: String!, type: String!): User
+
+
   }
 `;
 

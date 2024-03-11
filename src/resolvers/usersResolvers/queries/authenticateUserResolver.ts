@@ -15,7 +15,7 @@ export const authenticateUserResolver = {
         company,
       }: { email: string; password: string; company: string }
     ) => {
-      console.log("authenticateUser resolver starting", email);
+      console.log("authenticateUser resolver starting", email, password, company);
 
       const type = "users";
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
@@ -59,11 +59,13 @@ export const authenticateUserResolver = {
       } | null;
 
       if (!user) {
+        console.log("User not found", email);
         throw new Error("User not found");
       }
 
       // Check if the user is active
       if (!user.active) {
+        console.log("User is not active. Access denied.", email, user);
         throw new Error("User is not active. Access denied.");
       }
 
