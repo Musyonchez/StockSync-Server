@@ -30,6 +30,7 @@ const typeDefs = gql`
     active: Boolean
     imageURL: String
     companyLogo: String
+    temporaryAccessKey: String
   }
 
   enum UserRole {
@@ -74,10 +75,23 @@ const typeDefs = gql`
 
     deleteUser(id: String!, company: String!, type: String!): User
 
-    deactivateUser(id: String!, company: String!, type: String!): User
+    deactivateUser(id: String!, company: String!, type: String!):  User
 
     firstTimeResetUser(
       id: String!
+      password: String!
+      company: String!
+      type: String!
+    ): User
+
+    sendPasswordRecoveryEmailUser(
+      email: String!
+      company: String!
+    ): User
+
+    updateNewPasswordRecoveryUser(
+      id: String!
+      temporaryAccessKey: String!
       password: String!
       company: String!
       type: String!

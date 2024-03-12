@@ -9,6 +9,8 @@ import { deleteUserResolver } from "./mutations/deleteUserResolver";
 import { deactivateUserResolver } from "./mutations/deactivateUserResolver";
 import { editUserResolver } from "./mutations/editUserResolver";
 import { firstTimeResetUserResolver } from "./mutations/firstTimeResetUserResolver";
+import { sendPasswordRecoveryEmailUserResolver } from "./mutations/sendPasswordRecoveryEmailUserResolver";
+import { updateNewPasswordRecoveryUserResolver } from "./mutations/updateNewPasswordRecoveryUserResolver";
 
 
 
@@ -31,6 +33,8 @@ const productResolvers = {
     ...editUserResolver.Mutation,
     ...deactivateUserResolver.Mutation,
     ...firstTimeResetUserResolver.Mutation,
+    ...sendPasswordRecoveryEmailUserResolver.Mutation,
+    ...updateNewPasswordRecoveryUserResolver.Mutation,
 
 
   },

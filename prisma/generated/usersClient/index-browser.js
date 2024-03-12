@@ -115,7 +115,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   firstsignin: 'firstsignin',
   firstRecordAction: 'firstRecordAction',
   active: 'active',
-  temporaryPassword: 'temporaryPassword',
+  temporaryAccessKey: 'temporaryAccessKey',
   imageURL: 'imageURL',
   companyLogo: 'companyLogo'
 };

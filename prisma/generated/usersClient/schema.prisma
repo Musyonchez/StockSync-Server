@@ -25,7 +25,7 @@ model Users {
   firstsignin         Boolean @default(true)
   firstRecordAction   Boolean @default(false)
   active              Boolean   @default(true)
-  temporaryPassword   String   @default("EMPTY")
+  temporaryAccessKey   String   @default("EMPTY")
   imageURL            String?   @default("null")
   companyLogo         String?   @default("null")
 }

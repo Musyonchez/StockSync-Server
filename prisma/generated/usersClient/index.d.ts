@@ -862,7 +862,7 @@ export namespace Prisma {
     firstsignin: boolean | null
     firstRecordAction: boolean | null
     active: boolean | null
-    temporaryPassword: string | null
+    temporaryAccessKey: string | null
     imageURL: string | null
     companyLogo: string | null
   }
@@ -882,7 +882,7 @@ export namespace Prisma {
     firstsignin: boolean | null
     firstRecordAction: boolean | null
     active: boolean | null
-    temporaryPassword: string | null
+    temporaryAccessKey: string | null
     imageURL: string | null
     companyLogo: string | null
   }
@@ -902,7 +902,7 @@ export namespace Prisma {
     firstsignin: number
     firstRecordAction: number
     active: number
-    temporaryPassword: number
+    temporaryAccessKey: number
     imageURL: number
     companyLogo: number
     _all: number
@@ -924,7 +924,7 @@ export namespace Prisma {
     firstsignin?: true
     firstRecordAction?: true
     active?: true
-    temporaryPassword?: true
+    temporaryAccessKey?: true
     imageURL?: true
     companyLogo?: true
   }
@@ -944,7 +944,7 @@ export namespace Prisma {
     firstsignin?: true
     firstRecordAction?: true
     active?: true
-    temporaryPassword?: true
+    temporaryAccessKey?: true
     imageURL?: true
     companyLogo?: true
   }
@@ -964,7 +964,7 @@ export namespace Prisma {
     firstsignin?: true
     firstRecordAction?: true
     active?: true
-    temporaryPassword?: true
+    temporaryAccessKey?: true
     imageURL?: true
     companyLogo?: true
     _all?: true
@@ -1057,7 +1057,7 @@ export namespace Prisma {
     firstsignin: boolean
     firstRecordAction: boolean
     active: boolean
-    temporaryPassword: string
+    temporaryAccessKey: string
     imageURL: string | null
     companyLogo: string | null
     _count: UsersCountAggregateOutputType | null
@@ -1094,7 +1094,7 @@ export namespace Prisma {
     firstsignin?: boolean
     firstRecordAction?: boolean
     active?: boolean
-    temporaryPassword?: boolean
+    temporaryAccessKey?: boolean
     imageURL?: boolean
     companyLogo?: boolean
   }, ExtArgs["result"]["users"]>
@@ -1114,7 +1114,7 @@ export namespace Prisma {
     firstsignin?: boolean
     firstRecordAction?: boolean
     active?: boolean
-    temporaryPassword?: boolean
+    temporaryAccessKey?: boolean
     imageURL?: boolean
     companyLogo?: boolean
   }
@@ -1138,7 +1138,7 @@ export namespace Prisma {
       firstsignin: boolean
       firstRecordAction: boolean
       active: boolean
-      temporaryPassword: string
+      temporaryAccessKey: string
       imageURL: string | null
       companyLogo: string | null
     }, ExtArgs["result"]["users"]>
@@ -1576,7 +1576,7 @@ export namespace Prisma {
     readonly firstsignin: FieldRef<"Users", 'Boolean'>
     readonly firstRecordAction: FieldRef<"Users", 'Boolean'>
     readonly active: FieldRef<"Users", 'Boolean'>
-    readonly temporaryPassword: FieldRef<"Users", 'String'>
+    readonly temporaryAccessKey: FieldRef<"Users", 'String'>
     readonly imageURL: FieldRef<"Users", 'String'>
     readonly companyLogo: FieldRef<"Users", 'String'>
   }
@@ -1914,7 +1914,7 @@ export namespace Prisma {
     firstsignin: 'firstsignin',
     firstRecordAction: 'firstRecordAction',
     active: 'active',
-    temporaryPassword: 'temporaryPassword',
+    temporaryAccessKey: 'temporaryAccessKey',
     imageURL: 'imageURL',
     companyLogo: 'companyLogo'
   };
@@ -2013,7 +2013,7 @@ export namespace Prisma {
     firstsignin?: BoolFilter<"Users"> | boolean
     firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
-    temporaryPassword?: StringFilter<"Users"> | string
+    temporaryAccessKey?: StringFilter<"Users"> | string
     imageURL?: StringNullableFilter<"Users"> | string | null
     companyLogo?: StringNullableFilter<"Users"> | string | null
   }
@@ -2033,7 +2033,7 @@ export namespace Prisma {
     firstsignin?: SortOrder
     firstRecordAction?: SortOrder
     active?: SortOrder
-    temporaryPassword?: SortOrder
+    temporaryAccessKey?: SortOrder
     imageURL?: SortOrder
     companyLogo?: SortOrder
   }
@@ -2056,7 +2056,7 @@ export namespace Prisma {
     firstsignin?: BoolFilter<"Users"> | boolean
     firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
-    temporaryPassword?: StringFilter<"Users"> | string
+    temporaryAccessKey?: StringFilter<"Users"> | string
     imageURL?: StringNullableFilter<"Users"> | string | null
     companyLogo?: StringNullableFilter<"Users"> | string | null
   }, "id" | "email">
@@ -2076,7 +2076,7 @@ export namespace Prisma {
     firstsignin?: SortOrder
     firstRecordAction?: SortOrder
     active?: SortOrder
-    temporaryPassword?: SortOrder
+    temporaryAccessKey?: SortOrder
     imageURL?: SortOrder
     companyLogo?: SortOrder
     _count?: UsersCountOrderByAggregateInput
@@ -2102,7 +2102,7 @@ export namespace Prisma {
     firstsignin?: BoolWithAggregatesFilter<"Users"> | boolean
     firstRecordAction?: BoolWithAggregatesFilter<"Users"> | boolean
     active?: BoolWithAggregatesFilter<"Users"> | boolean
-    temporaryPassword?: StringWithAggregatesFilter<"Users"> | string
+    temporaryAccessKey?: StringWithAggregatesFilter<"Users"> | string
     imageURL?: StringNullableWithAggregatesFilter<"Users"> | string | null
     companyLogo?: StringNullableWithAggregatesFilter<"Users"> | string | null
   }
@@ -2122,7 +2122,7 @@ export namespace Prisma {
     firstsignin?: boolean
     firstRecordAction?: boolean
     active?: boolean
-    temporaryPassword?: string
+    temporaryAccessKey?: string
     imageURL?: string | null
     companyLogo?: string | null
   }
@@ -2142,7 +2142,7 @@ export namespace Prisma {
     firstsignin?: boolean
     firstRecordAction?: boolean
     active?: boolean
-    temporaryPassword?: string
+    temporaryAccessKey?: string
     imageURL?: string | null
     companyLogo?: string | null
   }
@@ -2161,7 +2161,7 @@ export namespace Prisma {
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
-    temporaryPassword?: StringFieldUpdateOperationsInput | string
+    temporaryAccessKey?: StringFieldUpdateOperationsInput | string
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -2180,7 +2180,7 @@ export namespace Prisma {
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
-    temporaryPassword?: StringFieldUpdateOperationsInput | string
+    temporaryAccessKey?: StringFieldUpdateOperationsInput | string
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -2200,7 +2200,7 @@ export namespace Prisma {
     firstsignin?: boolean
     firstRecordAction?: boolean
     active?: boolean
-    temporaryPassword?: string
+    temporaryAccessKey?: string
     imageURL?: string | null
     companyLogo?: string | null
   }
@@ -2219,7 +2219,7 @@ export namespace Prisma {
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
-    temporaryPassword?: StringFieldUpdateOperationsInput | string
+    temporaryAccessKey?: StringFieldUpdateOperationsInput | string
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -2238,7 +2238,7 @@ export namespace Prisma {
     firstsignin?: BoolFieldUpdateOperationsInput | boolean
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
-    temporaryPassword?: StringFieldUpdateOperationsInput | string
+    temporaryAccessKey?: StringFieldUpdateOperationsInput | string
     imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -2301,7 +2301,7 @@ export namespace Prisma {
     firstsignin?: SortOrder
     firstRecordAction?: SortOrder
     active?: SortOrder
-    temporaryPassword?: SortOrder
+    temporaryAccessKey?: SortOrder
     imageURL?: SortOrder
     companyLogo?: SortOrder
   }
@@ -2321,7 +2321,7 @@ export namespace Prisma {
     firstsignin?: SortOrder
     firstRecordAction?: SortOrder
     active?: SortOrder
-    temporaryPassword?: SortOrder
+    temporaryAccessKey?: SortOrder
     imageURL?: SortOrder
     companyLogo?: SortOrder
   }
@@ -2341,7 +2341,7 @@ export namespace Prisma {
     firstsignin?: SortOrder
     firstRecordAction?: SortOrder
     active?: SortOrder
-    temporaryPassword?: SortOrder
+    temporaryAccessKey?: SortOrder
     imageURL?: SortOrder
     companyLogo?: SortOrder
   }
