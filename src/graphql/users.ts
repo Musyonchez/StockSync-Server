@@ -28,6 +28,8 @@ const typeDefs = gql`
     firstsignin: Boolean
     firstRecordAction: Boolean
     active: Boolean
+    imageURL: String
+    companyLogo: String
   }
 
   enum UserRole {
@@ -59,6 +61,8 @@ const typeDefs = gql`
       role: UserRole
       company: String
       type: String
+      imageURL: String
+      companyLogo: String
     ): User
 
     editUser(
@@ -72,9 +76,12 @@ const typeDefs = gql`
 
     deactivateUser(id: String!, company: String!, type: String!): User
 
-    firstTimeResetUser(id: String!, password: String!, company: String!, type: String!): User
-
-
+    firstTimeResetUser(
+      id: String!
+      password: String!
+      company: String!
+      type: String!
+    ): User
   }
 `;
 

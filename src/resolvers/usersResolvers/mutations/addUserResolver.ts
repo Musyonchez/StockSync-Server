@@ -30,10 +30,23 @@ export const addUserResolver = {
 
       const prisma = new PrismaClient();
 
+      
       const userWithCompany = { ...userData, company };
-
+      
       try {
-        return await prisma.users.create({ data: userWithCompany });
+         // Create the user without additional details first
+         const createdUser = await prisma.users.create({ data: userWithCompany });
+         
+        const updatedUser = await prisma.users.update({
+          where: { id: createdUser.id },
+          data: {
+            companyLogo: `https://${company}.s3.us-west-1.amazonaws.com/${company}`,
+            imageURL: `https://${company}.s3.us-west-1.amazonaws.com/${createdUser.id}`,
+          },
+        });
+
+        return updatedUser;
+
       } catch (error) {
         console.error("Error creating user:", error);
         throw error; // Rethrow the error to be handled by your GraphQL server

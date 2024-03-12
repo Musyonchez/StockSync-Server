@@ -863,6 +863,8 @@ export namespace Prisma {
     firstRecordAction: boolean | null
     active: boolean | null
     temporaryPassword: string | null
+    imageURL: string | null
+    companyLogo: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -881,6 +883,8 @@ export namespace Prisma {
     firstRecordAction: boolean | null
     active: boolean | null
     temporaryPassword: string | null
+    imageURL: string | null
+    companyLogo: string | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -899,6 +903,8 @@ export namespace Prisma {
     firstRecordAction: number
     active: number
     temporaryPassword: number
+    imageURL: number
+    companyLogo: number
     _all: number
   }
 
@@ -919,6 +925,8 @@ export namespace Prisma {
     firstRecordAction?: true
     active?: true
     temporaryPassword?: true
+    imageURL?: true
+    companyLogo?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -937,6 +945,8 @@ export namespace Prisma {
     firstRecordAction?: true
     active?: true
     temporaryPassword?: true
+    imageURL?: true
+    companyLogo?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -955,6 +965,8 @@ export namespace Prisma {
     firstRecordAction?: true
     active?: true
     temporaryPassword?: true
+    imageURL?: true
+    companyLogo?: true
     _all?: true
   }
 
@@ -1046,6 +1058,8 @@ export namespace Prisma {
     firstRecordAction: boolean
     active: boolean
     temporaryPassword: string
+    imageURL: string | null
+    companyLogo: string | null
     _count: UsersCountAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
@@ -1081,6 +1095,8 @@ export namespace Prisma {
     firstRecordAction?: boolean
     active?: boolean
     temporaryPassword?: boolean
+    imageURL?: boolean
+    companyLogo?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectScalar = {
@@ -1099,6 +1115,8 @@ export namespace Prisma {
     firstRecordAction?: boolean
     active?: boolean
     temporaryPassword?: boolean
+    imageURL?: boolean
+    companyLogo?: boolean
   }
 
 
@@ -1121,6 +1139,8 @@ export namespace Prisma {
       firstRecordAction: boolean
       active: boolean
       temporaryPassword: string
+      imageURL: string | null
+      companyLogo: string | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -1557,6 +1577,8 @@ export namespace Prisma {
     readonly firstRecordAction: FieldRef<"Users", 'Boolean'>
     readonly active: FieldRef<"Users", 'Boolean'>
     readonly temporaryPassword: FieldRef<"Users", 'String'>
+    readonly imageURL: FieldRef<"Users", 'String'>
+    readonly companyLogo: FieldRef<"Users", 'String'>
   }
     
 
@@ -1892,7 +1914,9 @@ export namespace Prisma {
     firstsignin: 'firstsignin',
     firstRecordAction: 'firstRecordAction',
     active: 'active',
-    temporaryPassword: 'temporaryPassword'
+    temporaryPassword: 'temporaryPassword',
+    imageURL: 'imageURL',
+    companyLogo: 'companyLogo'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -1990,6 +2014,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
     temporaryPassword?: StringFilter<"Users"> | string
+    imageURL?: StringNullableFilter<"Users"> | string | null
+    companyLogo?: StringNullableFilter<"Users"> | string | null
   }
 
   export type UsersOrderByWithRelationInput = {
@@ -2008,6 +2034,8 @@ export namespace Prisma {
     firstRecordAction?: SortOrder
     active?: SortOrder
     temporaryPassword?: SortOrder
+    imageURL?: SortOrder
+    companyLogo?: SortOrder
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -2029,6 +2057,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFilter<"Users"> | boolean
     active?: BoolFilter<"Users"> | boolean
     temporaryPassword?: StringFilter<"Users"> | string
+    imageURL?: StringNullableFilter<"Users"> | string | null
+    companyLogo?: StringNullableFilter<"Users"> | string | null
   }, "id" | "email">
 
   export type UsersOrderByWithAggregationInput = {
@@ -2047,6 +2077,8 @@ export namespace Prisma {
     firstRecordAction?: SortOrder
     active?: SortOrder
     temporaryPassword?: SortOrder
+    imageURL?: SortOrder
+    companyLogo?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _max?: UsersMaxOrderByAggregateInput
     _min?: UsersMinOrderByAggregateInput
@@ -2071,6 +2103,8 @@ export namespace Prisma {
     firstRecordAction?: BoolWithAggregatesFilter<"Users"> | boolean
     active?: BoolWithAggregatesFilter<"Users"> | boolean
     temporaryPassword?: StringWithAggregatesFilter<"Users"> | string
+    imageURL?: StringNullableWithAggregatesFilter<"Users"> | string | null
+    companyLogo?: StringNullableWithAggregatesFilter<"Users"> | string | null
   }
 
   export type UsersCreateInput = {
@@ -2089,6 +2123,8 @@ export namespace Prisma {
     firstRecordAction?: boolean
     active?: boolean
     temporaryPassword?: string
+    imageURL?: string | null
+    companyLogo?: string | null
   }
 
   export type UsersUncheckedCreateInput = {
@@ -2107,6 +2143,8 @@ export namespace Prisma {
     firstRecordAction?: boolean
     active?: boolean
     temporaryPassword?: string
+    imageURL?: string | null
+    companyLogo?: string | null
   }
 
   export type UsersUpdateInput = {
@@ -2124,6 +2162,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
     temporaryPassword?: StringFieldUpdateOperationsInput | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UsersUncheckedUpdateInput = {
@@ -2141,6 +2181,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
     temporaryPassword?: StringFieldUpdateOperationsInput | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UsersCreateManyInput = {
@@ -2159,6 +2201,8 @@ export namespace Prisma {
     firstRecordAction?: boolean
     active?: boolean
     temporaryPassword?: string
+    imageURL?: string | null
+    companyLogo?: string | null
   }
 
   export type UsersUpdateManyMutationInput = {
@@ -2176,6 +2220,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
     temporaryPassword?: StringFieldUpdateOperationsInput | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UsersUncheckedUpdateManyInput = {
@@ -2193,6 +2239,8 @@ export namespace Prisma {
     firstRecordAction?: BoolFieldUpdateOperationsInput | boolean
     active?: BoolFieldUpdateOperationsInput | boolean
     temporaryPassword?: StringFieldUpdateOperationsInput | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    companyLogo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2254,6 +2302,8 @@ export namespace Prisma {
     firstRecordAction?: SortOrder
     active?: SortOrder
     temporaryPassword?: SortOrder
+    imageURL?: SortOrder
+    companyLogo?: SortOrder
   }
 
   export type UsersMaxOrderByAggregateInput = {
@@ -2272,6 +2322,8 @@ export namespace Prisma {
     firstRecordAction?: SortOrder
     active?: SortOrder
     temporaryPassword?: SortOrder
+    imageURL?: SortOrder
+    companyLogo?: SortOrder
   }
 
   export type UsersMinOrderByAggregateInput = {
@@ -2290,6 +2342,8 @@ export namespace Prisma {
     firstRecordAction?: SortOrder
     active?: SortOrder
     temporaryPassword?: SortOrder
+    imageURL?: SortOrder
+    companyLogo?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {

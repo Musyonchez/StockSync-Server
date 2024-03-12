@@ -26,6 +26,8 @@ model Users {
   firstRecordAction   Boolean @default(false)
   active              Boolean   @default(true)
   temporaryPassword   String   @default("EMPTY")
+  imageURL            String?   @default("null")
+  companyLogo         String?   @default("null")
 }
 
 enum UserRole {

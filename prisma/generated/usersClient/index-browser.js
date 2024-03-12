@@ -115,7 +115,9 @@ exports.Prisma.UsersScalarFieldEnum = {
   firstsignin: 'firstsignin',
   firstRecordAction: 'firstRecordAction',
   active: 'active',
-  temporaryPassword: 'temporaryPassword'
+  temporaryPassword: 'temporaryPassword',
+  imageURL: 'imageURL',
+  companyLogo: 'companyLogo'
 };
 
 exports.Prisma.SortOrder = {
