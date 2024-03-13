@@ -30,7 +30,6 @@ const typeDefs = gql`
     active: Boolean
     imageURL: String
     companyLogo: String
-    temporaryAccessKey: String
   }
 
   enum UserRole {
@@ -90,11 +89,10 @@ const typeDefs = gql`
     ): User
 
     updateNewPasswordRecoveryUser(
-      id: String!
+      email: String!
       temporaryAccessKey: String!
       password: String!
       company: String!
-      type: String!
     ): User
   }
 `;

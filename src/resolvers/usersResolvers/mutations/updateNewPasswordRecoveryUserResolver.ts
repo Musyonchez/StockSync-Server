@@ -6,21 +6,19 @@ export const updateNewPasswordRecoveryUserResolver = {
     updateNewPasswordRecoveryUser: async (
       _: any,
       {
-        id,
+        email,
         temporaryAccessKey,
         password,
         company,
-        type,
       }: {
-        id: string;
+        email: string;
         temporaryAccessKey: string;
         password: string;
         company: string;
-        type: string;
       }
     ) => {
-      console.log("updateNewPasswordRecoveryUser resolver starting", id);
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      console.log("updateNewPasswordRecoveryUser resolver starting", email);
+      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, "users");
 
       process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
 
@@ -28,24 +26,24 @@ export const updateNewPasswordRecoveryUserResolver = {
 
       try {
         const existingUser = await prisma.users.findUnique({
-          where: { id: id },
+          where: { email: email },
           select: {
             temporaryAccessKey: true,
           },
         });
 
         if (!existingUser) {
-          throw new Error(`User with id ${id} not found`);
+          throw new Error(`User with email ${email} not found`);
         }
 
         if (existingUser.temporaryAccessKey !== temporaryAccessKey) {
           throw new Error(
-            `Temporary Access key is incorrect for user with id ${id}`
+            `Temporary Access key is incorrect for user with email ${email}`
           );
         }
 
         const updatedUser = await prisma.users.update({
-          where: { id: id },
+          where: { email: email },
           data: {
             password: password,
           },
