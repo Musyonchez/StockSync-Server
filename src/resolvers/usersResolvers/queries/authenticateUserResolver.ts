@@ -15,7 +15,12 @@ export const authenticateUserResolver = {
         company,
       }: { email: string; password: string; company: string }
     ) => {
-      console.log("authenticateUser resolver starting", email, password, company);
+      console.log(
+        "authenticateUser resolver starting",
+        email,
+        password,
+        company
+      );
 
       const type = "users";
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
@@ -68,6 +73,13 @@ export const authenticateUserResolver = {
         console.log("User is not active. Access denied.", email, user);
         throw new Error("User is not active. Access denied.");
       }
+
+      await prisma.users.update({
+        where: { id: user?.id },
+        data: {
+          temporaryAccessKey: "EMPTY",
+        },
+      });
 
       const isPasswordValid = user.password === password;
 

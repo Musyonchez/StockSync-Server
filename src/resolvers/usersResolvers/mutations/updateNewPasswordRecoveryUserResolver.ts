@@ -46,6 +46,7 @@ export const updateNewPasswordRecoveryUserResolver = {
           where: { email: email },
           data: {
             password: password,
+            temporaryAccessKey: "EMPTY",
           },
         });
 

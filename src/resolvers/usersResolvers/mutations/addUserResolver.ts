@@ -30,13 +30,25 @@ export const addUserResolver = {
 
       const prisma = new PrismaClient();
 
-      
       const userWithCompany = { ...userData, company };
-      
+
       try {
-         // Create the user without additional details first
-         const createdUser = await prisma.users.create({ data: userWithCompany });
-         
+        // Check if a user with the provided email already exists
+        const existingUser = await prisma.users.findUnique({
+          where: {
+            email: userWithCompany.email,
+          },
+        });
+
+        if (existingUser) {
+          // If user with the same email exists, throw an error
+          throw new Error("User with this email already exists");
+        }
+
+        const createdUser = await prisma.users.create({
+          data: userWithCompany,
+        });
+
         const updatedUser = await prisma.users.update({
           where: { id: createdUser.id },
           data: {
@@ -46,7 +58,6 @@ export const addUserResolver = {
         });
 
         return updatedUser;
-
       } catch (error) {
         console.error("Error creating user:", error);
         throw error; // Rethrow the error to be handled by your GraphQL server
