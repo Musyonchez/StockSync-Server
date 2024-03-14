@@ -15,34 +15,49 @@ export const addProductResolver = {
     ) => {
       const { company, type, ...productData } = args;
 
-      console.log("Received product data:", productData, company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
-      console.log("Dynamic database URL:", dynamicDatabaseUrl);
-
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
-      console.log("Updated process environment with database URL:", process.env.STOCKSYNC_STORE4);
+      // Set environment variable for database URL
+      process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
-      // Create the product in the database
-      console.log("Creating product in the database...");
-      const createdProduct = await prisma.products.create({ data: productData });
-      console.log("Product created:", createdProduct);
+      try {
+        // Create the product in the database
+        const createdProduct = await prisma.products.create({
+          data: productData,
+        });
 
-      // Generate the image URL
-      const imageURL = `https://${company}.s3.us-west-1.amazonaws.com/${createdProduct.id}`;
-      console.log("Generated image URL:", imageURL);
+        if (!createdProduct) {
+          throw new Error(`Failed to create product.`);
+        }
 
-      // Update the product with the generated image URL
-      console.log("Updating product with image URL...");
-      const updatedProduct = await prisma.products.update({
-        where: { id: createdProduct.id },
-        data: { imageURL: imageURL }
-      });
-      console.log("Product updated with image URL:", updatedProduct);
+        // Generate the image URL
+        const imageURL = `https://${company}.s3.us-west-1.amazonaws.com/${createdProduct.id}`;
 
-      return updatedProduct;
+        // Update the product with the generated image URL
+        const updatedProduct = await prisma.products.update({
+          where: { id: createdProduct.id },
+          data: { imageURL: imageURL },
+        });
+
+        if (!updatedProduct) {
+          throw new Error(`Failed to update product with image URL.`);
+        }
+
+        return updatedProduct;
+      } catch (error) {
+        throw new Error(
+          `Error while adding product: ${(error as Error).message}`
+        );
+      } finally {
+        // Disconnect from the database after operation completion
+        await prisma.$disconnect();
+      }
     },
   },
 };
