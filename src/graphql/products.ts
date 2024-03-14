@@ -65,7 +65,7 @@ const typeDefs = gql`
     activeProducts(company: String!, type: String!): [Product]
     inactiveProducts(company: String!, type: String!): [Product]
     product(id: String!, company: String!, type: String!): Product
-    search(
+    searchProducts(
       company: String!
       type: String!
       filterArray: [SearchFilterInput]!

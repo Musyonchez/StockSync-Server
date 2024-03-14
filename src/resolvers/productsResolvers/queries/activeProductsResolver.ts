@@ -7,17 +7,38 @@ export const activeProductsResolver = {
       _: any,
       { company, type }: { company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
-      return await prisma.products.findMany({
-        where: {
-          active: true,
-        },
-      });
+      try {
+        // Retrieve active products from the database
+        const products = await prisma.products.findMany({
+          where: {
+            active: true,
+          },
+        });
+
+        // If no active products are found, throw an error
+        if (!products || products.length === 0) {
+          throw new Error(`No active products found for company ${company} and type ${type}.`);
+        }
+
+        // Return the active products
+        return products;
+      } catch (error) {
+        // Catch any errors that occur during the retrieval process
+        throw new Error(`Error fetching active products: ${(error as Error).message}`);
+      }
     },
   },
 };
+
+export default activeProductsResolver;
