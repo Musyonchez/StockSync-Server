@@ -21,9 +21,11 @@ const app = express();
 
 app.use(cors());
 
+// Set up multer for file uploading
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+// Create an Apollo Server instance
 const server = new ApolloServer({
   typeDefs: [
     typeDefsUsers,
@@ -40,42 +42,48 @@ const server = new ApolloServer({
     restockingResolvers,
     actionResolvers,
   ],
-  context: ({ req, res }) => ({ req, res }),
+  context: ({ req, res }) => ({ req, res }), // Pass the request and response objects to the context
 });
 
+// Set up the port for the server
 const port = process.env.PORT || 5000;
 
+// Handle file upload endpoint
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
-    if (req.file) {
-      console.log("file console server rest api", req.file);
-      console.log("company console server rest api", req.body.company);
-
-      // Handle file upload here
-      await uploadImage(
-        req.file.buffer,
-        req.file.originalname,
-        req.body.company
-      );
+    // Check if a file is uploaded
+    if (!req.file) {
+      // If no file is uploaded, return an error response
+      return res.status(400).json({ error: "No file uploaded" });
     }
-    // Send a response to the client
+
+    // Handle file upload
+    await uploadImage(req.file.buffer, req.file.originalname, req.body.company);
+
+    // Send a success response to the client
     res.json({ message: "File uploaded successfully!" });
   } catch (error) {
-    console.error("Error handling file upload:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    // Handle errors
+    res.status(500).json({ error: (error as Error).message });
   }
+  return undefined; // Explicitly return undefined to satisfy TypeScript
 });
 
+// Start the Apollo Server
 async function startServer() {
   await server.start();
 
+  // Apply Apollo Server middleware to Express
   server.applyMiddleware({ app } as any);
 
+  // Enable JSON parsing for Express
   app.use(express.json());
 
+  // Start listening on the specified port
   app.listen({ port }, () => {
     console.log(`Server is running at http://localhost:${port}/graphql`);
   });
 }
 
+// Start the server
 startServer();

@@ -15,12 +15,6 @@ export const sendPasswordRecoveryEmailUserResolver = {
         company: string;
       }
     ) => {
-      console.log("sendPasswordRecoveryEmailUser resolver starting", email);
-
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, "users");
-
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
-
       const generateRandomString = (length: number) => {
         const characters =
           "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
@@ -35,11 +29,19 @@ export const sendPasswordRecoveryEmailUserResolver = {
 
       const temporaryAccessKey = generateRandomString(10);
 
-      console.log("temporaryAccessKey string", temporaryAccessKey);
+       // Get dynamic database URL based on company and type
+       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        "users"
+      );
+
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_USERS = dynamicUsersDatabaseUrl;
 
       const prisma = new PrismaClient();
 
-      let existingUser; // Declare the variable outside the try block
+      let existingUser;
+      let updatedUser;
 
       try {
         existingUser = await prisma.users.findUnique({
@@ -55,14 +57,7 @@ export const sendPasswordRecoveryEmailUserResolver = {
         if (!existingUser) {
           throw new Error(`User with email ${email} not found`);
         }
-      } catch (error) {
-        console.log("error finding existing user", error);
-        throw new Error(`Error finding existing user: ${(error as Error).message}`);
-      }
 
-      let updatedUser;
-
-      try {
         updatedUser = await prisma.users.update({
           where: { email: email },
           data: {
@@ -75,48 +70,44 @@ export const sendPasswordRecoveryEmailUserResolver = {
           },
         });
 
-      } catch (error) {
-        console.log("error updating user", error);
-        throw new Error(`Error updating user: ${(error as Error).message}`);
-      }
+        if (!updatedUser) {
+          throw new Error(`Failed to update user with email ${email}`);
+        }
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "musyonchez@gmail.com",
-          pass: "iaxz xcta abmc jxox",
-        },
-      });
-
-      const sendEmail = async (mailOptions: SendMailOptions) => {
-        return new Promise((resolve, reject) => {
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              console.error("Error sending email:", error);
-              reject(error);
-            } else {
-              console.log("Email sent:", info.response);
-              resolve(info);
-            }
-          });
+        // Create transporter for sending email
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS,
+          },
         });
-      };
 
-      const mailOptions = {
-        from: "musyonchez@gmail.com",
-        to: email,
-        subject: "Your Temporary Access Key for Soltase",
-        text: "This is a test email from Node.js",
-        html: `<!DOCTYPE html>
+        // Function to send email
+        const sendEmail = async (mailOptions: SendMailOptions) => {
+          return new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(info);
+              }
+            });
+          });
+        };
+
+        const mailOptions = {
+          from: process.env.NODEMAILER_USER,
+          to: email,
+          subject: "Your Temporary Access Key for Soltase",
+          text: "This is a test email from Node.js",
+          html: `<!DOCTYPE html>
                 <html>
-                <head>
-                    <title>Password Recovery</title>
-                </head>
                 <body>
                     <h1>Password Recovery</h1>
-                    <p>Dear ${existingUser?.firstName ?? "User"} ${
-          existingUser?.lastName
-        },</p>
+                    <p>Dear ${
+                      existingUser?.firstName ?? "User"
+                    } ${existingUser?.lastName},</p>
                     <p>We received a request to reset your password. Please use the following as your Access Key where requested:</p>
                     <p><strong>Access Key:</strong> ${temporaryAccessKey}</p>
                     <p>If you did not request this password reset, please contact our support team immediately.</p>
@@ -125,17 +116,17 @@ export const sendPasswordRecoveryEmailUserResolver = {
                     <p>Soltase Support Team</p>
                 </body>
                 </html>`,
-      };
+        };
 
-      try {
-        const info = await sendEmail(mailOptions);
-        console.log("Email sent successfully:", info);
+        // Send email
+        await sendEmail(mailOptions);
       } catch (error) {
-        console.error("Failed to send email:", error);
+        throw new Error(`Error sending email: ${(error as Error).message}`);
+      } finally {
+        await prisma.$disconnect();
       }
 
       return updatedUser;
-
     },
   },
 };

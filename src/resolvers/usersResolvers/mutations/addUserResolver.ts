@@ -24,9 +24,14 @@ export const addUserResolver = {
     ) => {
       const { company, type, ...userData } = args;
 
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.MONGODB_URL = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_USERS = dynamicUsersDatabaseUrl;
 
       const prisma = new PrismaClient();
 
@@ -41,14 +46,19 @@ export const addUserResolver = {
         });
 
         if (existingUser) {
-          // If user with the same email exists, throw an error
           throw new Error("User with this email already exists");
         }
 
+        // Create the user
         const createdUser = await prisma.users.create({
           data: userWithCompany,
         });
 
+        if (!createdUser) {
+          throw new Error("Failed to create user");
+        }
+
+        // Update the user with the company logo and image URL
         const updatedUser = await prisma.users.update({
           where: { id: createdUser.id },
           data: {
@@ -57,10 +67,15 @@ export const addUserResolver = {
           },
         });
 
+        if (!updatedUser) {
+          throw new Error(`Failed to update user's company logo and image URL with ID ${createdUser.id}`);
+        }
+
         return updatedUser;
       } catch (error) {
-        console.error("Error creating user:", error);
-        throw error; // Rethrow the error to be handled by your GraphQL server
+        throw new Error(`Failed to add user: ${(error as Error).message}`); // Rethrow the error with additional context
+      } finally {
+        await prisma.$disconnect();
       }
     },
   },

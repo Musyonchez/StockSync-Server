@@ -7,13 +7,19 @@ export const deleteUserResolver = {
       _: any,
       { id, company, type }: { id: string; company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_USERS = dynamicUsersDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
+        // Find the user by ID
         const currentUser = await prisma.users.findUnique({
           where: { id },
         });
@@ -22,10 +28,16 @@ export const deleteUserResolver = {
           throw new Error(`User with ID ${id} not found`);
         }
 
+        // Check if the user has any transaction records
         if (!currentUser.firstRecordAction) {
+          // Delete the user
           const deletedUser = await prisma.users.delete({
             where: { id },
           });
+
+          if (!deletedUser) {
+            throw new Error(`Failed to delete user`);
+          }
 
           return deletedUser;
         } else {
@@ -40,4 +52,3 @@ export const deleteUserResolver = {
   },
 };
 
-export default deleteUserResolver;

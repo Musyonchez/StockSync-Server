@@ -17,14 +17,19 @@ export const firstTimeResetUserResolver = {
         type: string;
       }
     ) => {
-      console.log("firstTimeResetUser resolver starting", id);
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_USERS = dynamicUsersDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
+        // Find the existing user
         const existingUser = await prisma.users.findUnique({
           where: {
             id: id,
@@ -35,17 +40,24 @@ export const firstTimeResetUserResolver = {
           throw new Error(`User with id ${id} not found`);
         }
 
+        // Update the user's password and set firstsignin to false
         const updatedUser = await prisma.users.update({
           where: { id: id },
           data: {
-            firstsignin: false, // Set firstsignin to false
+            firstsignin: false,
             password: password,
           },
         });
 
+        if (!updatedUser) {
+          throw new Error(`Failed to update user with id ${id}`);
+        }
+
         return updatedUser;
       } catch (error) {
         throw new Error(`Error updating user: ${(error as Error).message}`);
+      } finally {
+        await prisma.$disconnect();
       }
     },
   },

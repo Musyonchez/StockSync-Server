@@ -17,15 +17,19 @@ export const editUserResolver = {
         filterArray: { field: string; value: string }[];
       }
     ) => {
+      // Get dynamic database URL based on company and type
+      const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      console.log("edit resolver starting", filterArray)
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
-
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_USERS = dynamicUsersDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
+        // Find the existing user
         const existingUser = await prisma.users.findUnique({
           where: {
             id: id,
@@ -37,6 +41,7 @@ export const editUserResolver = {
         }
 
         const data: Record<string, string | boolean> = {};
+        // Process each field in the filter array
         filterArray.forEach(({ field, value }) => {
           if (value === 'true' || value === 'false') {
             // Convert string value to boolean
@@ -46,16 +51,22 @@ export const editUserResolver = {
             data[field] = value;
           }
         });
-        
 
+        // Update the user with the new data
         const updatedUser = await prisma.users.update({
           where: { id: id },
           data,
         });
 
+        if (!updatedUser) {
+          throw new Error(`Failed to update user with id ${id}`);
+        }
+
         return updatedUser;
       } catch (error) {
         throw new Error(`Error updating user: ${(error as Error).message}`);
+      } finally {
+        await prisma.$disconnect();
       }
     },
   },
