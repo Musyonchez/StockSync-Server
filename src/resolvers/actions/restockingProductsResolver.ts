@@ -160,7 +160,7 @@ export const restockingProductResolver = {
 
         // Check if any operation failed during the transaction
         if (!allSucceeded) {
-          throw new Error(`Transaction failed. Rolling back changes.`);
+          throw new Error(`Restocking failed. Rolling back changes.`);
         }
       } catch (error) {
         // If any error occurs during the transaction, set allSucceeded to false and throw the error

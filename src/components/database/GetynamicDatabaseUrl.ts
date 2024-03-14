@@ -2,13 +2,13 @@ export async function getDynamicDatabaseUrl(company: string, type: string): Prom
    // Validate company string against preset values
    const validCompanies = ["soltase", "addermatt"]; // Add more companies if needed
    if (!validCompanies.includes(company.toLowerCase())) {
-     throw new Error(`Invalid company '${company}'. Must be one of: ${validCompanies.join(", ")}.`);
+     throw new Error(`Invalid company '${company}'.`);
    }
  
    // Validate type string against preset values
    const validTypes = ["store1", "store2", "store3", "store4", "users"]; // Add more types if needed
    if (!validTypes.includes(type.toLowerCase())) {
-     throw new Error(`Invalid type '${type}'. Must be one of: ${validTypes.join(", ")}.`);
+     throw new Error(`Invalid type '${type}'.`);
    }
    
   // Define a map to store environment variables based on company and type
