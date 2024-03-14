@@ -7,7 +7,7 @@ import { editProductResolver } from "./mutations/editProductResolver";
 import { inactiveProductsResolver } from "./queries/inactiveProductsResolver";
 import { productResolver } from "./queries/productResolver";
 import { productsResolver } from "./queries/productsResolver";
-import { searchProductsResolver } from "./queries/searchResolver";
+import { searchProductsResolver } from "./queries/searchProductsResolver";
 
 
 
