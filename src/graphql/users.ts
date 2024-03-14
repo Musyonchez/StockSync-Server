@@ -74,7 +74,7 @@ const typeDefs = gql`
 
     deleteUser(id: String!, company: String!, type: String!): User
 
-    deactivateUser(id: String!, company: String!, type: String!):  User
+    deactivateUser(id: String!, company: String!, type: String!): User
 
     firstTimeResetUser(
       id: String!
@@ -83,10 +83,7 @@ const typeDefs = gql`
       type: String!
     ): User
 
-    sendPasswordRecoveryEmailUser(
-      email: String!
-      company: String!
-    ): User
+    sendPasswordRecoveryEmailUser(email: String!, company: String!): User
 
     updateNewPasswordRecoveryUser(
       email: String!

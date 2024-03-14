@@ -24,8 +24,6 @@ const typeDefs = gql`
     getRestockings(company: String!, type: String!): [Restocking]
     getRestocking(id: String!, company: String!, type: String!): Restocking
   }
-
-
 `;
 
 export default typeDefs;

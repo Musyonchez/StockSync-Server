@@ -26,8 +26,6 @@ const typeDefs = gql`
     getTransactions(company: String!, type: String!): [Transaction]
     getTransaction(id: String!, company: String!, type: String!): Transaction
   }
-
-
 `;
 
 export default typeDefs;

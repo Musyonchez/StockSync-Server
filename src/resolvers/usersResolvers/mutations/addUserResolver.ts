@@ -26,7 +26,7 @@ export const addUserResolver = {
 
       const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
 
-      process.env.STOCKSYNC_USERS = dynamicDatabaseUrl;
+      process.env.MONGODB_URL = dynamicDatabaseUrl;
 
       const prisma = new PrismaClient();
 

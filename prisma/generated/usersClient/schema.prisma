@@ -7,7 +7,7 @@ generator usersClient {
 
 datasource usersDb {
   provider = "mongodb"
-  url      = env("MONGODB_URL")
+  url      = env("MONGODB_URL_USERS")
 }
 
 model Users {

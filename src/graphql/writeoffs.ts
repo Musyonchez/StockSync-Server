@@ -27,8 +27,6 @@ const typeDefs = gql`
     getWriteoffs(company: String!, type: String!): [Writeoff]
     getWriteoff(id: String!, company: String!, type: String!): Writeoff
   }
-
-
 `;
 
 export default typeDefs;

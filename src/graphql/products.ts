@@ -77,7 +77,6 @@ const typeDefs = gql`
       name: String
       description: String
       category: String
-      imageURL: String
       company: String!
       type: String!
     ): Product
