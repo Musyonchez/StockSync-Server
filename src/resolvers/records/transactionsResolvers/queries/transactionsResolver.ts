@@ -7,14 +7,23 @@ export const transactionsResolver = {
       _: any,
       { company, type }: { company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+       // Get dynamic database URL based on company and type
+     const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+      company,
+      type
+    );
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+    // Set environment variable for database URL
+    process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
         const transactions = await prisma.transactions.findMany();
+
+        if (!transactions || transactions.length === 0) {
+          throw new Error(`No transactions found for company ${company} and type ${type}.`);
+        }
 
         // Format the createdAt field in each transaction before returning
         const formattedTransactions = transactions.map((transaction) => ({
@@ -24,8 +33,7 @@ export const transactionsResolver = {
 
         return formattedTransactions;
       } catch (error) {
-        console.error("Error fetching transactions:", error);
-        throw new Error("Unable to fetch transactions.");
+        throw new Error(`Unable to fetch transactions: ${(error as Error).message}`);
       } finally {
         await prisma.$disconnect();
       }

@@ -7,14 +7,26 @@ export const writeoffsResolver = {
       _: any,
       { company, type }: { company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+      // Get dynamic database URL based on company and type
+      const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
+        // Retrieve the list of writeoffs from the database
         const writeoffs = await prisma.writeoffs.findMany();
+
+        // Check if writeoffs is empty or null
+        if (!writeoffs || writeoffs.length === 0) {
+          // Throw an error if no writeoffs are found
+          throw new Error(`No writeoffs found for company ${company} and type ${type}.`);
+        }
 
         // Format the createdAt field before returning the list of writeoffs
         const formattedWriteoffs = writeoffs.map((writeoff) => ({
@@ -24,9 +36,10 @@ export const writeoffsResolver = {
 
         return formattedWriteoffs;
       } catch (error) {
-        console.error("Error fetching writeoffs:", error);
-        throw new Error("Unable to fetch writeoffs.");
+        // Throw an error if fetching writeoffs fails
+        throw new Error(`Unable to fetch writeoffs: ${(error as Error).message}`);
       } finally {
+        // Disconnect from the Prisma client
         await prisma.$disconnect();
       }
     },

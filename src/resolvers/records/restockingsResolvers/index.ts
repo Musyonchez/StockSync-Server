@@ -18,7 +18,6 @@ const typeDefsRestockings = {
   },
 
   Mutation: {
-    // ...addRestockingResolver.Mutation,
 
 
   },

@@ -7,9 +7,14 @@ export const transactionResolver = {
       _: any,
       { id, company, type }: { id: string; company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+     // Get dynamic database URL based on company and type
+     const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+      company,
+      type
+    );
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+    // Set environment variable for database URL
+    process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
@@ -21,7 +26,7 @@ export const transactionResolver = {
         });
 
         if (!transaction) {
-          throw new Error("Restocking not found");
+          throw new Error(`Transaction with ID ${id} not found.`);
         }
         // Format the createdAt field before returning
         const formattedTransaction = {
@@ -31,8 +36,7 @@ export const transactionResolver = {
 
         return formattedTransaction;
       } catch (error) {
-        console.error("Error fetching transaction:", error);
-        throw new Error("Unable to fetch transaction.");
+        throw new Error(`Unable to fetch transaction: ${(error as Error).message}`);
       } finally {
         await prisma.$disconnect();
       }

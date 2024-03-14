@@ -7,14 +7,23 @@ export const restockingsResolver = {
       _: any,
       { company, type }: { company: string; type: string }
     ) => {
-      const dynamicDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+       // Get dynamic database URL based on company and type
+       const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-      process.env.STOCKSYNC_STORE4 = dynamicDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
       try {
         const restockings = await prisma.restockings.findMany();
+
+        if(!restockings || restockings.length === 0){
+          throw new Error(`No restockings found for company ${company} and type ${type}.`);
+        }
         
         // Format the createdAt field before returning the Restocking object
         const formattedRestockings = restockings.map((restocking) => ({
@@ -24,8 +33,7 @@ export const restockingsResolver = {
 
         return formattedRestockings;
       } catch (error) {
-        console.error("Error fetching restockings:", error);
-        throw new Error("Unable to fetch restockings.");
+        throw new Error(`Unable to fetch restockings: ${(error as Error).message}`);
       } finally {
         await prisma.$disconnect();
       }
