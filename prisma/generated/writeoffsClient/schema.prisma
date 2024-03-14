@@ -8,7 +8,7 @@ generator writeoffsClient {
 
 datasource writeoffsDb {
   provider = "mongodb"
-  url      = env("MONGODB_URL")
+  url      = env("MONGODB_URL_PRODUCTS")
 }
 
 model Writeoffs {

@@ -151,13 +151,13 @@ const config = {
   "inlineDatasources": {
     "restockingsDb": {
       "url": {
-        "fromEnvVar": "MONGODB_URL",
+        "fromEnvVar": "MONGODB_URL_PRODUCTS",
         "value": null
       }
     }
   },
-  "inlineSchema": "Ly8gcmVzdG9ja2luZ3NTY2hlbWEucHJpc21hDQoNCmdlbmVyYXRvciByZXN0b2NraW5nc0NsaWVudCB7DQogIHByb3ZpZGVyID0gInByaXNtYS1jbGllbnQtanMiDQogIG91dHB1dCAgID0gIi4vZ2VuZXJhdGVkL3Jlc3RvY2tpbmdzQ2xpZW50Ig0KICBiaW5hcnlUYXJnZXRzID0gWyJuYXRpdmUiLCAiZGViaWFuLW9wZW5zc2wtMS4xLngiLCAicmhlbC1vcGVuc3NsLTEuMC54Il0NCn0NCg0KZGF0YXNvdXJjZSByZXN0b2NraW5nc0RiIHsNCiAgcHJvdmlkZXIgPSAibW9uZ29kYiINCiAgdXJsICAgICAgPSBlbnYoIk1PTkdPREJfVVJMIikNCn0NCg0KbW9kZWwgUmVzdG9ja2luZ3Mgew0KICBpZCAgICAgICAgICAgIFN0cmluZyAgICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAcmVzdG9ja2luZ3NEYi5PYmplY3RJZA0KICBkZXRhaWxzICAgICAgIFJlc3RvY2tpbmdEZXRhaWxbXSANCiAgY3JlYXRlZEF0ICAgICBEYXRlVGltZSAgICAgICAgICAgQGRlZmF1bHQobm93KCkpIA0KICBjcmVhdG9ySWQgICAgICAgU3RyaW5nDQogIGNyZWF0b3JOYW1lICAgICBTdHJpbmcNCn0NCg0KDQp0eXBlIFJlc3RvY2tpbmdEZXRhaWwgew0KICBpZCAgICAgICAgICAgICAgU3RyaW5nDQogIG5hbWUgICAgICAgICAgICBTdHJpbmcNCiAgY2F0ZWdvcnkgICAgICAgIFN0cmluZz8NCiAgY3VycmVudCAgICAgICAgIEZsb2F0Pw0KICB1bml0Q29zdCAgICAgICAgRmxvYXQ/DQogIHNlbGxpbmdQcmljZSAgICBGbG9hdD8NCiAgc3VwcGxpZXIgICAgICAgIFN0cmluZz8NCiAgcXVhbnRpdHkgICAgICAgIEludD8gLy8gQWRkIHRoZSBxdWFudGl0eSBmaWVsZA0KfQ0KDQo=",
-  "inlineSchemaHash": "e68f0f32315e09422f80e4c52d876f0a3c49426504be81284447ae50b044bd1e",
+  "inlineSchema": "Ly8gcmVzdG9ja2luZ3NTY2hlbWEucHJpc21hDQoNCmdlbmVyYXRvciByZXN0b2NraW5nc0NsaWVudCB7DQogIHByb3ZpZGVyID0gInByaXNtYS1jbGllbnQtanMiDQogIG91dHB1dCAgID0gIi4vZ2VuZXJhdGVkL3Jlc3RvY2tpbmdzQ2xpZW50Ig0KICBiaW5hcnlUYXJnZXRzID0gWyJuYXRpdmUiLCAiZGViaWFuLW9wZW5zc2wtMS4xLngiLCAicmhlbC1vcGVuc3NsLTEuMC54Il0NCn0NCg0KZGF0YXNvdXJjZSByZXN0b2NraW5nc0RiIHsNCiAgcHJvdmlkZXIgPSAibW9uZ29kYiINCiAgdXJsICAgICAgPSBlbnYoIk1PTkdPREJfVVJMX1BST0RVQ1RTIikNCn0NCg0KbW9kZWwgUmVzdG9ja2luZ3Mgew0KICBpZCAgICAgICAgICAgIFN0cmluZyAgICAgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAcmVzdG9ja2luZ3NEYi5PYmplY3RJZA0KICBkZXRhaWxzICAgICAgIFJlc3RvY2tpbmdEZXRhaWxbXSANCiAgY3JlYXRlZEF0ICAgICBEYXRlVGltZSAgICAgICAgICAgQGRlZmF1bHQobm93KCkpIA0KICBjcmVhdG9ySWQgICAgICAgU3RyaW5nDQogIGNyZWF0b3JOYW1lICAgICBTdHJpbmcNCn0NCg0KDQp0eXBlIFJlc3RvY2tpbmdEZXRhaWwgew0KICBpZCAgICAgICAgICAgICAgU3RyaW5nDQogIG5hbWUgICAgICAgICAgICBTdHJpbmcNCiAgY2F0ZWdvcnkgICAgICAgIFN0cmluZz8NCiAgY3VycmVudCAgICAgICAgIEZsb2F0Pw0KICB1bml0Q29zdCAgICAgICAgRmxvYXQ/DQogIHNlbGxpbmdQcmljZSAgICBGbG9hdD8NCiAgc3VwcGxpZXIgICAgICAgIFN0cmluZz8NCiAgcXVhbnRpdHkgICAgICAgIEludD8gLy8gQWRkIHRoZSBxdWFudGl0eSBmaWVsZA0KfQ0KDQo=",
+  "inlineSchemaHash": "9baad2d5e20b579a8f99a438bc5fe2c8c65d45e5be07fce8012f5ec7ed6799f7",
   "noEngine": false
 }
 config.dirname = '/'
@@ -168,7 +168,7 @@ config.getQueryEngineWasmModule = undefined
 
 config.injectableEdgeEnv = () => ({
   parsed: {
-    MONGODB_URL: typeof globalThis !== 'undefined' && globalThis['MONGODB_URL'] || typeof process !== 'undefined' && process.env && process.env.MONGODB_URL || undefined
+    MONGODB_URL_PRODUCTS: typeof globalThis !== 'undefined' && globalThis['MONGODB_URL_PRODUCTS'] || typeof process !== 'undefined' && process.env && process.env.MONGODB_URL_PRODUCTS || undefined
   }
 })
 

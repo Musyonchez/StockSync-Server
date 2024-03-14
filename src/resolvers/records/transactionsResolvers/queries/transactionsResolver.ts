@@ -14,7 +14,7 @@ export const transactionsResolver = {
     );
 
     // Set environment variable for database URL
-    process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
+    process.env.MONGODB_URL_PRODUCTS = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 

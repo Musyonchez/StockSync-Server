@@ -8,7 +8,7 @@ generator restockingsClient {
 
 datasource restockingsDb {
   provider = "mongodb"
-  url      = env("MONGODB_URL")
+  url      = env("MONGODB_URL_PRODUCTS")
 }
 
 model Restockings {

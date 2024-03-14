@@ -42,7 +42,7 @@ export const writeoffProductResolver = {
       );
 
       // Set environment variable for database URL
-      process.env.MONGODB_URL = dynamicProductsDatabaseUrl;
+      process.env.MONGODB_URL_PRODUCTS = dynamicProductsDatabaseUrl;
 
       // Initialize Prisma clients for interacting with databases
       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
