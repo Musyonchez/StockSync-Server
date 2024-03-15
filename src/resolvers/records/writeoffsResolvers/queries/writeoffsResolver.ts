@@ -25,7 +25,7 @@ export const writeoffsResolver = {
         // Check if writeoffs is empty or null
         if (!writeoffs || writeoffs.length === 0) {
           // Throw an error if no writeoffs are found
-          throw new Error(`No writeoffs found for company ${company} and type ${type}.`);
+          throw new Error(`No writeoffs found for company ${company} and store ${type}.`);
         }
 
         // Format the createdAt field before returning the list of writeoffs

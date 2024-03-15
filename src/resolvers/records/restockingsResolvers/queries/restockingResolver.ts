@@ -38,7 +38,7 @@ export const restockingResolver = {
 
         return formattedRestocking;
       } catch (error) {
-        throw new Error(`Unable to fetch restocking: ${(error as Error).message}`);
+        throw new Error(`Unable to fetch restocking`);
       } finally {
         await prisma.$disconnect();
       }

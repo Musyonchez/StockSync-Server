@@ -25,7 +25,7 @@ export const productsResolver = {
         // If no products are found, throw an error
         if (!products || products.length === 0) {
           throw new Error(
-            `No products found for company ${company} and type ${type}.`
+            `No products found for company ${company} and store ${type}.`
           );
         }
 

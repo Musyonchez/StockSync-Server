@@ -5,16 +5,27 @@ export const searchProductsResolver = {
   Query: {
     searchProducts: async (
       _: any,
-      { company, type, filterArray }: { company: string; type: string; filterArray: { field: string; value: string }[] }
+      {
+        company,
+        type,
+        filterArray,
+      }: {
+        company: string;
+        type: string;
+        filterArray: { field: string; value: string }[];
+      }
     ) => {
       try {
         // Ensure that the filter array is not empty
         if (!filterArray || filterArray.length === 0) {
-          throw new Error('Filter array must not be empty.');
+          throw new Error("Filter array must not be empty.");
         }
 
         // Get dynamic database URL based on company and type
-        const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(company, type);
+        const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+          company,
+          type
+        );
 
         // Set environment variable for database URL
         process.env.MONGODB_URL_PRODUCTS = dynamicProductsDatabaseUrl;
@@ -26,7 +37,7 @@ export const searchProductsResolver = {
           return {
             [filter.field]: {
               contains: filter.value.toLowerCase(),
-              mode: 'insensitive', // This option is not directly supported for 'contains' in MongoDB
+              mode: "insensitive", // This option is not directly supported for 'contains' in MongoDB
             },
             active: true, // Ensure that only active products are considered
           };
@@ -40,13 +51,15 @@ export const searchProductsResolver = {
 
         // If no results are found, return an empty array
         if (!results || results.length === 0) {
-          throw new Error('No matching products found.');
+          throw new Error("No matching products found.");
         }
 
         return results;
       } catch (error) {
         // Catch any errors that occur during the search process
-        throw new Error(`Error searching products: ${(error as Error).message}`);
+        throw new Error(
+          `Error searching products: ${(error as Error).message}`
+        );
       }
     },
   },

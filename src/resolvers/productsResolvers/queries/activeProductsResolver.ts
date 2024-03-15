@@ -28,7 +28,7 @@ export const activeProductsResolver = {
 
         // If no active products are found, throw an error
         if (!products || products.length === 0) {
-          throw new Error(`No active products found for company ${company} and type ${type}.`);
+          throw new Error(`No active products found for company ${company} and store ${type}.`);
         }
 
         // Return the active products

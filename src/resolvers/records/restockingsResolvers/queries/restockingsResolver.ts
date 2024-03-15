@@ -22,7 +22,7 @@ export const restockingsResolver = {
         const restockings = await prisma.restockings.findMany();
 
         if(!restockings || restockings.length === 0){
-          throw new Error(`No restockings found for company ${company} and type ${type}.`);
+          throw new Error(`No restockings found for company ${company} and store ${type}.`);
         }
         
         // Format the createdAt field before returning the Restocking object

@@ -43,6 +43,8 @@ export const authenticateUserResolver = {
             role: true,
             firstsignin: true,
             active: true,
+            companyLogo: true,
+            imageURL: true,
           },
         });
 

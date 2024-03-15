@@ -29,7 +29,7 @@ export const inactiveProductsResolver = {
         // If no inactive products are found, throw an error
         if (!products || products.length === 0) {
           throw new Error(
-            `No inactive products found for company ${company} and type ${type}.`
+            `No inactive products found for company ${company} and store ${type}.`
           );
         }
 

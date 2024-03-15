@@ -34,10 +34,17 @@ export const firstTimeResetUserResolver = {
           where: {
             id: id,
           },
+          select: {
+            password: true,
+          }
         });
 
         if (!existingUser) {
           throw new Error(`User with id ${id} not found`);
+        }
+
+        if (password === existingUser.password) {
+          throw new Error(`New password cannot be the same as the old password`);
         }
 
         // Update the user's password and set firstsignin to false

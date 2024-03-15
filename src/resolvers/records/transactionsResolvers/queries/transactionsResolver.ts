@@ -22,7 +22,7 @@ export const transactionsResolver = {
         const transactions = await prisma.transactions.findMany();
 
         if (!transactions || transactions.length === 0) {
-          throw new Error(`No transactions found for company ${company} and type ${type}.`);
+          throw new Error(`No transactions found for company ${company} and store ${type}.`);
         }
 
         // Format the createdAt field in each transaction before returning
