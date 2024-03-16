@@ -171,8 +171,14 @@ export const writeoffProductResolver = {
                   `Failed to update user record for user with ID ${id}.`
                 );
               }
+            }, {
+              timeout: 10000, // Increase the timeout to 10 seconds
             });
-          });
+         }, {
+            timeout: 10000, // Increase the timeout to 10 seconds
+         });
+        }, {
+         timeout: 10000, // Increase the timeout to 10 seconds
         });
 
         // If any operation failed during the writeoff, set allSucceeded to false
