@@ -1,5 +1,6 @@
 import { PrismaClient } from "../../../../prisma/generated/usersClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
+import { noop } from "../../../components/noop";
 
 export const usersResolver = {
   Query: {
@@ -8,6 +9,8 @@ export const usersResolver = {
       { company, type }: { company: string; type: string }
     ) => {
       try {
+         // Use the dummy function to "preoccupy" the 'type' variable
+        noop(type);
         // Get dynamic database URL based on company and type
         const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
           company,

@@ -1,5 +1,6 @@
 import { PrismaClient } from "../../../../prisma/generated/usersClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
+import { noop } from "../../../components/noop";
 
 export const firstTimeResetUserResolver = {
   Mutation: {
@@ -17,6 +18,8 @@ export const firstTimeResetUserResolver = {
         type: string;
       }
     ) => {
+      // Use the dummy function to "preoccupy" the 'type' variable
+      noop(type);
       // Get dynamic database URL based on company and type
       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
         company,
@@ -36,7 +39,7 @@ export const firstTimeResetUserResolver = {
           },
           select: {
             password: true,
-          }
+          },
         });
 
         if (!existingUser) {
@@ -44,7 +47,9 @@ export const firstTimeResetUserResolver = {
         }
 
         if (password === existingUser.password) {
-          throw new Error(`New password cannot be the same as the old password`);
+          throw new Error(
+            `New password cannot be the same as the old password`
+          );
         }
 
         // Update the user's password and set firstsignin to false

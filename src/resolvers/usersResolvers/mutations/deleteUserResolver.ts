@@ -1,5 +1,6 @@
 import { PrismaClient } from "../../../../prisma/generated/usersClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
+import { noop } from "../../../components/noop";
 
 export const deleteUserResolver = {
   Mutation: {
@@ -7,6 +8,8 @@ export const deleteUserResolver = {
       _: any,
       { id, company, type }: { id: string; company: string; type: string }
     ) => {
+       // Use the dummy function to "preoccupy" the 'type' variable
+        noop(type);
       // Get dynamic database URL based on company and type
       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
         company,

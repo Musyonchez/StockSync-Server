@@ -3,6 +3,7 @@ import {
   UserRole,
 } from "../../../../prisma/generated/usersClient";
 import { getDynamicDatabaseUrl } from "../../../components/database/GetynamicDatabaseUrl";
+import { noop } from "../../../components/noop";
 
 export const addUserResolver = {
   Mutation: {
@@ -23,7 +24,8 @@ export const addUserResolver = {
       }
     ) => {
       const { company, type, ...userData } = args;
-
+      // Use the dummy function to "preoccupy" the 'type' variable
+      noop(type);
       // Get dynamic database URL based on company and type
       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
         company,
@@ -68,7 +70,9 @@ export const addUserResolver = {
         });
 
         if (!updatedUser) {
-          throw new Error(`Failed to update user's company logo and image URL with ID ${createdUser.id}`);
+          throw new Error(
+            `Failed to update user's company logo and image URL with ID ${createdUser.id}`
+          );
         }
 
         return updatedUser;
