@@ -172,13 +172,13 @@ export const writeoffProductResolver = {
                 );
               }
             }, {
-              timeout: 10000, // Increase the timeout to 10 seconds
+              timeout: 20000, // Increase the timeout to 10 seconds
             });
          }, {
-            timeout: 10000, // Increase the timeout to 10 seconds
+            timeout: 20000, // Increase the timeout to 10 seconds
          });
         }, {
-         timeout: 10000, // Increase the timeout to 10 seconds
+         timeout: 20000, // Increase the timeout to 10 seconds
         });
 
         // If any operation failed during the writeoff, set allSucceeded to false

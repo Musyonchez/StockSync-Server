@@ -165,17 +165,17 @@ export const restockingProductResolver = {
                     }
                   },
                   {
-                    timeout: 10000, // Increase the timeout to 10 seconds
+                    timeout: 20000, // Increase the timeout to 10 seconds
                   }
                 );
               },
               {
-                timeout: 10000, // Increase the timeout to 10 seconds
+                timeout: 20000, // Increase the timeout to 10 seconds
               }
             );
           },
           {
-            timeout: 10000, // Increase the timeout to 10 seconds
+            timeout: 20000, // Increase the timeout to 10 seconds
           }
         );
 
