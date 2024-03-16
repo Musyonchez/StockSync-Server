@@ -27,7 +27,7 @@ export async function getDynamicDatabaseUrl(company: string, type: string): Prom
       store3: process.env.SOLTASE_STORE3 || "",
       store4: process.env.SOLTASE_STORE4 || "",
       users: process.env.SOLTASE_USERS || "",
-      default: process.env.DATABASE_URL || "",
+      default: process.env.MONGODB_URL || "",
     },
     default: {
       default: process.env.MONGODB_URL || "",

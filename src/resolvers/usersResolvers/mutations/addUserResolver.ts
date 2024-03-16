@@ -27,7 +27,7 @@ export const addUserResolver = {
       // Get dynamic database URL based on company and type
       const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
         company,
-        type
+        "users"
       );
 
       // Set environment variable for database URL
