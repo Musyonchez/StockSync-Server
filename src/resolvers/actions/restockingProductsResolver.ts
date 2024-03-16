@@ -58,9 +58,9 @@ export const restockingProductResolver = {
 
       try {
         // Perform transaction to update store and restocking records
-        await storePrisma.$transaction(async (tx) => {
+        await userPrisma.$transaction(async (tz) => {
           await restockingPrisma.$transaction(async (ty) => {
-            await userPrisma.$transaction(async (tz) => {
+            await storePrisma.$transaction(async (tx) => {
               // Loop through each item in the filterArray
               for (const item of filterArray) {
                 const productId = item.productId;
@@ -131,7 +131,9 @@ export const restockingProductResolver = {
               });
 
               if (!restockingProduct) {
-                throw new Error(`Failed to create restocking record for user with ID ${id}.`);
+                throw new Error(
+                  `Failed to create restocking record for user with ID ${id}.`
+                );
               }
 
               // Check if the user exists before updating the record
@@ -152,7 +154,9 @@ export const restockingProductResolver = {
               });
 
               if (!updatedUser) {
-                throw new Error(`Failed to update user record for user with ID ${id}.`);
+                throw new Error(
+                  `Failed to update user record for user with ID ${id}.`
+                );
               }
             });
           });

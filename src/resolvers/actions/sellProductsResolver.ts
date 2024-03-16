@@ -58,9 +58,9 @@ export const sellProductResolver = {
 
       try {
         // Perform transaction to update store and transaction records
-        await storePrisma.$transaction(async (tx) => {
+        await userPrisma.$transaction(async (tz) => {
           await transactionsPrisma.$transaction(async (ty) => {
-            await userPrisma.$transaction(async (tz) => {
+            await storePrisma.$transaction(async (tx) => {
               // Loop through each item in the filterArray
               for (const item of filterArray) {
                 const productId = item.productId;
