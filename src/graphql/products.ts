@@ -106,6 +106,7 @@ const typeDefs = gql`
       name: String!
       company: String!
       type: String!
+      total: Float!
       filterArray: [RestockingFilterInput]!
     ): Boolean
 
