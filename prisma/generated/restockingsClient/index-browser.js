@@ -104,7 +104,8 @@ exports.Prisma.RestockingsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   creatorId: 'creatorId',
-  creatorName: 'creatorName'
+  creatorName: 'creatorName',
+  totalAmount: 'totalAmount'
 };
 
 exports.Prisma.SortOrder = {

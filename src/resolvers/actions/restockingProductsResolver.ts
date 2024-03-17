@@ -13,12 +13,14 @@ export const restockingProductResolver = {
         name,
         company,
         type,
+        total,
         filterArray,
       }: {
         id: string;
         name: string;
         company: string;
         type: string;
+        total: number;
         filterArray: {
           productId: string;
           toAdd: number;
@@ -131,6 +133,7 @@ export const restockingProductResolver = {
                       data: {
                         creatorId: id,
                         creatorName: name,
+                        totalAmount: total,
                         details: addedRestockingDetails,
                       },
                     });

@@ -17,6 +17,7 @@ model Restockings {
   createdAt     DateTime           @default(now()) 
   creatorId       String
   creatorName     String
+  totalAmount   Float             
 }
 
 

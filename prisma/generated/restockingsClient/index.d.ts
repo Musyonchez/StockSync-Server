@@ -914,8 +914,18 @@ export namespace Prisma {
 
   export type AggregateRestockings = {
     _count: RestockingsCountAggregateOutputType | null
+    _avg: RestockingsAvgAggregateOutputType | null
+    _sum: RestockingsSumAggregateOutputType | null
     _min: RestockingsMinAggregateOutputType | null
     _max: RestockingsMaxAggregateOutputType | null
+  }
+
+  export type RestockingsAvgAggregateOutputType = {
+    totalAmount: number | null
+  }
+
+  export type RestockingsSumAggregateOutputType = {
+    totalAmount: number | null
   }
 
   export type RestockingsMinAggregateOutputType = {
@@ -923,6 +933,7 @@ export namespace Prisma {
     createdAt: Date | null
     creatorId: string | null
     creatorName: string | null
+    totalAmount: number | null
   }
 
   export type RestockingsMaxAggregateOutputType = {
@@ -930,6 +941,7 @@ export namespace Prisma {
     createdAt: Date | null
     creatorId: string | null
     creatorName: string | null
+    totalAmount: number | null
   }
 
   export type RestockingsCountAggregateOutputType = {
@@ -937,15 +949,25 @@ export namespace Prisma {
     createdAt: number
     creatorId: number
     creatorName: number
+    totalAmount: number
     _all: number
   }
 
+
+  export type RestockingsAvgAggregateInputType = {
+    totalAmount?: true
+  }
+
+  export type RestockingsSumAggregateInputType = {
+    totalAmount?: true
+  }
 
   export type RestockingsMinAggregateInputType = {
     id?: true
     createdAt?: true
     creatorId?: true
     creatorName?: true
+    totalAmount?: true
   }
 
   export type RestockingsMaxAggregateInputType = {
@@ -953,6 +975,7 @@ export namespace Prisma {
     createdAt?: true
     creatorId?: true
     creatorName?: true
+    totalAmount?: true
   }
 
   export type RestockingsCountAggregateInputType = {
@@ -960,6 +983,7 @@ export namespace Prisma {
     createdAt?: true
     creatorId?: true
     creatorName?: true
+    totalAmount?: true
     _all?: true
   }
 
@@ -1001,6 +1025,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: RestockingsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RestockingsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: RestockingsMinAggregateInputType
@@ -1031,6 +1067,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: RestockingsCountAggregateInputType | true
+    _avg?: RestockingsAvgAggregateInputType
+    _sum?: RestockingsSumAggregateInputType
     _min?: RestockingsMinAggregateInputType
     _max?: RestockingsMaxAggregateInputType
   }
@@ -1040,7 +1078,10 @@ export namespace Prisma {
     createdAt: Date
     creatorId: string
     creatorName: string
+    totalAmount: number
     _count: RestockingsCountAggregateOutputType | null
+    _avg: RestockingsAvgAggregateOutputType | null
+    _sum: RestockingsSumAggregateOutputType | null
     _min: RestockingsMinAggregateOutputType | null
     _max: RestockingsMaxAggregateOutputType | null
   }
@@ -1065,6 +1106,7 @@ export namespace Prisma {
     createdAt?: boolean
     creatorId?: boolean
     creatorName?: boolean
+    totalAmount?: boolean
   }, ExtArgs["result"]["restockings"]>
 
   export type RestockingsSelectScalar = {
@@ -1072,6 +1114,7 @@ export namespace Prisma {
     createdAt?: boolean
     creatorId?: boolean
     creatorName?: boolean
+    totalAmount?: boolean
   }
 
   export type RestockingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1085,6 +1128,7 @@ export namespace Prisma {
       createdAt: Date
       creatorId: string
       creatorName: string
+      totalAmount: number
     }, ExtArgs["result"]["restockings"]>
     composites: {
       details: Prisma.$RestockingDetailPayload[]
@@ -1512,6 +1556,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Restockings", 'DateTime'>
     readonly creatorId: FieldRef<"Restockings", 'String'>
     readonly creatorName: FieldRef<"Restockings", 'String'>
+    readonly totalAmount: FieldRef<"Restockings", 'Float'>
   }
     
 
@@ -1876,7 +1921,8 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     creatorId: 'creatorId',
-    creatorName: 'creatorName'
+    creatorName: 'creatorName',
+    totalAmount: 'totalAmount'
   };
 
   export type RestockingsScalarFieldEnum = (typeof RestockingsScalarFieldEnum)[keyof typeof RestockingsScalarFieldEnum]
@@ -1932,20 +1978,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1956,6 +1988,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -1971,6 +2017,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Restockings"> | Date | string
     creatorId?: StringFilter<"Restockings"> | string
     creatorName?: StringFilter<"Restockings"> | string
+    totalAmount?: FloatFilter<"Restockings"> | number
   }
 
   export type RestockingsOrderByWithRelationInput = {
@@ -1979,6 +2026,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
+    totalAmount?: SortOrder
   }
 
   export type RestockingsWhereUniqueInput = Prisma.AtLeast<{
@@ -1990,6 +2038,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Restockings"> | Date | string
     creatorId?: StringFilter<"Restockings"> | string
     creatorName?: StringFilter<"Restockings"> | string
+    totalAmount?: FloatFilter<"Restockings"> | number
   }, "id">
 
   export type RestockingsOrderByWithAggregationInput = {
@@ -1997,9 +2046,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
+    totalAmount?: SortOrder
     _count?: RestockingsCountOrderByAggregateInput
+    _avg?: RestockingsAvgOrderByAggregateInput
     _max?: RestockingsMaxOrderByAggregateInput
     _min?: RestockingsMinOrderByAggregateInput
+    _sum?: RestockingsSumOrderByAggregateInput
   }
 
   export type RestockingsScalarWhereWithAggregatesInput = {
@@ -2010,6 +2062,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Restockings"> | Date | string
     creatorId?: StringWithAggregatesFilter<"Restockings"> | string
     creatorName?: StringWithAggregatesFilter<"Restockings"> | string
+    totalAmount?: FloatWithAggregatesFilter<"Restockings"> | number
   }
 
   export type RestockingsCreateInput = {
@@ -2018,6 +2071,7 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
+    totalAmount: number
   }
 
   export type RestockingsUncheckedCreateInput = {
@@ -2026,6 +2080,7 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
+    totalAmount: number
   }
 
   export type RestockingsUpdateInput = {
@@ -2033,6 +2088,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type RestockingsUncheckedUpdateInput = {
@@ -2040,6 +2096,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type RestockingsCreateManyInput = {
@@ -2048,6 +2105,7 @@ export namespace Prisma {
     createdAt?: Date | string
     creatorId: string
     creatorName: string
+    totalAmount: number
   }
 
   export type RestockingsUpdateManyMutationInput = {
@@ -2055,6 +2113,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type RestockingsUncheckedUpdateManyInput = {
@@ -2062,6 +2121,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creatorId?: StringFieldUpdateOperationsInput | string
     creatorName?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2110,6 +2170,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type RestockingDetailOrderByCompositeAggregateInput = {
     _count?: SortOrder
   }
@@ -2119,6 +2190,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
+    totalAmount?: SortOrder
+  }
+
+  export type RestockingsAvgOrderByAggregateInput = {
+    totalAmount?: SortOrder
   }
 
   export type RestockingsMaxOrderByAggregateInput = {
@@ -2126,6 +2202,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
+    totalAmount?: SortOrder
   }
 
   export type RestockingsMinOrderByAggregateInput = {
@@ -2133,6 +2210,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     creatorId?: SortOrder
     creatorName?: SortOrder
+    totalAmount?: SortOrder
+  }
+
+  export type RestockingsSumOrderByAggregateInput = {
+    totalAmount?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2167,6 +2249,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type RestockingDetailListCreateEnvelopeInput = {
     set?: RestockingDetailCreateInput | RestockingDetailCreateInput[]
   }
@@ -2195,6 +2293,14 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2234,6 +2340,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2276,6 +2393,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type RestockingDetailUpdateManyInput = {
