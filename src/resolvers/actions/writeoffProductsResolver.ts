@@ -61,125 +61,141 @@ export const writeoffProductResolver = {
 
       try {
         // Perform transaction to update store, writeoff, and user records
-        await userPrisma.$transaction(async (tz) => {
-          await writeoffPrisma.$transaction(async (ty) => {
-            await storePrisma.$transaction(async (tx) => {
-              // Loop through each item in the filterArray
-              for (const item of filterArray) {
-                const productId = item.productId;
-                const numberToSubtract = item.toSubtract;
-                const productQuantity = item.quantity;
+        await userPrisma.$transaction(
+          async (tz) => {
+            await writeoffPrisma.$transaction(
+              async (ty) => {
+                await storePrisma.$transaction(
+                  async (tx) => {
+                    // Loop through each item in the filterArray
+                    for (const item of filterArray) {
+                      const productId = item.productId;
+                      const numberToSubtract = item.toSubtract;
+                      const productQuantity = item.quantity;
 
-                // Check if the product exists in the database
-                const existingProduct = await tx.products.findUnique({
-                  where: { id: productId },
-                  select: {
-                    id: true,
-                    current: true,
+                      // Check if the product exists in the database
+                      const existingProduct = await tx.products.findUnique({
+                        where: { id: productId },
+                        select: {
+                          id: true,
+                          current: true,
+                        },
+                      });
+
+                      // If product does not exist or quantity is insufficient, throw an error
+                      if (
+                        existingProduct === null ||
+                        existingProduct.current === null ||
+                        existingProduct.current - numberToSubtract < 0
+                      ) {
+                        throw new Error(
+                          `Insufficient quantity for product ${productId}.`
+                        );
+                      }
+
+                      // Update the product's 'current' field
+                      await tx.products.update({
+                        where: { id: productId },
+                        data: {
+                          current: {
+                            decrement: numberToSubtract,
+                          },
+                          firstRecordAction: true,
+                        },
+                      });
+
+                      // Fetch the updated product to get the new `current` value
+                      const updatedProducts = await tx.products.findUnique({
+                        where: { id: productId },
+                        select: {
+                          id: true,
+                          name: true,
+                          category: true,
+                          current: true,
+                          unitCost: true,
+                          sellingPrice: true,
+                          taxInformation: true,
+                          supplier: true,
+                          firstRecordAction: true,
+                        },
+                      });
+
+                      // If product update fails, throw an error
+                      if (updatedProducts === null) {
+                        throw new Error(
+                          `Failed to update product with ID ${productId}.`
+                        );
+                      }
+
+                      // Add the product details to the array
+                      addedWriteoffDetails.push({
+                        id: updatedProducts.id,
+                        name: updatedProducts.name,
+                        category: updatedProducts.category,
+                        current: updatedProducts.current,
+                        unitCost: updatedProducts.unitCost,
+                        sellingPrice: updatedProducts.sellingPrice,
+                        quantity: productQuantity,
+                      });
+                    }
+
+                    // Create writeoff record
+                    const writeoff = await ty.writeoffs.create({
+                      data: {
+                        creatorId: id,
+                        creatorName: name,
+                        totalAmount: total,
+                        reason: reason,
+                        details: addedWriteoffDetails,
+                      },
+                    });
+
+                    // If writeoff creation fails, throw an error
+                    if (!writeoff) {
+                      throw new Error(
+                        `Failed to create writeoff record for user with ID ${id}.`
+                      );
+                    }
+
+                    // Check if the user exists before updating the record
+                    const existingUser = await tz.users.findUnique({
+                      where: { id: id },
+                    });
+
+                    // If user does not exist, throw an error
+                    if (!existingUser) {
+                      throw new Error(`User with ID ${id} not found.`);
+                    }
+
+                    // Update user record to indicate action
+                    const updatedUser = await tz.users.update({
+                      where: { id: id },
+                      data: {
+                        firstRecordAction: true,
+                      },
+                    });
+
+                    // If user update fails, throw an error
+                    if (!updatedUser) {
+                      throw new Error(
+                        `Failed to update user record for user with ID ${id}.`
+                      );
+                    }
                   },
-                });
-
-                // If product does not exist or quantity is insufficient, throw an error
-                if (
-                  existingProduct === null ||
-                  existingProduct.current === null ||
-                  existingProduct.current - numberToSubtract < 0
-                ) {
-                  throw new Error(
-                    `Insufficient quantity for product ${productId}.`
-                  );
-                }
-
-                // Update the product's 'current' field
-                const updatedProducts = await tx.products.update({
-                  where: { id: productId },
-                  data: {
-                    current: {
-                      decrement: numberToSubtract,
-                    },
-                    firstRecordAction: true,
-                  },
-                  select: {
-                    id: true,
-                    name: true,
-                    category: true,
-                    current: true,
-                    unitCost: true,
-                    sellingPrice: true,
-                    firstRecordAction: true,
-                  },
-                });
-
-                // If product update fails, throw an error
-                if (updatedProducts === null) {
-                  throw new Error(
-                    `Failed to update product with ID ${productId}.`
-                  );
-                }
-
-                // Add the product details to the array
-                addedWriteoffDetails.push({
-                  id: updatedProducts.id,
-                  name: updatedProducts.name,
-                  category: updatedProducts.category,
-                  current: updatedProducts.current,
-                  unitCost: updatedProducts.unitCost,
-                  sellingPrice: updatedProducts.sellingPrice,
-                  quantity: productQuantity,
-                });
-              }
-
-              // Create writeoff record
-              const writeoff = await ty.writeoffs.create({
-                data: {
-                  creatorId: id,
-                  creatorName: name,
-                  totalAmount: total,
-                  reason: reason,
-                  details: addedWriteoffDetails,
-                },
-              });
-
-              // If writeoff creation fails, throw an error
-              if (!writeoff) {
-                throw new Error(
-                  `Failed to create writeoff record for user with ID ${id}.`
+                  {
+                    timeout: 20000, // Increase the timeout to 10 seconds
+                  }
                 );
+              },
+              {
+                timeout: 20000, // Increase the timeout to 10 seconds
               }
-
-              // Check if the user exists before updating the record
-              const existingUser = await tz.users.findUnique({
-                where: { id: id },
-              });
-
-              // If user does not exist, throw an error
-              if (!existingUser) {
-                throw new Error(`User with ID ${id} not found.`);
-              }
-
-              // Update user record to indicate action
-              const updatedUser = await tz.users.update({
-                where: { id: id },
-                data: {
-                  firstRecordAction: true,
-                },
-              });
-
-              // If user update fails, throw an error
-              if (!updatedUser) {
-                throw new Error(
-                  `Failed to update user record for user with ID ${id}.`
-                );
-              }
-            }, {
-              timeout: 20000, // Increase the timeout to 10 seconds
-            });
-         }, {
+            );
+          },
+          {
             timeout: 20000, // Increase the timeout to 10 seconds
-         });
-        }, {
-         timeout: 20000, // Increase the timeout to 10 seconds
-        });
+          }
+        );
 
         // If any operation failed during the writeoff, set allSucceeded to false
         if (!allSucceeded) {

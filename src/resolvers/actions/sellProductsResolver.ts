@@ -93,7 +93,7 @@ export const sellProductResolver = {
                       }
 
                       // Update the product's 'current' field
-                      const updatedProducts = await tx.products.update({
+                      await tx.products.update({
                         where: { id: productId },
                         data: {
                           current: {
@@ -101,6 +101,11 @@ export const sellProductResolver = {
                           },
                           firstRecordAction: true,
                         },
+                      });
+
+                      // Fetch the updated product to get the new `current` value
+                      const updatedProducts = await tx.products.findUnique({
+                        where: { id: productId },
                         select: {
                           id: true,
                           name: true,

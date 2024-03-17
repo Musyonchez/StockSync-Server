@@ -88,7 +88,7 @@ export const restockingProductResolver = {
                       }
 
                       // Update the product's 'current' field
-                      const updatedProducts = await tx.products.update({
+                      await tx.products.update({
                         where: { id: productId },
                         data: {
                           current: {
@@ -96,6 +96,11 @@ export const restockingProductResolver = {
                           },
                           firstRecordAction: true,
                         },
+                      });
+
+                      // Fetch the updated product to get the new `current` value
+                      const updatedProducts = await tx.products.findUnique({
+                        where: { id: productId },
                         select: {
                           id: true,
                           name: true,
@@ -103,6 +108,7 @@ export const restockingProductResolver = {
                           current: true,
                           unitCost: true,
                           sellingPrice: true,
+                          taxInformation: true,
                           supplier: true,
                           firstRecordAction: true,
                         },
