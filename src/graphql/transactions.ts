@@ -20,10 +20,11 @@ const typeDefs = gql`
     creatorId: String!
     creatorName: String!
     totalAmount: Float!
+    totalProducts: Int
   }
 
   type Query {
-    getTransactions(company: String!, type: String!): [Transaction]
+    getTransactions(company: String!, type: String!, take: Int, skip: Int): [Transaction]
     getTransaction(id: String!, company: String!, type: String!): Transaction
   }
 `;

@@ -12,6 +12,7 @@ const typeDefs = gql`
     store4: Boolean
     role: UserRole
     active: Boolean
+    totalUsers: Int
   }
 
   type User {
@@ -43,7 +44,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    users(company: String!, type: String!): [Users]
+    users(company: String!, type: String!, take: Int, skip: Int): [Users]
     user(id: String!, company: String!, type: String!): User
     authenticateUser(email: String!, password: String!, company: String!): User
   }

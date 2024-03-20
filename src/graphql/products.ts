@@ -14,6 +14,7 @@ const typeDefs = gql`
     imageURL: String
     supplier: String
     active: Boolean
+    totalProducts: Int
   }
 
   type Product {
@@ -61,14 +62,16 @@ const typeDefs = gql`
   }
 
   type Query {
-    products(company: String!, type: String!): [Products]
-    activeProducts(company: String!, type: String!): [Product]
-    inactiveProducts(company: String!, type: String!): [Product]
-    product(id: String!, company: String!, type: String!): Product
+    products(company: String!, type: String!, take: Int, skip: Int): [Products]
+    activeProducts(company: String!, type: String!, take: Int, skip: Int): [Products]
+    inactiveProducts(company: String!, type: String!, take: Int, skip: Int): [Products]
+    product(id: String!, company: String!, type: String!, take: Int, skip: Int): Product
     searchProducts(
       company: String!
       type: String!
       filterArray: [SearchFilterInput]!
+      take: Int
+      skip: Int
     ): [Products]
   }
 

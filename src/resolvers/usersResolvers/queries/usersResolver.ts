@@ -6,10 +6,15 @@ export const usersResolver = {
   Query: {
     users: async (
       _: any,
-      { company, type }: { company: string; type: string }
+      {
+        company,
+        type,
+        take,
+        skip,
+      }: { company: string; type: string; take: number; skip: number }
     ) => {
       try {
-         // Use the dummy function to "preoccupy" the 'type' variable
+        // Use the dummy function to "preoccupy" the 'type' variable
         noop(type);
         // Get dynamic database URL based on company and type
         const dynamicUsersDatabaseUrl = await getDynamicDatabaseUrl(
@@ -23,8 +28,14 @@ export const usersResolver = {
         // Initialize Prisma client
         const prisma = new PrismaClient();
 
+        const totalUsers = await prisma.users.count({});
+
+
         // Retrieve all users from the database
-        const users = await prisma.users.findMany();
+        const users = await prisma.users.findMany({
+          take,
+          skip,
+        });
 
         // Check if users array is empty
         if (users.length === 0) {
@@ -32,7 +43,11 @@ export const usersResolver = {
         }
 
         // Return the list of users
-        return users;
+        return users.map(user => ({
+          ...user,
+          totalUsers,
+        }));
+      
       } catch (error) {
         // Throw an error if any occurred during the execution
         throw new Error(`Error fetching users: ${(error as Error).message}`);

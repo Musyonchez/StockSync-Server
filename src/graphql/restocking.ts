@@ -19,10 +19,11 @@ const typeDefs = gql`
     creatorName: String!
     createdAt: String!
     totalAmount: Float!
+    totalProducts: Int
   }
 
   type Query {
-    getRestockings(company: String!, type: String!): [Restocking]
+    getRestockings(company: String!, type: String!, take: Int, skip: Int): [Restocking]
     getRestocking(id: String!, company: String!, type: String!): Restocking
   }
 `;

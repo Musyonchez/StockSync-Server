@@ -5,7 +5,12 @@ export const writeoffsResolver = {
   Query: {
     getWriteoffs: async (
       _: any,
-      { company, type }: { company: string; type: string }
+      {
+        company,
+        type,
+        take,
+        skip,
+      }: { company: string; type: string; take: number; skip: number }
     ) => {
       // Get dynamic database URL based on company and type
       const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
@@ -19,25 +24,38 @@ export const writeoffsResolver = {
       const prisma = new PrismaClient();
 
       try {
+        const totalProducts = await prisma.writeoffs.count({});
         // Retrieve the list of writeoffs from the database
-        const writeoffs = await prisma.writeoffs.findMany();
+        const writeoffs = await prisma.writeoffs.findMany({
+          take,
+          skip,
+          // include: {
+          //   details: true,
+          // },
+        });
 
         // Check if writeoffs is empty or null
         if (!writeoffs || writeoffs.length === 0) {
           // Throw an error if no writeoffs are found
-          throw new Error(`No writeoffs found for company ${company} and store ${type}.`);
+          throw new Error(
+            `No writeoffs found for company ${company} and store ${type}.`
+          );
         }
 
         // Format the createdAt field before returning the list of writeoffs
-        const formattedWriteoffs = writeoffs.map((writeoff) => ({
+        // Format the createdAt field before returning the list of writeoffs
+        return writeoffs.map((writeoff) => ({
           ...writeoff,
           createdAt: writeoff.createdAt.toLocaleString(), // Format createdAt
+          totalProducts,
         }));
 
-        return formattedWriteoffs;
+        
       } catch (error) {
         // Throw an error if fetching writeoffs fails
-        throw new Error(`Unable to fetch writeoffs: ${(error as Error).message}`);
+        throw new Error(
+          `Unable to fetch writeoffs: ${(error as Error).message}`
+        );
       } finally {
         // Disconnect from the Prisma client
         await prisma.$disconnect();

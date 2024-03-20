@@ -21,10 +21,11 @@ const typeDefs = gql`
     creatorName: String!
     totalAmount: Float!
     reason: String!
+    totalProducts: Int
   }
 
   type Query {
-    getWriteoffs(company: String!, type: String!): [Writeoff]
+    getWriteoffs(company: String!, type: String!, take: Int, skip: Int): [Writeoff]
     getWriteoff(id: String!, company: String!, type: String!): Writeoff
   }
 `;

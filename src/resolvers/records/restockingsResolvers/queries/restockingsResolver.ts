@@ -5,7 +5,12 @@ export const restockingsResolver = {
   Query: {
     getRestockings: async (
       _: any,
-      { company, type }: { company: string; type: string }
+      {
+        company,
+        type,
+        take,
+        skip,
+      }: { company: string; type: string; take: number; skip: number }
     ) => {
       // Get dynamic database URL based on company and type
       const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
@@ -19,10 +24,14 @@ export const restockingsResolver = {
       const prisma = new PrismaClient();
 
       try {
+        const totalProducts = await prisma.restockings.count({});
+
         const restockings = await prisma.restockings.findMany({
-          include: {
-            details: true,
-          },
+          take,
+          skip,
+          // include: {
+          //   details: true,
+          // },
         });
 
         if (!restockings || restockings.length === 0) {
@@ -32,12 +41,12 @@ export const restockingsResolver = {
         }
 
         // Format the createdAt field before returning the Restocking object
-        const formattedRestockings = restockings.map((restocking) => ({
+
+        return restockings.map((restocking) => ({
           ...restocking,
           createdAt: restocking.createdAt.toLocaleString(), // Format createdAt
+          totalProducts,
         }));
-
-        return formattedRestockings;
       } catch (error) {
         throw new Error(
           `Unable to fetch restockings: ${(error as Error).message}`
