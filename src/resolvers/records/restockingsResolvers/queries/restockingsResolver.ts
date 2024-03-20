@@ -7,8 +7,8 @@ export const restockingsResolver = {
       _: any,
       { company, type }: { company: string; type: string }
     ) => {
-       // Get dynamic database URL based on company and type
-       const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+      // Get dynamic database URL based on company and type
+      const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
         company,
         type
       );
@@ -19,12 +19,18 @@ export const restockingsResolver = {
       const prisma = new PrismaClient();
 
       try {
-        const restockings = await prisma.restockings.findMany();
+        const restockings = await prisma.restockings.findMany({
+          include: {
+            details: true,
+          },
+        });
 
-        if(!restockings || restockings.length === 0){
-          throw new Error(`No restockings found for company ${company} and store ${type}.`);
+        if (!restockings || restockings.length === 0) {
+          throw new Error(
+            `No restockings found for company ${company} and store ${type}.`
+          );
         }
-        
+
         // Format the createdAt field before returning the Restocking object
         const formattedRestockings = restockings.map((restocking) => ({
           ...restocking,
@@ -33,7 +39,9 @@ export const restockingsResolver = {
 
         return formattedRestockings;
       } catch (error) {
-        throw new Error(`Unable to fetch restockings: ${(error as Error).message}`);
+        throw new Error(
+          `Unable to fetch restockings: ${(error as Error).message}`
+        );
       } finally {
         await prisma.$disconnect();
       }
