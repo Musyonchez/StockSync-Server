@@ -25,6 +25,7 @@ export const writeoffsResolver = {
 
       try {
         const totalProducts = await prisma.writeoffs.count({});
+
         // Retrieve the list of writeoffs from the database
         const writeoffs = await prisma.writeoffs.findMany({
           take,
@@ -44,13 +45,18 @@ export const writeoffsResolver = {
 
         // Format the createdAt field before returning the list of writeoffs
         // Format the createdAt field before returning the list of writeoffs
-        return writeoffs.map((writeoff) => ({
-          ...writeoff,
-          createdAt: writeoff.createdAt.toLocaleString(), // Format createdAt
-          totalProducts,
-        }));
-
-        
+        return writeoffs
+          .map((writeoff) => ({
+            ...writeoff,
+            createdAt: new Date(writeoff.createdAt).toLocaleString("en-US", {
+              timeZone: "Africa/Nairobi",
+            }),
+            totalProducts,
+          }))
+          .map((writeoff) => ({
+            ...writeoff,
+            totalProducts,
+          }));
       } catch (error) {
         // Throw an error if fetching writeoffs fails
         throw new Error(

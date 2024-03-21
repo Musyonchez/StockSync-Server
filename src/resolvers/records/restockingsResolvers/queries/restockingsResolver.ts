@@ -25,6 +25,7 @@ export const restockingsResolver = {
 
       try {
         const totalProducts = await prisma.restockings.count({});
+        // console.log("totalProducts",totalProducts)
 
         const restockings = await prisma.restockings.findMany({
           take,
@@ -42,11 +43,18 @@ export const restockingsResolver = {
 
         // Format the createdAt field before returning the Restocking object
 
-        return restockings.map((restocking) => ({
-          ...restocking,
-          createdAt: restocking.createdAt.toLocaleString(), // Format createdAt
-          totalProducts,
-        }));
+        return restockings
+          .map((restocking) => ({
+            ...restocking,
+            createdAt: new Date(restocking.createdAt).toLocaleString("en-US", {
+              timeZone: "Africa/Nairobi",
+            }),
+            totalProducts,
+          }))
+          .map((restocking) => ({
+            ...restocking,
+            totalProducts,
+          }));
       } catch (error) {
         throw new Error(
           `Unable to fetch restockings: ${(error as Error).message}`

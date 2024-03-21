@@ -30,14 +30,16 @@ export const writeoffResolver = {
         }
 
         // Format the createdAt field before returning
-        const formattedWriteoff = {
+        return {
           ...writeoff,
-          createdAt: writeoff.createdAt.toLocaleString(), // Format createdAt
+          createdAt: new Date(writeoff.createdAt).toLocaleString("en-US", {
+            timeZone: "Africa/Nairobi",
+          }),
         };
-
-        return formattedWriteoff;
       } catch (error) {
-        throw new Error(`Unable to fetch writeoff: ${(error as Error).message}`);
+        throw new Error(
+          `Unable to fetch writeoff: ${(error as Error).message}`
+        );
       } finally {
         await prisma.$disconnect();
       }

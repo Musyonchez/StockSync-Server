@@ -7,14 +7,14 @@ export const transactionResolver = {
       _: any,
       { id, company, type }: { id: string; company: string; type: string }
     ) => {
-     // Get dynamic database URL based on company and type
-     const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
-      company,
-      type
-    );
+      // Get dynamic database URL based on company and type
+      const dynamicProductsDatabaseUrl = await getDynamicDatabaseUrl(
+        company,
+        type
+      );
 
-    // Set environment variable for database URL
-    process.env.MONGODB_URL_PRODUCTS = dynamicProductsDatabaseUrl;
+      // Set environment variable for database URL
+      process.env.MONGODB_URL_PRODUCTS = dynamicProductsDatabaseUrl;
 
       const prisma = new PrismaClient();
 
@@ -29,14 +29,16 @@ export const transactionResolver = {
           throw new Error(`Transaction with ID ${id} not found.`);
         }
         // Format the createdAt field before returning
-        const formattedTransaction = {
+        return {
           ...transaction,
-          createdAt: transaction.createdAt.toLocaleString(), // Format createdAt
+          createdAt: new Date(transaction.createdAt).toLocaleString("en-US", {
+            timeZone: "Africa/Nairobi",
+          }),
         };
-
-        return formattedTransaction;
       } catch (error) {
-        throw new Error(`Unable to fetch transaction: ${(error as Error).message}`);
+        throw new Error(
+          `Unable to fetch transaction: ${(error as Error).message}`
+        );
       } finally {
         await prisma.$disconnect();
       }

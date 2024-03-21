@@ -31,12 +31,12 @@ export const restockingResolver = {
         }
 
         // Format the createdAt field before returning the Restocking object
-        const formattedRestocking = {
+        return {
           ...restocking,
-          createdAt: restocking.createdAt.toLocaleString(), // Format createdAt
+          createdAt: new Date(restocking.createdAt).toLocaleString("en-US", {
+            timeZone: "Africa/Nairobi",
+          }),
         };
-
-        return formattedRestocking;
       } catch (error) {
         throw new Error(`Unable to fetch restocking`);
       } finally {

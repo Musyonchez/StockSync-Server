@@ -42,11 +42,18 @@ export const transactionsResolver = {
 
         // Format the createdAt field in each transaction before returning
 
-        return transactions.map((transaction) => ({
-          ...transaction,
-          createdAt: transaction.createdAt.toLocaleString(), // Format createdAt
-          totalProducts,
-        }));
+        return transactions
+          .map((transaction) => ({
+            ...transaction,
+            createdAt: new Date(transaction.createdAt).toLocaleString("en-US", {
+              timeZone: "Africa/Nairobi",
+            }),
+            totalProducts,
+          }))
+          .map((transaction) => ({
+            ...transaction,
+            totalProducts,
+          }));
       } catch (error) {
         throw new Error(
           `Unable to fetch transactions: ${(error as Error).message}`
