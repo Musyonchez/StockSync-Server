@@ -94,7 +94,6 @@ export const restockingProductResolver = {
                           current: {
                             increment: numberToAdd,
                           },
-                          firstRecordAction: true,
                         },
                       });
 
